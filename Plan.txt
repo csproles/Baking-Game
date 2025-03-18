@@ -1,0 +1,18 @@
+Plan for the group HProject for CMPS 2800
+
+-background is mostly muted colors but interactables are brighter
+-1 box/ room to hold everything to start with
+
+Plan for Users to back cake
+- flour, sugar, egg, baking powder, milk, flavor(white, chocolate) -> in bowl
+- bowl -> in mixer
+- mixer -> mixed bowl
+- mixed bowl -> cake shape tin
+- cake shape tin -> oven
+- oven -> decorating station
+    (icing (white, pink chocolate),
+    borders (different tips make different shapes),
+    toppings(strawberries, cookies, sprinkles),
+    drip(on or off))
+- decorating station -> box
+- box -> customer
