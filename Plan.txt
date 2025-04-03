@@ -4,10 +4,8 @@ Plan for the group HProject for CMPS 2800
 -1 box/ room to hold everything to start with
 
 Plan for Users to back cake
-- flour, sugar, egg, baking powder, milk, flavor(white, chocolate) -> in bowl
-- bowl -> in mixer
-- mixer -> mixed bowl
-- mixed bowl -> cake shape tin
+- cake mix, egg, milk, flavor(white, chocolate) -> in mixer
+- mixer -> cake shape tin
 - cake shape tin -> oven
 - oven -> decorating station
     (icing (white, pink chocolate),
