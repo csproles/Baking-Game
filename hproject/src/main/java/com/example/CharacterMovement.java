@@ -19,7 +19,7 @@ public class CharacterMovement extends Application {
     public double paneHeight = 500;
 
     private static final String HERO_IMAGE_LOC =
-            "http://icons.iconarchive.com/icons/raindropmemory/legendora/64/Hero-icon.png";
+            "C:\\Users\\calli\\Documents\\GitHub\\HProject\\hproject\\tinyChef.png";
 
     private Image heroImage;
     private Node  hero;

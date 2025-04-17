@@ -35,4 +35,8 @@ public class CallieCharacterMovement extends Application{
         throw new UnsupportedOperationException("Unimplemented method 'start'");
     }
     
+    private void moveHeroTo(double wantedX, double wantedY){
+        final double currentX = hero.getBoundsInLocal().getWidth()  / 2;
+        final double currentY = hero.getBoundsInLocal().getHeight() / 2;
+    }
 }
