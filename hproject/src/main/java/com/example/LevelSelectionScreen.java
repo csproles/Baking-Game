@@ -17,15 +17,19 @@ import javafx.stage.Window;
 /**
  * JavaFX App
  */
-public class App extends Application {
+public class LevelSelectionScreen extends Application {
 
-    public double paneWidth = 1300; //1250
-    public double paneHeight = 650; //625
+    public double paneWidth = 1000; //1250
+    public double paneHeight = 450; //625
 
     public double buttonSize = paneWidth/4;
 
+    public static Stage primaryStage;
+
     @Override
     public void start(Stage primaryStage){
+        
+        this.primaryStage = primaryStage;
         StackPane pane = new StackPane();
 
         String button1Text = "Level\n    1";
@@ -59,9 +63,9 @@ public class App extends Application {
         pane.getChildren().addAll(button1, button2, button3);
 
         pane.setStyle("-fx-border-color: e36b52; -fx-background-color: accaa1;");
-        Scene scene1 = new Scene(pane, paneWidth, paneHeight);
+        Scene scene = new Scene(pane, paneWidth, paneHeight);
         primaryStage.setTitle("Test Pane");
-        primaryStage.setScene(scene1);
+        primaryStage.setScene(scene);
 
         primaryStage.show();
     }
@@ -74,20 +78,35 @@ public class App extends Application {
 class HandleButton1 implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent e) {
-        System.out.println("Button 1 clicked"); 
+        System.out.println("Button 1 clicked");
+
+        LevelSelectionScreen.primaryStage.hide();
+        Stage level1Stage = new Stage();
+        Level1 level1 = new Level1();
+        level1.start(level1Stage);
     }
 }  
 
 class HandleButton2 implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent e) {
-      System.out.println("Button 2 clicked"); 
+        System.out.println("Button 2 clicked"); 
+
+        LevelSelectionScreen.primaryStage.hide();
+        Stage level2Stage = new Stage();
+        Level2 level2 = new Level2();
+        level2.start(level2Stage);
     }
 }  
 
 class HandleButton3 implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent e) {
-      System.out.println("Button 3 clicked"); 
+        System.out.println("Button 3 clicked"); 
+
+        LevelSelectionScreen.primaryStage.hide();
+        Stage level3Stage = new Stage();
+        Level3 level3 = new Level3();
+        level3.start(level3Stage);
     }
 }  
