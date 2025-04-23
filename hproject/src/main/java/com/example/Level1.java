@@ -22,20 +22,22 @@ public class Level1 extends Application{
         StackPane level1Pane = new StackPane();
         StackPane playablePane = new StackPane();
 
-        Button lsButton = new Button(Constants.LS_BUTTON_TEXT);
-        lsButton.setMinHeight(Constants.MAP_BUTTON_HEIGHT);
-        lsButton.setMaxHeight(Constants.MAP_BUTTON_HEIGHT);
+        level1.setTitle("Level 1");
 
-        lsButton.setMinWidth(Constants.MAP_BUTTON_WIDTH);
-        lsButton.setMaxWidth(Constants.MAP_BUTTON_WIDTH);
+        Button menuButton = new Button(Constants.LS_BUTTON_TEXT);
+        menuButton.setMinHeight(Constants.MAP_BUTTON_HEIGHT);
+        menuButton.setMaxHeight(Constants.MAP_BUTTON_HEIGHT);
 
-        lsButton.setTranslateX(Constants.MAP_BUTTON_XOFFSET);
-        lsButton.setTranslateY(Constants.MAP_BUTTON_YOFFSET);
+        menuButton.setMinWidth(Constants.MAP_BUTTON_WIDTH);
+        menuButton.setMaxWidth(Constants.MAP_BUTTON_WIDTH);
 
-        lsButton.setStyle(Constants.LS_BUTTON_STYLE);
-        lsButton.setFont(Font.font("Courier", FontWeight.BOLD, FontPosture.REGULAR , Constants.MAP_BUTTON_TEXT_SIZE));;
+        menuButton.setTranslateX(Constants.MAP_BUTTON_XOFFSET);
+        menuButton.setTranslateY(Constants.MAP_BUTTON_YOFFSET);
 
-        level1Pane.getChildren().addAll(playablePane, lsButton);
+        menuButton.setStyle(Constants.LS_BUTTON_STYLE);
+        menuButton.setFont(Font.font("Courier", FontWeight.BOLD, FontPosture.REGULAR , Constants.MAP_BUTTON_TEXT_SIZE));;
+
+        level1Pane.getChildren().addAll(playablePane, menuButton);
         level1Pane.setStyle(Constants.MAP_PANE_STYLE);
 
         playablePane.setMinHeight(Constants.PLAYABLE_PANE_HEIGHT);
@@ -45,14 +47,14 @@ public class Level1 extends Application{
         playablePane.setMinWidth(Constants.PLAYABLE_PANE_WIDTH);
         playablePane.setMaxWidth(Constants.PLAYABLE_PANE_WIDTH);
         
-        playablePane.setStyle(Constants.LS_BUTTON_STYLE);
+        playablePane.setStyle(Constants.PLAYABLE_PANE_STYLE);
 
         Scene level1Scene = new Scene(level1Pane, Constants.PANE_WIDTH, Constants.PANE_HEIGHT); 
         level1.setScene(level1Scene);
 
         HandleL1ToLSButton handleLSButton = new HandleL1ToLSButton();
         
-        lsButton.setOnAction(handleLSButton);
+        menuButton.setOnAction(handleLSButton);
 
         level1.show();
         level1.centerOnScreen();

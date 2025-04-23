@@ -22,20 +22,22 @@ public class Level3 extends Application{
         StackPane level3Pane = new StackPane();
         StackPane playablePane = new StackPane();
 
-        Button lsButton = new Button(Constants.LS_BUTTON_TEXT);
-        lsButton.setMinHeight(Constants.MAP_BUTTON_HEIGHT);
-        lsButton.setMaxHeight(Constants.MAP_BUTTON_HEIGHT);
+        level3.setTitle("Level 3");
 
-        lsButton.setMinWidth(Constants.MAP_BUTTON_WIDTH);
-        lsButton.setMaxWidth(Constants.MAP_BUTTON_WIDTH);
+        Button menuButton = new Button(Constants.LS_BUTTON_TEXT);
+        menuButton.setMinHeight(Constants.MAP_BUTTON_HEIGHT);
+        menuButton.setMaxHeight(Constants.MAP_BUTTON_HEIGHT);
+
+        menuButton.setMinWidth(Constants.MAP_BUTTON_WIDTH);
+        menuButton.setMaxWidth(Constants.MAP_BUTTON_WIDTH);
         
-        lsButton.setTranslateX(Constants.MAP_BUTTON_XOFFSET);
-        lsButton.setTranslateY(Constants.MAP_BUTTON_YOFFSET);
+        menuButton.setTranslateX(Constants.MAP_BUTTON_XOFFSET);
+        menuButton.setTranslateY(Constants.MAP_BUTTON_YOFFSET);
 
-        lsButton.setStyle(Constants.LS_BUTTON_STYLE);
-        lsButton.setFont(Font.font("Courier", FontWeight.BOLD, FontPosture.REGULAR , Constants.MAP_BUTTON_TEXT_SIZE));;
+        menuButton.setStyle(Constants.LS_BUTTON_STYLE);
+        menuButton.setFont(Font.font("Courier", FontWeight.BOLD, FontPosture.REGULAR , Constants.MAP_BUTTON_TEXT_SIZE));;
 
-        level3Pane.getChildren().addAll(playablePane, lsButton);
+        level3Pane.getChildren().addAll(playablePane, menuButton);
         level3Pane.setStyle(Constants.MAP_PANE_STYLE);
 
         playablePane.setMinHeight(Constants.PLAYABLE_PANE_HEIGHT);
@@ -45,14 +47,14 @@ public class Level3 extends Application{
         playablePane.setMinWidth(Constants.PLAYABLE_PANE_WIDTH);
         playablePane.setMaxWidth(Constants.PLAYABLE_PANE_WIDTH);
         
-        playablePane.setStyle(Constants.LS_BUTTON_STYLE);
+        playablePane.setStyle(Constants.PLAYABLE_PANE_STYLE);
 
         Scene level3Scene = new Scene(level3Pane, Constants.PANE_WIDTH, Constants.PANE_HEIGHT); 
         level3.setScene(level3Scene);
 
         HandleL3ToLSButton handleLSButton = new HandleL3ToLSButton();
         
-        lsButton.setOnAction(handleLSButton);
+        menuButton.setOnAction(handleLSButton);
 
         level3.show();
         level3.centerOnScreen();
