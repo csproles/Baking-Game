@@ -3,10 +3,14 @@ package com.example;
 import java.io.File;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -57,6 +61,25 @@ public class CharacterImage extends Application{
         primaryStage.setTitle("ShowImage"); // Set the stage title
         primaryStage.setScene(scene); // Place the scene in the stage
         primaryStage.show(); // Display the stage
+
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>(){
+            @Override
+            public void handle(KeyEvent event){
+
+                if (event.getCode() == KeyCode.W) {
+                    playerImageView.setLayoutY(playerImageView.getLayoutY() - 2);
+                } 
+                if (event.getCode() == KeyCode.S) {
+                    playerImageView.setLayoutY(playerImageView.getLayoutY() + 2);
+                }
+                if (event.getCode() == KeyCode.D) {
+                    playerImageView.setLayoutX(playerImageView.getLayoutX() + 2);
+                } 
+                if (event.getCode() == KeyCode.A) {
+                    playerImageView.setLayoutX(playerImageView.getLayoutX() - 2);
+                }
+            }
+            });
     }
 
     public static void main(String[] args){launch();}
