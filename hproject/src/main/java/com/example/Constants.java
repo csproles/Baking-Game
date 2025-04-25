@@ -59,4 +59,7 @@ public class Constants {
     public static String MAP2_BUTTON_TEXT = "Level\n   2";
     public static String MAP3_BUTTON_TEXT = "Level\n   3";
     public static String LS_BUTTON_TEXT = "Map Selection";
+
+    //Player Image Constants
+    public static String PLAYER_FRONT_IMAGEPATH = "C:\\Users\\calli\\Documents\\GitHub\\HProject\\hproject\\src\\main\\java\\com\\example\\tinyChefBroke.png";
 }
