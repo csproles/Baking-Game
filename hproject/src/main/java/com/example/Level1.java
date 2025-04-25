@@ -19,6 +19,7 @@ public class Level1 extends Application{
     public void start(Stage level1){
         this.level1 = level1;
 
+
         StackPane level1Pane = new StackPane();
         StackPane playablePane = new StackPane();
 
@@ -46,6 +47,8 @@ public class Level1 extends Application{
 
         playablePane.setMinWidth(Constants.PLAYABLE_PANE_WIDTH);
         playablePane.setMaxWidth(Constants.PLAYABLE_PANE_WIDTH);
+
+        playablePane.setTranslateY(Constants.PLAYABLE_PANE_YOFFSET);
         
         playablePane.setStyle(Constants.PLAYABLE_PANE_STYLE);
 

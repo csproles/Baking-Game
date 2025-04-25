@@ -50,8 +50,8 @@ public class Constants {
     public static double MAP_BUTTON_TEXT_SIZE = MAP_BUTTON_HEIGHT/3;
 
     //Playable Pane Constants
-    public static double PLAYABLE_PANE_HEIGHT = (PANE_HEIGHT - ((MAP_BUTTON_HEIGHT*2)) + 25); 
-    public static double PLAYABLE_PANE_YOFFSET = MAP_BUTTON_HEIGHT - 20; 
+    public static double PLAYABLE_PANE_HEIGHT = (PANE_HEIGHT - ((MAP_BUTTON_HEIGHT*3))); 
+    public static double PLAYABLE_PANE_YOFFSET = 67.5; 
     public static double PLAYABLE_PANE_WIDTH = PANE_WIDTH - 15;
 
     //Buttons Text
