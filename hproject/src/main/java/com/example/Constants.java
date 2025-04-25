@@ -62,4 +62,7 @@ public class Constants {
 
     //Player Image Constants
     public static String PLAYER_FRONT_IMAGEPATH = "C:\\Users\\calli\\Documents\\GitHub\\HProject\\hproject\\src\\main\\java\\com\\example\\tinyChefBroke.png";
+    public static String PLAYER_BACK_IMAGEPATH = "C:\\Users\\calli\\Documents\\GitHub\\HProject\\hproject\\src\\main\\java\\com\\example\\Butterfly.png";
+
+    public static double PLAYER_SPEED = 1.5;
 }

@@ -1,10 +1,14 @@
 package com.example;
 
+import java.io.File;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
@@ -26,6 +30,16 @@ public class Level1 extends Application{
 
         level1.setTitle("Level 1");
 
+        File playerFile = new File(Constants.PLAYER_FRONT_IMAGEPATH);
+
+        Image playerImage = new Image(playerFile.toURI().toString());
+
+        ImageView playerImageView = new ImageView(playerImage);
+
+        // playerImageView.setFitWidth(100);
+        // playerImageView.setFitHeight(100);
+        // playerImageView.setPreserveRatio(true);
+
         Button menuButton = new Button(Constants.LS_BUTTON_TEXT);
         menuButton.setMinHeight(Constants.MAP_BUTTON_HEIGHT);
         menuButton.setMaxHeight(Constants.MAP_BUTTON_HEIGHT);
@@ -39,7 +53,7 @@ public class Level1 extends Application{
         menuButton.setStyle(Constants.LS_BUTTON_STYLE);
         menuButton.setFont(Font.font("Courier", FontWeight.BOLD, FontPosture.REGULAR , Constants.MAP_BUTTON_TEXT_SIZE));;
 
-        level1Pane.getChildren().addAll(playablePane, menuButton);
+        level1Pane.getChildren().addAll(playerImageView, playablePane, menuButton);
         level1Pane.setStyle(Constants.MAP_PANE_STYLE);
 
         playablePane.setMinHeight(Constants.PLAYABLE_PANE_HEIGHT);
@@ -55,6 +69,9 @@ public class Level1 extends Application{
 
         Scene level1Scene = new Scene(level1Pane, Constants.PANE_WIDTH, Constants.PANE_HEIGHT); 
         level1.setScene(level1Scene);
+
+        MovementController movementController = new MovementController();
+        movementController.makeMoveable(playerImageView, level1Scene);
 
         HandleL1ToLSButton handleLSButton = new HandleL1ToLSButton();
         

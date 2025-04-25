@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 public class CharacterImage extends Application{
 
     public static Pane playerPane = new Pane();
+    public static File playerFile;
 
     // public CharacterImage(Pane playablePane){
     //     //this.playerPane = playablePane;
@@ -29,7 +30,7 @@ public class CharacterImage extends Application{
         // Pane playerPane = new Pane();
         playerPane.setPadding(new Insets(5, 5, 5, 5));
         
-        File playerFile = new File(Constants.PLAYER_FRONT_IMAGEPATH);
+        playerFile = new File(Constants.PLAYER_FRONT_IMAGEPATH);
 
         Image playerImage = new Image(playerFile.toURI().toString());
 
@@ -67,16 +68,17 @@ public class CharacterImage extends Application{
             public void handle(KeyEvent event){
 
                 if (event.getCode() == KeyCode.W) {
-                    playerImageView.setLayoutY(playerImageView.getLayoutY() - 2);
+                    playerImageView.setLayoutY(playerImageView.getLayoutY() - 4);
+                    playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
                 } 
                 if (event.getCode() == KeyCode.S) {
-                    playerImageView.setLayoutY(playerImageView.getLayoutY() + 2);
+                    playerImageView.setLayoutY(playerImageView.getLayoutY() + 4);
                 }
                 if (event.getCode() == KeyCode.D) {
-                    playerImageView.setLayoutX(playerImageView.getLayoutX() + 2);
+                    playerImageView.setLayoutX(playerImageView.getLayoutX() + 4);
                 } 
                 if (event.getCode() == KeyCode.A) {
-                    playerImageView.setLayoutX(playerImageView.getLayoutX() - 2);
+                    playerImageView.setLayoutX(playerImageView.getLayoutX() - 4);
                 }
             }
             });

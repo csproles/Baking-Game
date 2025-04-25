@@ -3,6 +3,13 @@
     "configurations": [
       {
         "type": "java",
+        "name": "HelloApplication",
+        "request": "launch",
+        "mainClass": "com.example/com.example.HelloApplication",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
         "name": "CharacterImage",
         "request": "launch",
         "mainClass": "com.example/com.example.CharacterImage",
