@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -20,7 +21,7 @@ public class Level3 extends Application{
         this.level3 = level3;
 
         StackPane level3Pane = new StackPane();
-        StackPane playablePane = new StackPane();
+        Pane playablePane = new Pane();
 
         level3.setTitle("Level 3");
 
