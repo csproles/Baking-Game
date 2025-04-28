@@ -45,8 +45,8 @@ public class BackAnimation {
 
     public void stopAnimation(){
         timeline.stop();
-        playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
-        playerImage = new Image(playerFile.toURI().toString());
-        player.setImage(playerImage);
+        // playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
+        // playerImage = new Image(playerFile.toURI().toString());
+        // player.setImage(playerImage);
     }
 }

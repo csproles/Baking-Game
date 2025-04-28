@@ -45,8 +45,8 @@ public class RightAnimation {
 
     public void stopAnimation(){
         timeline.stop();
-        playerFile = new File(Constants.PLAYER_RIGHT_IMAGEPATH);
-        playerImage = new Image(playerFile.toURI().toString());
-        player.setImage(playerImage);
+        // playerFile = new File(Constants.PLAYER_RIGHT_IMAGEPATH);
+        // playerImage = new Image(playerFile.toURI().toString());
+        // player.setImage(playerImage);
     }
 }

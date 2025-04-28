@@ -77,9 +77,6 @@ public class MovementController {
                 if(player.getLayoutY() > 0){
                     backAnimation.startAnimation();
                     player.setLayoutY(player.getLayoutY() - Constants.PLAYER_SPEED);
-                    // playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
-                    // playerImage = new Image(playerFile.toURI().toString());
-                    // player.setImage(playerImage);
                     System.out.println("Going Back\nHeight: " + player.getLayoutY());
                 }
                 else{
@@ -100,9 +97,6 @@ public class MovementController {
                 if(player.getLayoutX() > -20){
                     leftAnimation.startAnimation();
                     player.setLayoutX(player.getLayoutX() - Constants.PLAYER_SPEED);
-                    // playerFile = new File(Constants.PLAYER_LEFT_IMAGEPATH);
-                    // playerImage = new Image(playerFile.toURI().toString());
-                    // player.setImage(playerImage);
                     System.out.println("Going Left\nX: " + player.getLayoutX());
                 }
                 else{
@@ -113,9 +107,6 @@ public class MovementController {
                 if(player.getLayoutX() < 1010){
                     rightAnimation.startAnimation();
                     player.setLayoutX(player.getLayoutX() + Constants.PLAYER_SPEED);
-                    // playerFile = new File(Constants.PLAYER_RIGHT_IMAGEPATH);
-                    // playerImage = new Image(playerFile.toURI().toString());
-                    // player.setImage(playerImage);
                     System.out.println("Going Right\nX: " + player.getLayoutX());
                 }
                 else{
@@ -146,19 +137,31 @@ public class MovementController {
 
         scene.setOnKeyReleased(e -> {
             if(e.getCode() == KeyCode.W){
-                wPressed.set(false);
+                wPressed.set(false);                    
+                playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
+                playerImage = new Image(playerFile.toURI().toString());
+                player.setImage(playerImage);
             }
 
             if(e.getCode() == KeyCode.A){
                 aPressed.set(false);
+                    playerFile = new File(Constants.PLAYER_LEFT_IMAGEPATH);
+                    playerImage = new Image(playerFile.toURI().toString());
+                    player.setImage(playerImage);
             }
 
             if(e.getCode() == KeyCode.S){
                 sPressed.set(false);
+                    playerFile = new File(Constants.PLAYER_FRONT_IMAGEPATH);
+                    playerImage = new Image(playerFile.toURI().toString());
+                    player.setImage(playerImage);
             }
 
             if(e.getCode() == KeyCode.D){
                 dPressed.set(false);
+                    playerFile = new File(Constants.PLAYER_RIGHT_IMAGEPATH);
+                    playerImage = new Image(playerFile.toURI().toString());
+                    player.setImage(playerImage);
             }
         });
     }

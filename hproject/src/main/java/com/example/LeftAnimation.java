@@ -45,8 +45,8 @@ public class LeftAnimation {
 
     public void stopAnimation(){
         timeline.stop();
-        playerFile = new File(Constants.PLAYER_LEFT_IMAGEPATH);
-        playerImage = new Image(playerFile.toURI().toString());
-        player.setImage(playerImage);
+        // playerFile = new File(Constants.PLAYER_LEFT_IMAGEPATH);
+        // playerImage = new Image(playerFile.toURI().toString());
+        // player.setImage(playerImage);
     }
 }
