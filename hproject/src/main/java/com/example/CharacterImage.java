@@ -2,11 +2,17 @@ package com.example;
 
 import java.io.File;
 
+import com.example.Constants;
+
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -14,6 +20,7 @@ import javafx.stage.Stage;
 public class CharacterImage extends Application{
 
     public static Pane playerPane = new Pane();
+    public static File playerFile;
 
     // public CharacterImage(Pane playablePane){
     //     //this.playerPane = playablePane;
@@ -25,7 +32,7 @@ public class CharacterImage extends Application{
         // Pane playerPane = new Pane();
         playerPane.setPadding(new Insets(5, 5, 5, 5));
         
-        File playerFile = new File(Constants.PLAYER_FRONT_IMAGEPATH);
+        playerFile = new File(Constants.PLAYER_FRONT_IMAGEPATH);
 
         Image playerImage = new Image(playerFile.toURI().toString());
 
@@ -57,6 +64,26 @@ public class CharacterImage extends Application{
         primaryStage.setTitle("ShowImage"); // Set the stage title
         primaryStage.setScene(scene); // Place the scene in the stage
         primaryStage.show(); // Display the stage
+
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>(){
+            @Override
+            public void handle(KeyEvent event){
+
+                if (event.getCode() == KeyCode.W) {
+                    playerImageView.setLayoutY(playerImageView.getLayoutY() - 4);
+                    playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
+                } 
+                if (event.getCode() == KeyCode.S) {
+                    playerImageView.setLayoutY(playerImageView.getLayoutY() + 4);
+                }
+                if (event.getCode() == KeyCode.D) {
+                    playerImageView.setLayoutX(playerImageView.getLayoutX() + 4);
+                } 
+                if (event.getCode() == KeyCode.A) {
+                    playerImageView.setLayoutX(playerImageView.getLayoutX() - 4);
+                }
+            }
+            });
     }
 
     public static void main(String[] args){launch();}

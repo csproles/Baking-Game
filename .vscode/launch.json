@@ -3,6 +3,27 @@
     "configurations": [
       {
         "type": "java",
+        "name": "HelloApplication",
+        "request": "launch",
+        "mainClass": "com.example/com.example.HelloApplication",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
+        "name": "CharacterImage",
+        "request": "launch",
+        "mainClass": "com.example/com.example.CharacterImage",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
+        "name": "Main",
+        "request": "launch",
+        "mainClass": "com.example/com.example.Main",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
         "name": "Launch JavaFX App",
         "request": "launch",
         "mainClass": "com.example.Main",

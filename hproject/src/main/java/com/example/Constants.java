@@ -50,8 +50,8 @@ public class Constants {
     public static double MAP_BUTTON_TEXT_SIZE = MAP_BUTTON_HEIGHT/3;
 
     //Playable Pane Constants
-    public static double PLAYABLE_PANE_HEIGHT = (PANE_HEIGHT - ((MAP_BUTTON_HEIGHT*2)) + 25); 
-    public static double PLAYABLE_PANE_YOFFSET = MAP_BUTTON_HEIGHT - 20; 
+    public static double PLAYABLE_PANE_HEIGHT = (PANE_HEIGHT - ((MAP_BUTTON_HEIGHT*3))); 
+    public static double PLAYABLE_PANE_YOFFSET = 67.5; 
     public static double PLAYABLE_PANE_WIDTH = PANE_WIDTH - 15;
 
     //Buttons Text
@@ -61,5 +61,10 @@ public class Constants {
     public static String LS_BUTTON_TEXT = "Map Selection";
 
     //Player Image Constants
-    public static String PLAYER_FRONT_IMAGEPATH = "C:\\Users\\calli\\Documents\\GitHub\\HProject\\hproject\\src\\main\\java\\com\\example\\tinyChefBroke.png";
+    public static String PLAYER_FRONT_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Front_Still.png";
+    public static String PLAYER_BACK_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Back_Still.png";
+    public static String PLAYER_LEFT_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Left_Still.png";
+    public static String PLAYER_RIGHT_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Right_Still.png";
+
+    public static double PLAYER_SPEED = 1.5;
 }
