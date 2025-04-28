@@ -1,5 +1,7 @@
 package com.example;
 
+import com.example.Constants;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

@@ -61,8 +61,10 @@ public class Constants {
     public static String LS_BUTTON_TEXT = "Map Selection";
 
     //Player Image Constants
-    public static String PLAYER_FRONT_IMAGEPATH = "C:\\Users\\calli\\Documents\\GitHub\\HProject\\hproject\\src\\main\\java\\com\\example\\tinyChefBroke.png";
-    public static String PLAYER_BACK_IMAGEPATH = "C:\\Users\\calli\\Documents\\GitHub\\HProject\\hproject\\src\\main\\java\\com\\example\\Butterfly.png";
+    public static String PLAYER_FRONT_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Front_Still.png";
+    public static String PLAYER_BACK_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Back_Still.png";
+    public static String PLAYER_LEFT_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Left_Still.png";
+    public static String PLAYER_RIGHT_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Right_Still.png";
 
     public static double PLAYER_SPEED = 1.5;
 }

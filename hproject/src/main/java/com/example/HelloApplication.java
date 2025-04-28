@@ -3,6 +3,8 @@ package com.example;
 import java.io.File;
 import java.io.IOException;
 
+import com.example.Constants;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -41,7 +43,6 @@ public class HelloApplication extends Application{
 
         MovementController movementController = new MovementController();
         movementController.makeMoveable(playerImageView, scene);
-
 
         stage.setTitle("ShowImage"); // Set the stage title
         stage.setScene(scene); // Place the scene in the stage

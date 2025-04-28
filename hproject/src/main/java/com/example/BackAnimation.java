@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
-public class OtherAnimation {
+public class BackAnimation {
 
     private File playerFile = new File("hproject\\src\\main\\sprites\\Chef_Front_Still.png");
     private Image playerImage = new Image(playerFile.toURI().toString());
@@ -38,7 +38,7 @@ public class OtherAnimation {
         }
     }));
 
-    public OtherAnimation(ImageView player) {
+    public BackAnimation(ImageView player) {
         this.player = player;
         timeline.setCycleCount(Animation.INDEFINITE);
     }
