@@ -18,15 +18,15 @@ public class FrontAnimation {
     private ImageView player = new ImageView(playerImage);
     int number = 1;
 
-    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> {
+    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.2), event -> {
         if(number == 1){
-            playerFile = new File(Constants.PLAYER_FRONT_IMAGEPATH);
+            playerFile = new File(Constants.PLAYER_FRONT_STEP1_IMAGEPATH);
             playerImage = new Image(playerFile.toURI().toString());
             player.setImage(playerImage);
             
             number = 2;
         } else if( number == 2){
-            playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
+            playerFile = new File(Constants.PLAYER_FRONT_STEP2_IMAGEPATH);
             playerImage = new Image(playerFile.toURI().toString());
             player.setImage(playerImage);
             
