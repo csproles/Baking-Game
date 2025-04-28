@@ -66,6 +66,9 @@ public class Constants {
     public static String PLAYER_FRONT_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Front_Step2.png";
 
     public static String PLAYER_BACK_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Back_Still.png";
+    public static String PLAYER_BACK_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Back_Step1.png";
+    public static String PLAYER_BACK_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Back_Step2.png";
+
     public static String PLAYER_LEFT_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Left_Still.png";
     public static String PLAYER_RIGHT_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Right_Still.png";
 
