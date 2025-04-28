@@ -26,6 +26,11 @@ public class MovementController {
     private BooleanBinding keyPressed = wPressed.or(aPressed).or(sPressed).or(dPressed);
 
     private OtherAnimation otherAnimation;
+    private FrontAnimation frontAnimation;
+    private BackAnimation backAnimation;
+    private RightAnimation rightAnimation;
+    private LeftAnimation leftAnimation;
+    
     private File playerFile = new File("hproject\\src\\main\\sprites\\Chef_Front_Still.png");
     private Image playerImage = new Image(playerFile.toURI().toString());
     private ImageView player = new ImageView(playerImage);
@@ -42,6 +47,10 @@ public class MovementController {
 
         movementSetup();
         otherAnimation = new OtherAnimation(player);
+        frontAnimation = new FrontAnimation(player);
+        backAnimation = new BackAnimation(player);
+        rightAnimation = new RightAnimation(player);
+        leftAnimation = new LeftAnimation(player);
 
         keyPressed.addListener(((observableValue, aBoolean, t1) -> {
             if(!aBoolean){
@@ -51,6 +60,11 @@ public class MovementController {
             else{
                 timer.stop();
                 // otherAnimation.stopAnimation();
+                
+                leftAnimation.stopAnimation();
+                rightAnimation.stopAnimation();
+                backAnimation.stopAnimation();
+                frontAnimation.stopAnimation();
             }
         }));
     }
@@ -61,10 +75,11 @@ public class MovementController {
         public void handle(long timestamp){
             if(wPressed.get()){
                 if(player.getLayoutY() > 0){
+                    backAnimation.startAnimation();
                     player.setLayoutY(player.getLayoutY() - Constants.PLAYER_SPEED);
-                    playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
-                    playerImage = new Image(playerFile.toURI().toString());
-                    player.setImage(playerImage);
+                    // playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
+                    // playerImage = new Image(playerFile.toURI().toString());
+                    // player.setImage(playerImage);
                     System.out.println("Going Back\nHeight: " + player.getLayoutY());
                 }
                 else{
@@ -73,10 +88,8 @@ public class MovementController {
             }
             if(sPressed.get()){
                 if(player.getLayoutY() < 250){
+                    frontAnimation.startAnimation();
                     player.setLayoutY(player.getLayoutY() + Constants.PLAYER_SPEED);
-                    playerFile = new File(Constants.PLAYER_FRONT_IMAGEPATH);
-                    playerImage = new Image(playerFile.toURI().toString());
-                    player.setImage(playerImage);
                     System.out.println("Going Forward\nHeight: " + player.getLayoutY());
                 }
                 else{
@@ -85,10 +98,11 @@ public class MovementController {
             }
             if(aPressed.get()){
                 if(player.getLayoutX() > -20){
+                    leftAnimation.startAnimation();
                     player.setLayoutX(player.getLayoutX() - Constants.PLAYER_SPEED);
-                    playerFile = new File(Constants.PLAYER_LEFT_IMAGEPATH);
-                    playerImage = new Image(playerFile.toURI().toString());
-                    player.setImage(playerImage);
+                    // playerFile = new File(Constants.PLAYER_LEFT_IMAGEPATH);
+                    // playerImage = new Image(playerFile.toURI().toString());
+                    // player.setImage(playerImage);
                     System.out.println("Going Left\nX: " + player.getLayoutX());
                 }
                 else{
@@ -97,10 +111,11 @@ public class MovementController {
             }
             if(dPressed.get()){
                 if(player.getLayoutX() < 1010){
+                    rightAnimation.startAnimation();
                     player.setLayoutX(player.getLayoutX() + Constants.PLAYER_SPEED);
-                    playerFile = new File(Constants.PLAYER_RIGHT_IMAGEPATH);
-                    playerImage = new Image(playerFile.toURI().toString());
-                    player.setImage(playerImage);
+                    // playerFile = new File(Constants.PLAYER_RIGHT_IMAGEPATH);
+                    // playerImage = new Image(playerFile.toURI().toString());
+                    // player.setImage(playerImage);
                     System.out.println("Going Right\nX: " + player.getLayoutX());
                 }
                 else{
@@ -114,7 +129,6 @@ public class MovementController {
         scene.setOnKeyPressed(e -> {
             if(e.getCode() == KeyCode.W){
                 wPressed.set(true);
-                System.out.println("\n\nON");
             }
 
             if(e.getCode() == KeyCode.A){
@@ -133,7 +147,6 @@ public class MovementController {
         scene.setOnKeyReleased(e -> {
             if(e.getCode() == KeyCode.W){
                 wPressed.set(false);
-                System.out.println("\n\nOFF");
             }
 
             if(e.getCode() == KeyCode.A){
