@@ -70,7 +70,12 @@ public class Constants {
     public static String PLAYER_BACK_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Back_Step2.png";
 
     public static String PLAYER_LEFT_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Left_Still.png";
+    public static String PLAYER_LEFT_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Left_Step1.png";
+    public static String PLAYER_LEFT_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Left_Step2.png";
+
     public static String PLAYER_RIGHT_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Right_Still.png";
+    public static String PLAYER_RIGHT_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Right_Step1.png";
+    public static String PLAYER_RIGHT_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Chef_Right_Step2.png";
 
     public static double PLAYER_SPEED = 1.5;
 }
