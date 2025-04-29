@@ -3,6 +3,27 @@
     "configurations": [
       {
         "type": "java",
+        "name": "BakingMechanism",
+        "request": "launch",
+        "mainClass": "com.example/com.example.BakingMechanism",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
+        "name": "MixingMechanism",
+        "request": "launch",
+        "mainClass": "com.example/com.example.MixingMechanism",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
+        "name": "CharacterImage",
+        "request": "launch",
+        "mainClass": "com.example/com.example.CharacterImage",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
         "name": "DropMechanism",
         "request": "launch",
         "mainClass": "com.example/com.example.DropMechanism",
