@@ -50,8 +50,8 @@ public class Constants {
     public static double MAP_BUTTON_TEXT_SIZE = MAP_BUTTON_HEIGHT/3;
 
     //Playable Pane Constants
-    public static double PLAYABLE_PANE_HEIGHT = (PANE_HEIGHT - ((MAP_BUTTON_HEIGHT*2)) + 25); 
-    public static double PLAYABLE_PANE_YOFFSET = MAP_BUTTON_HEIGHT - 20; 
+    public static double PLAYABLE_PANE_HEIGHT = (PANE_HEIGHT - ((MAP_BUTTON_HEIGHT*3))); 
+    public static double PLAYABLE_PANE_YOFFSET = 67.5; 
     public static double PLAYABLE_PANE_WIDTH = PANE_WIDTH - 15;
 
     //Buttons Text
@@ -61,5 +61,21 @@ public class Constants {
     public static String LS_BUTTON_TEXT = "Map Selection";
 
     //Player Image Constants
-    public static String PLAYER_FRONT_IMAGEPATH = "C:\\Users\\calli\\Documents\\GitHub\\HProject\\hproject\\src\\main\\java\\com\\example\\tinyChefBroke.png";
+    public static String PLAYER_FRONT_IMAGEPATH = "hproject\\src\\main\\sprites\\PlayerMovementWithoutObjects\\Chef_Front_Still.png";
+    public static String PLAYER_FRONT_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\PlayerMovementWithoutObjects\\Chef_Front_Step1.png";
+    public static String PLAYER_FRONT_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\PlayerMovementWithoutObjects\\Chef_Front_Step2.png";
+
+    public static String PLAYER_BACK_IMAGEPATH = "hproject\\src\\main\\sprites\\PlayerMovementWithoutObjects\\Chef_Back_Still.png";
+    public static String PLAYER_BACK_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\PlayerMovementWithoutObjects\\Chef_Back_Step1.png";
+    public static String PLAYER_BACK_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\PlayerMovementWithoutObjects\\Chef_Back_Step2.png";
+
+    public static String PLAYER_LEFT_IMAGEPATH = "hproject\\src\\main\\sprites\\PlayerMovementWithoutObjects\\Chef_Left_Still.png";
+    public static String PLAYER_LEFT_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\PlayerMovementWithoutObjects\\Chef_Left_Step1.png";
+    public static String PLAYER_LEFT_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\PlayerMovementWithoutObjects\\Chef_Left_Step2.png";
+
+    public static String PLAYER_RIGHT_IMAGEPATH = "hproject\\src\\main\\sprites\\PlayerMovementWithoutObjects\\Chef_Right_Still.png";
+    public static String PLAYER_RIGHT_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\PlayerMovementWithoutObjects\\Chef_Right_Step1.png";
+    public static String PLAYER_RIGHT_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\PlayerMovementWithoutObjects\\Chef_Right_Step2.png";
+
+    public static double PLAYER_SPEED = 1.5;
 }

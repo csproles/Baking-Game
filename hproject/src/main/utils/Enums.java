@@ -24,3 +24,7 @@ public enum Shape {
     ROUND, SQUARE, HEART
 }
 
+public enum PlayerDirection{
+    FRONT, BACK, LEFT, RIGHT
+}
+

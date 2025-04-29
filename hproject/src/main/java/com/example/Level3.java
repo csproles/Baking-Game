@@ -1,5 +1,7 @@
 package com.example;
 
+import com.example.Constants;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -47,6 +49,8 @@ public class Level3 extends Application{
 
         playablePane.setMinWidth(Constants.PLAYABLE_PANE_WIDTH);
         playablePane.setMaxWidth(Constants.PLAYABLE_PANE_WIDTH);
+
+        playablePane.setTranslateY(Constants.PLAYABLE_PANE_YOFFSET);
         
         playablePane.setStyle(Constants.PLAYABLE_PANE_STYLE);
 
