@@ -3,6 +3,13 @@
     "configurations": [
       {
         "type": "java",
+        "name": "DropMechanism",
+        "request": "launch",
+        "mainClass": "com.example/com.example.DropMechanism",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
         "name": "Main",
         "request": "launch",
         "mainClass": "com.example/com.example.Main",
