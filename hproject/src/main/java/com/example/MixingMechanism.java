@@ -19,21 +19,21 @@ public class MixingMechanism extends Application {
     private List<String> droppedIngredients = new ArrayList<>();
     private ImageView bowl;
     private int ingredientsInBowl = 0;
-    private Stage primaryStageReference; // we'll store the main window here
+    private Stage primaryStageReference; 
 
     @Override
     public void start(Stage primaryStage) {
-        this.primaryStageReference = primaryStage; // save it to close later if needed
+        this.primaryStageReference = primaryStage; 
 
         Pane root = new Pane();
 
-        // --- background ---
+
         ImageView background = new ImageView(loadImage("mix.png"));
         background.setFitWidth(1000);
         background.setFitHeight(600);
         root.getChildren().add(background);
 
-        // --- bowl ---
+        
         bowl = new ImageView(loadImage("cake_pan.png"));
         bowl.setFitWidth(100);
         bowl.setFitHeight(100);
@@ -41,7 +41,7 @@ public class MixingMechanism extends Application {
         bowl.setLayoutY(300);
         root.getChildren().add(bowl);
 
-        // --- ingredients ---
+        
         String[] allIngredients = {"milk.png", "eggs.png", "flour.png", "cocoa.png", "vanilla.png"};
         for (int i = 0; i < allIngredients.length; i++) {
             ImageView ingredient = new ImageView(loadImage(allIngredients[i]));
@@ -109,7 +109,7 @@ public class MixingMechanism extends Application {
                 Stage bakingStage = new Stage();
                 baking.start(bakingStage);
 
-                // Optional: close the MixingMechanism window
+            
                 if (primaryStageReference != null) {
                     primaryStageReference.close();
                 }

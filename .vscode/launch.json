@@ -3,6 +3,13 @@
     "configurations": [
       {
         "type": "java",
+        "name": "DecoratingMechanism",
+        "request": "launch",
+        "mainClass": "com.example/com.example.DecoratingMechanism",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
         "name": "BakingMechanism",
         "request": "launch",
         "mainClass": "com.example/com.example.BakingMechanism",
