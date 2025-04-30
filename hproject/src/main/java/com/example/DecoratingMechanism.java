@@ -156,7 +156,7 @@ public class DecoratingMechanism extends Application {
         switch (decoratedCake) {
             case "decorate_chocolate_strawberry.png": return "box_chocolate_strawberry.png";
             case "decorated_chocolate_sprinkles.png": return "box_chocolate_sprinkles.png";
-            case "decorate_strawberry_strawberry.png": return "box_strawberry_strawberry.png";
+            case "decorate_strawberry_strawberry.png": return "bow_starwberry_strawberry.png";
             case "decorate_strawberry_sprinkles.png": return "box_strawberry_sprinkles.png";
         }
         return null;
