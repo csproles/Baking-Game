@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="409.0" fitWidth="416.0" layoutX="-2.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../OneDrive/Obrázky/mix.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="297.0" fitWidth="300.0" layoutX="337.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../OneDrive/Obrázky/checklist.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="116.0" fitWidth="112.0" layoutX="225.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../OneDrive/Obrázky/cake_pan.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="79.0" fitWidth="85.0" layoutX="44.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../OneDrive/Obrázky/flour.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="79.0" fitWidth="69.0" layoutX="73.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../OneDrive/Obrázky/eggs.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="134.0" fitWidth="89.0" layoutX="107.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../OneDrive/Obrázky/milk.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="69.0" fitWidth="69.0" layoutX="142.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../OneDrive/Obrázky/cocoa.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="96.0" fitWidth="79.0" layoutX="14.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../OneDrive/Obrázky/vanilla.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

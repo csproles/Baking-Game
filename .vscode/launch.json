@@ -3,9 +3,23 @@
     "configurations": [
       {
         "type": "java",
-        "name": "HelloApplication",
+        "name": "DecoratingMechanism",
         "request": "launch",
-        "mainClass": "com.example/com.example.HelloApplication",
+        "mainClass": "com.example/com.example.DecoratingMechanism",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
+        "name": "BakingMechanism",
+        "request": "launch",
+        "mainClass": "com.example/com.example.BakingMechanism",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
+        "name": "MixingMechanism",
+        "request": "launch",
+        "mainClass": "com.example/com.example.MixingMechanism",
         "projectName": "hproject"
       },
       {
@@ -13,6 +27,13 @@
         "name": "CharacterImage",
         "request": "launch",
         "mainClass": "com.example/com.example.CharacterImage",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
+        "name": "DropMechanism",
+        "request": "launch",
+        "mainClass": "com.example/com.example.DropMechanism",
         "projectName": "hproject"
       },
       {

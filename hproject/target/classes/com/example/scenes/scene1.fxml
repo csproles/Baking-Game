@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.layout.Layer?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane accessibleRole="IMAGE_VIEW" focusTraversable="true" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Layer />
+      <ImageView fitHeight="137.0" fitWidth="137.0" layoutX="297.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../OneDrive/Obrázky/bake_small.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="137.0" fitWidth="143.0" layoutX="457.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../OneDrive/Obrázky/decorate_small.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="137.0" fitWidth="145.0" layoutX="145.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../OneDrive/Obrázky/mix_small.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="203.0" fitWidth="204.0" layoutX="551.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../OneDrive/Obrázky/pickup.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="227.0" fitWidth="216.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../OneDrive/Obrázky/order.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="157.0" fitWidth="91.0" layoutX="320.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../OneDrive/Obrázky/cheff.png" />
+         </image>
+      </ImageView>
+   </children>
+   <effect>
+      <Blend mode="SRC_ATOP" />
+   </effect>
+</Pane>
