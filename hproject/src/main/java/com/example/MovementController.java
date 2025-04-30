@@ -84,7 +84,7 @@ public class MovementController {
                 }
             }
             if(sPressed.get()){
-                if(player.getLayoutY() < 250){
+                if(player.getLayoutY() < 375){
                     frontAnimation.startAnimation();
                     player.setLayoutY(player.getLayoutY() + Constants.PLAYER_SPEED);
                     System.out.println("Going Forward\nHeight: " + player.getLayoutY());

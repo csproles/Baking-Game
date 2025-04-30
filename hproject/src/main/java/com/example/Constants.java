@@ -3,8 +3,8 @@ package com.example;
 public class Constants {
 
     //General Pane Size Constants
-    public static double PANE_WIDTH = 1100; //1250
-    public static double PANE_HEIGHT = 500; //625
+    public static double PANE_WIDTH = 1250; //1250, 1100
+    public static double PANE_HEIGHT = 625; //625, 500
 
     //Level-Selection Pane Color/Style Constants
     private static String LS_PANE_BORDER_HEXCODE = "#586A6A;";
@@ -78,4 +78,19 @@ public class Constants {
     public static String PLAYER_RIGHT_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\PlayerMovementWithoutObjects\\Chef_Right_Step2.png";
 
     public static double PLAYER_SPEED = 1.5;
+
+    //Mixer Constants
+    public static String MIXER_IMAGEPATH = "hproject\\src\\main\\resources\\mix.png";
+    public static double MIXER_LEVEL1_X = PLAYABLE_PANE_WIDTH/2 - 300 - 200;
+    public static double MIXER_LEVEL1_Y = -25;
+
+    //Oven Constants
+    public static String OVEN_IMAGEPATH = "hproject\\src\\main\\resources\\bake.png";
+    public static double OVEN_LEVEL1_X = PLAYABLE_PANE_WIDTH/2 - 100;
+    public static double OVEN_LEVEL1_Y = -25;
+
+    //Decoration Station Constants //TODO
+    public static String DECORATIONSTATION_IMAGEPATH = "hproject\\src\\main\\resources\\decorate.png";
+    public static double DECORATIONSTATION_LEVEL1_X = PLAYABLE_PANE_WIDTH/2 + 300;
+    public static double DECORATIONSTATION_LEVEL1_Y = -25;
 }

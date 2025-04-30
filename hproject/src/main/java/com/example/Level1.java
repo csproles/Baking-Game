@@ -26,21 +26,52 @@ public class Level1 extends Application{
     public void start(Stage level1){
         this.level1 = level1;
 
-
         StackPane level1Pane = new StackPane();
         Pane playablePane = new Pane();
 
         level1.setTitle("Level 1");
 
         File playerFile = new File(Constants.PLAYER_FRONT_IMAGEPATH);
-
         Image playerImage = new Image(playerFile.toURI().toString());
-
         ImageView playerImageView = new ImageView(playerImage);
+
+        File mixerFile = new File(Constants.MIXER_IMAGEPATH);
+        Image mixerImage = new Image(mixerFile.toURI().toString());
+        ImageView mixerImageView = new ImageView(mixerImage);
+
+        File ovenFile = new File(Constants.OVEN_IMAGEPATH);
+        Image ovenImage = new Image(ovenFile.toURI().toString());
+        ImageView ovenImageView = new ImageView(ovenImage);
+
+        File decorationStationFile = new File(Constants.DECORATIONSTATION_IMAGEPATH);
+        Image decorationStationImage = new Image(decorationStationFile.toURI().toString());
+        ImageView decorationStationImageView = new ImageView(decorationStationImage);
 
         playerImageView.setFitWidth(100);
         playerImageView.setFitHeight(100);
         playerImageView.setPreserveRatio(true);
+
+        mixerImageView.setFitWidth(200);
+        mixerImageView.setFitHeight(200);
+        mixerImageView.setPreserveRatio(true);
+
+        ovenImageView.setFitWidth(200);
+        ovenImageView.setFitHeight(200);
+        ovenImageView.setPreserveRatio(true);
+
+        decorationStationImageView.setFitWidth(200);
+        decorationStationImageView.setFitHeight(200);
+        decorationStationImageView.setPreserveRatio(true);
+
+        playerImageView.setLayoutX(Constants.PANE_WIDTH/2 - 50);
+        playerImageView.setLayoutY(Constants.PANE_HEIGHT/2 + 50);
+        
+        mixerImageView.setLayoutX(Constants.MIXER_LEVEL1_X);
+        mixerImageView.setLayoutY(Constants.MIXER_LEVEL1_Y);
+        decorationStationImageView.setLayoutX(Constants.DECORATIONSTATION_LEVEL1_X);
+        decorationStationImageView.setLayoutY(Constants.DECORATIONSTATION_LEVEL1_Y);
+        ovenImageView.setLayoutX(Constants.OVEN_LEVEL1_X);
+        ovenImageView.setLayoutY(Constants.OVEN_LEVEL1_Y);
 
         Button menuButton = new Button(Constants.LS_BUTTON_TEXT);
         menuButton.setMinHeight(Constants.MAP_BUTTON_HEIGHT);
@@ -68,7 +99,7 @@ public class Level1 extends Application{
         
         playablePane.setStyle(Constants.PLAYABLE_PANE_STYLE);
 
-        playablePane.getChildren().addAll(playerImageView);
+        playablePane.getChildren().addAll(mixerImageView, ovenImageView, decorationStationImageView, playerImageView);
         level1Pane.getChildren().addAll(playablePane, menuButton);//playablePane, menuButton);
 
         Scene level1Scene = new Scene(level1Pane, Constants.PANE_WIDTH, Constants.PANE_HEIGHT); 
