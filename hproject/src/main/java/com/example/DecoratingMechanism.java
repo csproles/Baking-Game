@@ -1,7 +1,6 @@
 package com.example;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,16 +9,17 @@ import javafx.stage.Stage;
 
 public class DecoratingMechanism extends Application {
 
-    private static String flavor = "cocoa";
+    private static String flavor = "cocoa"; // default
     private static boolean launchedFromBaking = false;
 
     private ImageView cakeView;
     private String currentCake;
+    private ImageView boxView;
 
     private final String[] decorations = {
-        "icing_strawberry.png",
-        "icing_chocolate.png",
-        "strawberry.png",
+        "icing_strawberry.png", 
+        "icing_chocolate.png", 
+        "strawberry.png", 
         "sprinkles.png"
     };
 
@@ -29,32 +29,37 @@ public class DecoratingMechanism extends Application {
 
     public static void startFromBaking() {
         launchedFromBaking = true;
-        Platform.runLater(() -> {
-            try {
-                new DecoratingMechanism().start(new Stage());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        new Thread(() -> Application.launch(DecoratingMechanism.class)).start();
     }
 
     @Override
     public void start(Stage stage) {
         Pane root = new Pane();
 
+        // background
         ImageView background = new ImageView(load("decorate.png"));
         background.setFitWidth(1000);
         background.setFitHeight(600);
         root.getChildren().add(background);
 
+                // add box placeholder
+        boxView = new ImageView(load("box.png"));
+        boxView.setLayoutX(700);
+        boxView.setLayoutY(260);
+        boxView.setFitWidth(240);
+        boxView.setFitHeight(240);
+        root.getChildren().add(boxView);
+
+        // initial cake
         currentCake = "vanilla".equals(flavor) ? "naked_vanilla.png" : "naked_chocolate.png";
         cakeView = new ImageView(load(currentCake));
-        cakeView.setLayoutX(600);
+        cakeView.setLayoutX(500);
         cakeView.setLayoutY(275);
         cakeView.setFitWidth(200);
         cakeView.setFitHeight(200);
         root.getChildren().add(cakeView);
 
+        // decorations
         for (int i = 0; i < decorations.length; i++) {
             String name = decorations[i];
             ImageView item = new ImageView(load(name));
@@ -65,9 +70,12 @@ public class DecoratingMechanism extends Application {
             item.setLayoutX(startX);
             item.setLayoutY(startY);
 
-            setupDrag(item, name, startX, startY);
+            setupDrag(item, name, startX, startY, root);
             root.getChildren().add(item);
         }
+
+        // make cake draggable (for final drop into box)
+        setupDrag(cakeView, currentCake, cakeView.getLayoutX(), cakeView.getLayoutY(), root);
 
         Scene scene = new Scene(root, 1000, 600);
         stage.setTitle("Decorating Mechanism");
@@ -75,7 +83,7 @@ public class DecoratingMechanism extends Application {
         stage.show();
     }
 
-    private void setupDrag(ImageView item, String name, double originalX, double originalY) {
+    private void setupDrag(ImageView item, String name, double originalX, double originalY, Pane root) {
         final double[] offsetX = new double[1];
         final double[] offsetY = new double[1];
 
@@ -91,13 +99,25 @@ public class DecoratingMechanism extends Application {
 
         item.setOnMouseReleased(e -> {
             boolean overCake = item.getBoundsInParent().intersects(cakeView.getBoundsInParent());
+            boolean overBox = item.getBoundsInParent().intersects(boxView.getBoundsInParent());
 
-            if (overCake) {
+            if (item != cakeView && overCake) {
                 String nextCake = getNextCakeImage(currentCake, name);
                 if (nextCake != null) {
                     currentCake = nextCake;
                     cakeView.setImage(load(currentCake));
                     item.setVisible(false);
+                    // refresh drag logic
+                    setupDrag(cakeView, currentCake, cakeView.getLayoutX(), cakeView.getLayoutY(), root);
+                } else {
+                    item.setLayoutX(originalX);
+                    item.setLayoutY(originalY);
+                }
+            } else if (item == cakeView && overBox) {
+                String boxImage = getBoxReplacement(currentCake);
+                if (boxImage != null) {
+                    boxView.setImage(load(boxImage));
+                    cakeView.setVisible(false);
                 } else {
                     item.setLayoutX(originalX);
                     item.setLayoutY(originalY);
@@ -132,9 +152,19 @@ public class DecoratingMechanism extends Application {
         return null;
     }
 
+    private String getBoxReplacement(String decoratedCake) {
+        switch (decoratedCake) {
+            case "decorate_chocolate_strawberry.png": return "box_chocolate_strawberry.png";
+            case "decorated_chocolate_sprinkles.png": return "box_chocolate_sprinkles.png";
+            case "decorate_strawberry_strawberry.png": return "box_strawberry_strawberry.png";
+            case "decorate_strawberry_sprinkles.png": return "box_strawberry_sprinkles.png";
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         if (!launchedFromBaking) {
-            flavor = "vanilla";
+            flavor = "vanilla"; // test fallback
             launch(args);
         }
     }
