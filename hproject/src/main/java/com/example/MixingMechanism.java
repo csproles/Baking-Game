@@ -95,9 +95,11 @@ public class MixingMechanism extends Application {
     private void finishMixing() {
         if (droppedIngredients.contains("vanilla.png")) {
             bowl.setImage(loadImage("pan_full_vanilla.png"));
+            Constants.CAKE_TYPE_VANILLA = true;
             BakingMechanism.setFlavor("vanilla");
         } else {
             bowl.setImage(loadImage("cake_pan_full.png"));
+            Constants.CAKE_TYPE_CHOCOLATE = true;
             BakingMechanism.setFlavor("cocoa");
         }
 
@@ -105,10 +107,10 @@ public class MixingMechanism extends Application {
 
         Timeline pause = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             try {
-                BakingMechanism baking = new BakingMechanism();
-                Stage bakingStage = new Stage();
-                baking.start(bakingStage);
-
+                // BakingMechanism baking = new BakingMechanism();
+                // Stage bakingStage = new Stage();
+                // baking.start(bakingStage);
+                
             
                 if (primaryStageReference != null) {
                     primaryStageReference.close();
