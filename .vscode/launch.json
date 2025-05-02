@@ -3,6 +3,13 @@
     "configurations": [
       {
         "type": "java",
+        "name": "OrderStation",
+        "request": "launch",
+        "mainClass": "com.example/com.example.OrderStation",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
         "name": "DecoratingMechanism",
         "request": "launch",
         "mainClass": "com.example/com.example.DecoratingMechanism",

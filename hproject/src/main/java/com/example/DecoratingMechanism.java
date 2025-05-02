@@ -5,6 +5,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class DecoratingMechanism extends Application {
@@ -36,11 +38,15 @@ public class DecoratingMechanism extends Application {
     public void start(Stage stage) {
         Pane root = new Pane();
 
-        // background
-        ImageView background = new ImageView(load("decorate.png"));
-        background.setFitWidth(1000);
-        background.setFitHeight(600);
+        Rectangle background = new Rectangle(1000, 600);
+        background.setFill(Color.web("#7C8A91")); // Your image's color
         root.getChildren().add(background);
+
+        // background
+        ImageView bgImage = new ImageView(load("decorate.png"));
+        bgImage.setFitWidth(1000);
+        bgImage.setFitHeight(600);
+        root.getChildren().add(bgImage);
 
                 // add box placeholder
         boxView = new ImageView(load("box.png"));

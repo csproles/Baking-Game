@@ -9,6 +9,8 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -28,10 +30,14 @@ public class BakingMechanism extends Application {
     public void start(Stage primaryStage) {
         Pane root = new Pane();
 
-        ImageView background = new ImageView(loadImage("bake.png"));
-        background.setFitWidth(1000);
-        background.setFitHeight(600);
+        Rectangle background = new Rectangle(1000, 600);
+        background.setFill(Color.web("#7C8A91")); // Your image's color
         root.getChildren().add(background);
+
+        ImageView bgImage = new ImageView(loadImage("bake.png"));
+        bgImage.setFitWidth(1000);
+        bgImage.setFitHeight(600);
+        root.getChildren().add(bgImage);
 
         oven = new ImageView(loadImage("oven.png"));
         oven.setFitWidth(700);
