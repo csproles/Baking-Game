@@ -104,6 +104,11 @@ public class Constants {
     public static String PLAYER_BACK_WITH_PAN_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\PlayerMovementWithoutObjects\\Chef_Back_Step1_With_Pan.png";
     public static String PLAYER_BACK_WITH_PAN_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\PlayerMovementWithoutObjects\\Chef_Back_Step2_With_Pan.png";
 
+    //Boxed Cake Back
+    public static String PLAYER_BACK_WITH_BOX_IMAGEPATH = "hproject\\src\\main\\sprites\\PlayerMovementWithoutObjects\\Chef_Back_With_Box.png";
+    public static String PLAYER_BACK_WITH_BOX_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\PlayerMovementWithoutObjects\\Chef_Back_Step1_With_Box.png";
+    public static String PLAYER_BACK_WITH_BOX_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\PlayerMovementWithoutObjects\\Chef_Back_Step2_With_Box.png";
+
 
     //Normal Player Left
     public static String PLAYER_LEFT_IMAGEPATH = "hproject\\src\\main\\sprites\\PlayerMovementWithoutObjects\\Chef_Left_Still.png";

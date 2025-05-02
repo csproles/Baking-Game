@@ -239,27 +239,15 @@ public class MovementController {
         scene.setOnKeyReleased(e -> {
             if(e.getCode() == KeyCode.W){
                 wPressed.set(false);    
-                if(Constants.CAKE_TYPE_CHOCOLATE){
-                    if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED)){
-                        playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
-                    }
-                    else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED){
-                        playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
-                    }
-                    else{
-                        playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
-                    }
+                
+                if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                    playerFile = new File(Constants.PLAYER_BACK_WITH_PAN_IMAGEPATH);
                 }
-                else if(Constants.CAKE_TYPE_VANILLA){
-                    if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED)){
-                        playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
-                    }
-                    else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED){
-                        playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
-                    }
-                    else{
-                        playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
-                    }
+                else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && !(Constants.CAKE_DECORATED)){
+                    playerFile = new File(Constants.PLAYER_BACK_WITH_PAN_IMAGEPATH);
+                }
+                else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && Constants.CAKE_DECORATED){
+                    playerFile = new File(Constants.PLAYER_BACK_WITH_BOX_IMAGEPATH);
                 }
                 else{
                     playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
