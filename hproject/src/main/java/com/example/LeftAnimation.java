@@ -13,7 +13,7 @@ import javafx.util.Duration;
 
 public class LeftAnimation {
 
-    private File playerFile = new File("hproject\\src\\main\\sprites\\Chef_Left_Still.png");
+    private File playerFile = new File(Constants.PLAYER_LEFT_IMAGEPATH);
     private Image playerImage = new Image(playerFile.toURI().toString());
     private ImageView player = new ImageView(playerImage);
     int number = 1;

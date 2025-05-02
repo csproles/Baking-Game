@@ -38,10 +38,10 @@ public class MovementController {
 
     private MixingMechanism mixingMechanism = new MixingMechanism();
     private BakingMechanism bakingMechanism = new BakingMechanism();
-    //private DecoratingMechanism decoratingMechanism = new DecoratingMechanism();
+    private DecoratingMechanism decoratingMechanism = new DecoratingMechanism();
     private Stage mixerStage = new Stage();
     private Stage bakingStage = new Stage();
-    //private Stage decoratingMechanism = new Stage();
+    private Stage decoratingStage = new Stage();
 
     // @FXML
     // private ImageView player;
@@ -113,12 +113,12 @@ public class MovementController {
                     else if(player.getLayoutY() < 75 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
                         
                         if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && !(Constants.CAKE_DECORATED)){
-                            // Constants.CAKE_DECORATED = true;
-                            // decoratingMechanism.start(decoratingMechanism);
-                            // decoratingMechanism.stopAnimation();
-                            // stop();
+                            Constants.CAKE_DECORATED = true;
+                            decoratingMechanism.start(decoratingStage);
+                            backAnimation.stopAnimation();
+                            stop();
                             
-                            // player.setLayoutY(90);
+                            player.setLayoutY(90);
                         }
                     }
                     else{
@@ -161,31 +161,37 @@ public class MovementController {
             if(aPressed.get()){
                 if(player.getLayoutX() > -20){
                     
-                    //Stopping the player from intersecting with the mixer
-                    if(player.getLayoutY() < 75 && ((player.getLayoutX() > 62 && player.getLayoutX() < 207.5))){
-                        System.out.println("CANNOT DO");
-                        player.setLayoutY(76);
-                        
+                    if(Constants.CAKE_TYPE_CHOCOLATE){
+                        if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED)){
+                            playerFile = new File(Constants.PLAYER_LEFT_UNBAKED_CHOCOLATE_IMAGEPATH);
+                        }
+                        else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED){
+                            playerFile = new File(Constants.PLAYER_LEFT_BAKED_CHOCOLATE_IMAGEPATH);
+                        }
+                        else{
+                            playerFile = new File(Constants.PLAYER_LEFT_IMAGEPATH);
+                        }
                     }
-                    else if(player.getLayoutY() < 75 && (player.getLayoutX() > 460 && player.getLayoutX() < 670)){
-                        player.setLayoutY(76);
-                    }
-                    else if(player.getLayoutY() < 75 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
-                        
-                        if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && !(Constants.CAKE_DECORATED)){
-                            // player.setLayoutY(90);
+                    else if(Constants.CAKE_TYPE_VANILLA){
+                        if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED)){
+                            playerFile = new File(Constants.PLAYER_LEFT_UNBAKED_VANILLA_IMAGEPATH);
+                        }
+                        else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED){
+                            playerFile = new File(Constants.PLAYER_LEFT_BAKED_VANILLA_IMAGEPATH);
+                        }
+                        else{
+                            playerFile = new File(Constants.PLAYER_LEFT_IMAGEPATH);
                         }
                     }
                     else{
-                        leftAnimation.startAnimation();
-                        player.setLayoutX(player.getLayoutX() - Constants.PLAYER_SPEED);
-                        System.out.println("Going Left\nX: " + player.getLayoutX());
+                        playerFile = new File(Constants.PLAYER_LEFT_IMAGEPATH);
+                    }
+                    leftAnimation.startAnimation();
+                    player.setLayoutX(player.getLayoutX() - Constants.PLAYER_SPEED);
+                    System.out.println("Going Left\nX: " + player.getLayoutX());
                     }
                 }
-                else{
-                    System.out.println("CANNOT DO");
-                }
-            }
+            
             if(dPressed.get()){
                 if(player.getLayoutX() < 1200){
 
@@ -271,31 +277,31 @@ public class MovementController {
             if(e.getCode() == KeyCode.A){
                 aPressed.set(false);
 
-                if(Constants.CAKE_TYPE_CHOCOLATE){
-                    if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED)){
-                        playerFile = new File(Constants.PLAYER_LEFT_UNBAKED_CHOCOLATE_IMAGEPATH);
-                    }
-                    else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED){
-                        playerFile = new File(Constants.PLAYER_LEFT_BAKED_CHOCOLATE_IMAGEPATH);
-                    }
-                    else{
-                        playerFile = new File(Constants.PLAYER_LEFT_IMAGEPATH);
-                    }
-                }
-                else if(Constants.CAKE_TYPE_VANILLA){
-                    if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED)){
-                        playerFile = new File(Constants.PLAYER_LEFT_UNBAKED_VANILLA_IMAGEPATH);
-                    }
-                    else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED){
-                        playerFile = new File(Constants.PLAYER_LEFT_BAKED_VANILLA_IMAGEPATH);
-                    }
-                    else{
-                        playerFile = new File(Constants.PLAYER_LEFT_IMAGEPATH);
-                    }
-                }
-                else{
+                // if(Constants.CAKE_TYPE_CHOCOLATE){
+                //     if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED)){
+                //         playerFile = new File(Constants.PLAYER_LEFT_UNBAKED_CHOCOLATE_IMAGEPATH);
+                //     }
+                //     else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED){
+                //         playerFile = new File(Constants.PLAYER_LEFT_BAKED_CHOCOLATE_IMAGEPATH);
+                //     }
+                //     else{
+                //         playerFile = new File(Constants.PLAYER_LEFT_IMAGEPATH);
+                //     }
+                // }
+                // else if(Constants.CAKE_TYPE_VANILLA){
+                //     if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED)){
+                //         playerFile = new File(Constants.PLAYER_LEFT_UNBAKED_VANILLA_IMAGEPATH);
+                //     }
+                //     else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED){
+                //         playerFile = new File(Constants.PLAYER_LEFT_BAKED_VANILLA_IMAGEPATH);
+                //     }
+                //     else{
+                //         playerFile = new File(Constants.PLAYER_LEFT_IMAGEPATH);
+                //     }
+                // }
+                // else{
                     playerFile = new File(Constants.PLAYER_LEFT_IMAGEPATH);
-                }
+                // }
 
                 playerImage = new Image(playerFile.toURI().toString());
                 player.setImage(playerImage);
