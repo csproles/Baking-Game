@@ -33,16 +33,16 @@ public class LS extends Application {
         //Assigns the stage variable to the global variable
         this.primaryStage = primaryStage;
 
-        File level1File = new File("hproject/src/main/resources/level1.png");
-        Image level1Image = new Image(level1File.toURI().toString());
-        ImageView level1ImageView = new ImageView(level1Image);
-
+        File level1File = new File("hproject\\src\\main\\resources\\level1.png");
         File level2File = new File("hproject\\src\\main\\resources\\level2.png");
-        Image level2Image = new Image(level2File.toURI().toString());
-        ImageView level2ImageView = new ImageView(level2Image);
-
         File level3File = new File("hproject\\src\\main\\resources\\level3.png");
+
+        Image level1Image = new Image(level1File.toURI().toString());
+        Image level2Image = new Image(level2File.toURI().toString());
         Image level3Image = new Image(level3File.toURI().toString());
+
+        ImageView level1ImageView = new ImageView(level1Image);
+        ImageView level2ImageView = new ImageView(level2Image);
         ImageView level3ImageView = new ImageView(level3Image);
 
         level1ImageView.setFitWidth(Constants.LS_BUTTON_SIZE);
@@ -57,10 +57,10 @@ public class LS extends Application {
         level3ImageView.setFitHeight(Constants.LS_BUTTON_SIZE);
         level3ImageView.setPreserveRatio(true);
 
-        level1ImageView.setTranslateX(-Constants.LS_BUTTON_SIZE - (Constants.LS_BUTTON_SIZE/3));
-        level3ImageView.setTranslateX(Constants.LS_BUTTON_SIZE + (Constants.LS_BUTTON_SIZE/3));
-        
-        level1ImageView.setOnMousePressed(event -> {
+        level1ImageView.setTranslateX(-Constants.LS_BUTTON_SIZE - Constants.LS_BUTTON_SIZE/3);
+        level3ImageView.setTranslateX(Constants.LS_BUTTON_SIZE + Constants.LS_BUTTON_SIZE/3);
+
+        level1ImageView.setOnMouseClicked(event -> {
             System.out.println("Button 1 clicked");
 
             LS.primaryStage.hide();
@@ -68,7 +68,6 @@ public class LS extends Application {
             Level1 level1 = new Level1();
             level1.start(level1Stage);
         });
-        
 
         //Creates a pane
         StackPane levelSelectionPane = new StackPane();
