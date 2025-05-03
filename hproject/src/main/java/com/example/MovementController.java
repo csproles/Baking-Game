@@ -75,56 +75,82 @@ public class MovementController {
         public void handle(long timestamp){
             if(wPressed.get()){
                 if(player.getLayoutY() > 0){
-                    backAnimation.startAnimation();
-                    player.setLayoutY(player.getLayoutY() - Constants.PLAYER_SPEED);
-                    System.out.println("Going Back\nHeight: " + player.getLayoutY());
+
+                    //Stopping the player from intersecting with the mixer
+                    if(player.getLayoutY() < 75 && ((player.getLayoutX() > 62 && player.getLayoutX() < 207.5))){
+                        System.out.println("CANNOT DO");
+                        player.setLayoutY(76);
+                    }
+                    //Stopping the player from intersecting with the oven
+                    else if(player.getLayoutY() < 75 && (player.getLayoutX() > 460 && player.getLayoutX() < 670)){
+                        player.setLayoutY(76);
+                    }
+                    //Stopping the player from intersecting with the decorator
+                    else if(player.getLayoutY() < 75 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
+                        player.setLayoutY(76);
+                    }
+                    else{
+                        backAnimation.startAnimation();
+                        player.setLayoutY(player.getLayoutY() - Constants.PLAYER_SPEED);
+                        System.out.println("Going Up\nY: " + player.getLayoutY());
+                    }
+
                 }
-                else{
-                    System.out.println("CANNOT DO");
-                }
+                else{System.out.println("CANNOT DO");}
             }
+
             if(sPressed.get()){
-                if(player.getLayoutY() < 250){
-                    frontAnimation.startAnimation();
-                    player.setLayoutY(player.getLayoutY() + Constants.PLAYER_SPEED);
-                    System.out.println("Going Forward\nHeight: " + player.getLayoutY());
+                if(player.getLayoutY() < 375){
+
+                    //Stopping the player from intersecting with the mixer
+                    if(player.getLayoutY() < 75 && ((player.getLayoutX() > 62 && player.getLayoutX() < 207.5))){
+                        System.out.println("CANNOT DO");
+                        player.setLayoutY(76);
+                    }
+                    //Stopping the player from intersecting with the oven
+                    else if(player.getLayoutY() < 75 && (player.getLayoutX() > 460 && player.getLayoutX() < 670)){
+                        player.setLayoutY(76);
+                    }
+                    //Stopping the player from intersecting with the decorator
+                    else if(player.getLayoutY() < 75 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
+                        player.setLayoutY(76);
+                    }
+                    else{
+                        frontAnimation.startAnimation();
+                        player.setLayoutY(player.getLayoutY() + Constants.PLAYER_SPEED);
+                        System.out.println("Going Up\nY: " + player.getLayoutY());
+                    }
+
                 }
-                else{
-                    System.out.println("CANNOT DO");
-                }
+                else{System.out.println("CANNOT DO");}
             }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
             if(aPressed.get()){
-=======
-=======
 
-            else if(aPressed.get()){
                 if(player.getLayoutX() > -20){
->>>>>>> Stashed changes
 
-            else if(aPressed.get()){
->>>>>>> Stashed changes
-                if(player.getLayoutX() > -20){
-                    leftAnimation.startAnimation();
-                    player.setLayoutX(player.getLayoutX() - Constants.PLAYER_SPEED);
-                    System.out.println("Going Left\nX: " + player.getLayoutX());
+                    //Stopping the player from intersecting with the mixer
+                    if(player.getLayoutY() < 75 && ((player.getLayoutX() > 62 && player.getLayoutX() < 207.5))){
+                        System.out.println("CANNOT DO");
+                        player.setLayoutY(76);
+                    }
+                    //Stopping the player from intersecting with the oven
+                    else if(player.getLayoutY() < 75 && (player.getLayoutX() > 460 && player.getLayoutX() < 670)){
+                        player.setLayoutY(76);
+                    }
+                    //Stopping the player from intersecting with the decorator
+                    else if(player.getLayoutY() < 75 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
+                        player.setLayoutY(76);
+                    }
+                    else{
+                        leftAnimation.startAnimation();
+                        player.setLayoutX(player.getLayoutX() - Constants.PLAYER_SPEED);
+                        System.out.println("Going Up\nY: " + player.getLayoutY());
+                    }
+
                 }
-                else{
-                    System.out.println("CANNOT DO");
-                }
-            }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            if(dPressed.get()){
-                if(player.getLayoutX() < 1010){
-                    rightAnimation.startAnimation();
-                    player.setLayoutX(player.getLayoutX() + Constants.PLAYER_SPEED);
-                    System.out.println("Going Right\nX: " + player.getLayoutX());
-=======
-=======
->>>>>>> Stashed changes
-            
+                else{System.out.println("CANNOT DO");}
+        }
             else if(dPressed.get()){
                 if(player.getLayoutX() < 1200){
 
@@ -133,25 +159,22 @@ public class MovementController {
                         System.out.println("CANNOT DO");
                         player.setLayoutY(76);
                     }
+                    //Stopping the player from intersecting with the oven
                     else if(player.getLayoutY() < 75 && (player.getLayoutX() > 460 && player.getLayoutX() < 670)){
                         player.setLayoutY(76);
                     }
+                    //Stopping the player from intersecting with the decorator
                     else if(player.getLayoutY() < 75 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
-                        
-                        if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && !(Constants.CAKE_DECORATED)){
-                            // player.setLayoutY(90);
-                        }
+                        player.setLayoutY(76);
                     }
                     else{
                         rightAnimation.startAnimation();
                         player.setLayoutX(player.getLayoutX() + Constants.PLAYER_SPEED);
-                        System.out.println("Going Right\nX: " + player.getLayoutX());
+                        System.out.println("Going Up\nY: " + player.getLayoutY());
                     }
->>>>>>> Stashed changes
+
                 }
-                else{
-                    System.out.println("CANNOT DO");
-                }
+                else{System.out.println("CANNOT DO");}
             }
         }
     };
