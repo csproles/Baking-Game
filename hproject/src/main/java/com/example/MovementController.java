@@ -38,10 +38,10 @@ public class MovementController {
 
     private MixingMechanism mixingMechanism = new MixingMechanism();
     private BakingMechanism bakingMechanism = new BakingMechanism();
-    //private DecoratingMechanism decoratingMechanism = new DecoratingMechanism();
+    private DecoratingMechanism decoratingMechanism = new DecoratingMechanism();
     private Stage mixerStage = new Stage();
     private Stage bakingStage = new Stage();
-    //private Stage decoratingMechanism = new Stage();
+    private Stage decoratingStage = new Stage();
 
     // @FXML
     // private ImageView player;
@@ -113,12 +113,12 @@ public class MovementController {
                     else if(player.getLayoutY() < 75 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
                         
                         if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && !(Constants.CAKE_DECORATED)){
-                            // Constants.CAKE_DECORATED = true;
-                            // decoratingMechanism.start(decoratingMechanism);
-                            // decoratingMechanism.stopAnimation();
-                            // stop();
+                            Constants.CAKE_DECORATED = true;
+                            decoratingMechanism.start(decoratingStage);
+                            backAnimation.stopAnimation();
+                            stop();
                             
-                            // player.setLayoutY(90);
+                            player.setLayoutY(90);
                         }
                     }
                     else{
@@ -158,14 +158,14 @@ public class MovementController {
                     System.out.println("CANNOT DO");
                 }
             }
+
             if(aPressed.get()){
                 if(player.getLayoutX() > -20){
-                    
+
                     //Stopping the player from intersecting with the mixer
                     if(player.getLayoutY() < 75 && ((player.getLayoutX() > 62 && player.getLayoutX() < 207.5))){
                         System.out.println("CANNOT DO");
                         player.setLayoutY(76);
-                        
                     }
                     else if(player.getLayoutY() < 75 && (player.getLayoutX() > 460 && player.getLayoutX() < 670)){
                         player.setLayoutY(76);
@@ -186,6 +186,7 @@ public class MovementController {
                     System.out.println("CANNOT DO");
                 }
             }
+            
             if(dPressed.get()){
                 if(player.getLayoutX() < 1200){
 
@@ -238,27 +239,15 @@ public class MovementController {
         scene.setOnKeyReleased(e -> {
             if(e.getCode() == KeyCode.W){
                 wPressed.set(false);    
-                if(Constants.CAKE_TYPE_CHOCOLATE){
-                    if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED)){
-                        playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
-                    }
-                    else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED){
-                        playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
-                    }
-                    else{
-                        playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
-                    }
+                
+                if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                    playerFile = new File(Constants.PLAYER_BACK_WITH_PAN_IMAGEPATH);
                 }
-                else if(Constants.CAKE_TYPE_VANILLA){
-                    if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED)){
-                        playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
-                    }
-                    else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED){
-                        playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
-                    }
-                    else{
-                        playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
-                    }
+                else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && !(Constants.CAKE_DECORATED)){
+                    playerFile = new File(Constants.PLAYER_BACK_WITH_PAN_IMAGEPATH);
+                }
+                else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && Constants.CAKE_DECORATED){
+                    playerFile = new File(Constants.PLAYER_BACK_WITH_BOX_IMAGEPATH);
                 }
                 else{
                     playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
@@ -270,7 +259,6 @@ public class MovementController {
 
             if(e.getCode() == KeyCode.A){
                 aPressed.set(false);
-
                 if(Constants.CAKE_TYPE_CHOCOLATE){
                     if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED)){
                         playerFile = new File(Constants.PLAYER_LEFT_UNBAKED_CHOCOLATE_IMAGEPATH);
@@ -299,7 +287,6 @@ public class MovementController {
 
                 playerImage = new Image(playerFile.toURI().toString());
                 player.setImage(playerImage);
-            
             }
 
             if(e.getCode() == KeyCode.S){
