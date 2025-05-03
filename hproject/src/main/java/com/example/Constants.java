@@ -48,7 +48,7 @@ public class Constants {
 
     //Map Button Offsets
     //X Translation
-    public static double MAP_BUTTON_XOFFSET = (-(Constants.PANE_WIDTH/2)) + (Constants.MAP_BUTTON_WIDTH/2) + 5;
+    public static double MAP_BUTTON_XOFFSET = (-(Constants.PANE_WIDTH/2)) + (Constants.MAP_BUTTON_WIDTH/2) - 25;
     //Y Translation
     public static double MAP_BUTTON_YOFFSET = (-(Constants.PANE_HEIGHT/2)) + (Constants.MAP_BUTTON_HEIGHT/2) + 5;
 

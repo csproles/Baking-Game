@@ -46,6 +46,10 @@ public class Level1 extends Application{
         File decorationStationFile = new File(Constants.DECORATIONSTATION_IMAGEPATH);
         Image decorationStationImage = new Image(decorationStationFile.toURI().toString());
         ImageView decorationStationImageView = new ImageView(decorationStationImage);
+        
+        File menuFile = new File("hproject\\src\\main\\resources\\menu.png");
+        Image menuImage = new Image(menuFile.toURI().toString());
+        ImageView menuImageView = new ImageView(menuImage);
 
         playerImageView.setFitWidth(100);
         playerImageView.setFitHeight(100);
@@ -63,6 +67,10 @@ public class Level1 extends Application{
         decorationStationImageView.setFitHeight(200);
         decorationStationImageView.setPreserveRatio(true);
 
+        menuImageView.setFitWidth(100);
+        menuImageView.setFitHeight(100);
+        menuImageView.setPreserveRatio(true);
+
         playerImageView.setLayoutX(Constants.PANE_WIDTH/2 - 50);
         playerImageView.setLayoutY(Constants.PANE_HEIGHT/2 + 50);
         
@@ -73,18 +81,8 @@ public class Level1 extends Application{
         ovenImageView.setLayoutX(Constants.OVEN_LEVEL1_X);
         ovenImageView.setLayoutY(Constants.OVEN_LEVEL1_Y);
 
-        Button menuButton = new Button(Constants.LS_BUTTON_TEXT);
-        menuButton.setMinHeight(Constants.MAP_BUTTON_HEIGHT);
-        menuButton.setMaxHeight(Constants.MAP_BUTTON_HEIGHT);
-
-        menuButton.setMinWidth(Constants.MAP_BUTTON_WIDTH);
-        menuButton.setMaxWidth(Constants.MAP_BUTTON_WIDTH);
-
-        menuButton.setTranslateX(Constants.MAP_BUTTON_XOFFSET);
-        menuButton.setTranslateY(Constants.MAP_BUTTON_YOFFSET);
-
-        menuButton.setStyle(Constants.LS_BUTTON_STYLE);
-        menuButton.setFont(Font.font("Courier", FontWeight.BOLD, FontPosture.REGULAR , Constants.MAP_BUTTON_TEXT_SIZE));;
+        menuImageView.setTranslateX(Constants.MAP_BUTTON_XOFFSET);
+        menuImageView.setTranslateY(Constants.MAP_BUTTON_YOFFSET);
 
         level1Pane.setStyle(Constants.MAP_PANE_STYLE);
 
@@ -99,8 +97,17 @@ public class Level1 extends Application{
         
         playablePane.setStyle(Constants.PLAYABLE_PANE_STYLE);
 
+        menuImageView.setOnMouseClicked(event -> {
+            System.out.println("LS Button clicked");
+
+            Level1.level1.hide();
+            Stage lsStage = new Stage();
+            LS ls = new LS();
+            ls.start(lsStage);
+        });
+
         playablePane.getChildren().addAll(mixerImageView, ovenImageView, decorationStationImageView, playerImageView);
-        level1Pane.getChildren().addAll(playablePane, menuButton);//playablePane, menuButton);
+        level1Pane.getChildren().addAll(playablePane, menuImageView);//playablePane, menuButton);
 
         Scene level1Scene = new Scene(level1Pane, Constants.PANE_WIDTH, Constants.PANE_HEIGHT); 
         level1.setScene(level1Scene);
@@ -108,9 +115,14 @@ public class Level1 extends Application{
         MovementController movementController = new MovementController();
         movementController.makeMoveable(playerImageView, level1Scene);
 
-        HandleL1ToLSButton handleLSButton = new HandleL1ToLSButton();
-        
-        menuButton.setOnAction(handleLSButton);
+        // level1ImageView.setOnMouseClicked(event -> {
+        //     System.out.println("Button 1 clicked");
+
+        //     LS.primaryStage.hide();
+        //     Stage level1Stage = new Stage();
+        //     Level1 level1 = new Level1();
+        //     level1.start(level1Stage);
+        // });
 
         level1.show();
         level1.centerOnScreen();
