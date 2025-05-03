@@ -1,5 +1,7 @@
 package com.example;
 
+import java.io.File;
+
 import com.example.Constants;
 
 import javafx.application.Application;
@@ -7,6 +9,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -29,45 +33,48 @@ public class LS extends Application {
         //Assigns the stage variable to the global variable
         this.primaryStage = primaryStage;
 
-        //Creating the level buttons
-        Button button1 = new Button(Constants.MAP1_BUTTON_TEXT);
-        Button button2 = new Button(Constants.MAP2_BUTTON_TEXT);
-        Button button3 = new Button(Constants.MAP3_BUTTON_TEXT);
+        File level1File = new File("hproject/src/main/resources/level1.png");
+        Image level1Image = new Image(level1File.toURI().toString());
+        ImageView level1ImageView = new ImageView(level1Image);
 
-        //Sets the sizes for the buttons
-        button1.setPrefSize(Constants.LS_BUTTON_SIZE, Constants.LS_BUTTON_SIZE);
-        button2.setPrefSize(Constants.LS_BUTTON_SIZE, Constants.LS_BUTTON_SIZE);
-        button3.setPrefSize(Constants.LS_BUTTON_SIZE, Constants.LS_BUTTON_SIZE);
-        
-        //Places the button at the right X
-        button1.setTranslateX(-Constants.PANE_WIDTH/3);
-        button2.setTranslateX(0);
-        button3.setTranslateX(Constants.PANE_WIDTH/3);
+        File level2File = new File("hproject\\src\\main\\resources\\level2.png");
+        Image level2Image = new Image(level2File.toURI().toString());
+        ImageView level2ImageView = new ImageView(level2Image);
 
-        //Sets the style/font for the buttons
-        button1.setStyle(Constants.LS_BUTTON_STYLE);
-        button1.setFont(Font.font("Courier", FontWeight.BOLD, FontPosture.REGULAR , Constants.LS_BUTTON_TEXT_SIZE));
-        
-        button2.setStyle(Constants.LS_BUTTON_STYLE);
-        button2.setFont(Font.font("Courier", FontWeight.BOLD, FontPosture.REGULAR, Constants.LS_BUTTON_TEXT_SIZE));
+        File level3File = new File("hproject\\src\\main\\resources\\level3.png");
+        Image level3Image = new Image(level3File.toURI().toString());
+        ImageView level3ImageView = new ImageView(level3Image);
 
-        button3.setStyle(Constants.LS_BUTTON_STYLE);
-        button3.setFont(Font.font("Courier", FontWeight.BOLD, FontPosture.REGULAR , Constants.LS_BUTTON_TEXT_SIZE));
+        level1ImageView.setFitWidth(Constants.LS_BUTTON_SIZE);
+        level1ImageView.setFitHeight(Constants.LS_BUTTON_SIZE);
+        level1ImageView.setPreserveRatio(true);
+
+        level2ImageView.setFitWidth(Constants.LS_BUTTON_SIZE);
+        level2ImageView.setFitHeight(Constants.LS_BUTTON_SIZE);
+        level2ImageView.setPreserveRatio(true);
+
+        level3ImageView.setFitWidth(Constants.LS_BUTTON_SIZE);
+        level3ImageView.setFitHeight(Constants.LS_BUTTON_SIZE);
+        level3ImageView.setPreserveRatio(true);
+
+        level1ImageView.setTranslateX(-Constants.LS_BUTTON_SIZE - (Constants.LS_BUTTON_SIZE/3));
+        level3ImageView.setTranslateX(Constants.LS_BUTTON_SIZE + (Constants.LS_BUTTON_SIZE/3));
         
-        //Creates a handler object for each button and when its pressed it calls the class
-        HandleButton1 handleButton1 = new HandleButton1();
-        HandleButton2 handleButton2 = new HandleButton2();
-        HandleButton3 handleButton3 = new HandleButton3();
+        level1ImageView.setOnMousePressed(event -> {
+            System.out.println("Button 1 clicked");
+
+            LS.primaryStage.hide();
+            Stage level1Stage = new Stage();
+            Level1 level1 = new Level1();
+            level1.start(level1Stage);
+        });
         
-        button1.setOnAction(handleButton1);
-        button2.setOnAction(handleButton2);
-        button3.setOnAction(handleButton3);
 
         //Creates a pane
         StackPane levelSelectionPane = new StackPane();
 
         //Assigns the buttons to the pane and sets style of the pane
-        levelSelectionPane.getChildren().addAll(button1, button2, button3);
+        levelSelectionPane.getChildren().addAll(level1ImageView, level2ImageView, level3ImageView);
         levelSelectionPane.setStyle(Constants.LS_PANE_STYLE);
         
         //Creates a scene for level selection

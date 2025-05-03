@@ -93,7 +93,12 @@ public class MovementController {
                     System.out.println("CANNOT DO");
                 }
             }
+<<<<<<< Updated upstream
             if(aPressed.get()){
+=======
+
+            else if(aPressed.get()){
+>>>>>>> Stashed changes
                 if(player.getLayoutX() > -20){
                     leftAnimation.startAnimation();
                     player.setLayoutX(player.getLayoutX() - Constants.PLAYER_SPEED);
@@ -103,11 +108,37 @@ public class MovementController {
                     System.out.println("CANNOT DO");
                 }
             }
+<<<<<<< Updated upstream
             if(dPressed.get()){
                 if(player.getLayoutX() < 1010){
                     rightAnimation.startAnimation();
                     player.setLayoutX(player.getLayoutX() + Constants.PLAYER_SPEED);
                     System.out.println("Going Right\nX: " + player.getLayoutX());
+=======
+            
+            else if(dPressed.get()){
+                if(player.getLayoutX() < 1200){
+
+                    //Stopping the player from intersecting with the mixer
+                    if(player.getLayoutY() < 75 && ((player.getLayoutX() > 62 && player.getLayoutX() < 207.5))){
+                        System.out.println("CANNOT DO");
+                        player.setLayoutY(76);
+                    }
+                    else if(player.getLayoutY() < 75 && (player.getLayoutX() > 460 && player.getLayoutX() < 670)){
+                        player.setLayoutY(76);
+                    }
+                    else if(player.getLayoutY() < 75 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
+                        
+                        if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && !(Constants.CAKE_DECORATED)){
+                            // player.setLayoutY(90);
+                        }
+                    }
+                    else{
+                        rightAnimation.startAnimation();
+                        player.setLayoutX(player.getLayoutX() + Constants.PLAYER_SPEED);
+                        System.out.println("Going Right\nX: " + player.getLayoutX());
+                    }
+>>>>>>> Stashed changes
                 }
                 else{
                     System.out.println("CANNOT DO");

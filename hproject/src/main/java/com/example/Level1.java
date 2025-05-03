@@ -42,18 +42,53 @@ public class Level1 extends Application{
         playerImageView.setFitHeight(100);
         playerImageView.setPreserveRatio(true);
 
+<<<<<<< Updated upstream
         Button menuButton = new Button(Constants.LS_BUTTON_TEXT);
         menuButton.setMinHeight(Constants.MAP_BUTTON_HEIGHT);
         menuButton.setMaxHeight(Constants.MAP_BUTTON_HEIGHT);
+=======
+        mixerImageView.setFitWidth(200);
+        mixerImageView.setFitHeight(200);
+        mixerImageView.setPreserveRatio(true);
 
-        menuButton.setMinWidth(Constants.MAP_BUTTON_WIDTH);
-        menuButton.setMaxWidth(Constants.MAP_BUTTON_WIDTH);
+        ovenImageView.setFitWidth(200);
+        ovenImageView.setFitHeight(200);
+        ovenImageView.setPreserveRatio(true);
 
-        menuButton.setTranslateX(Constants.MAP_BUTTON_XOFFSET);
-        menuButton.setTranslateY(Constants.MAP_BUTTON_YOFFSET);
+        decorationStationImageView.setFitWidth(200);
+        decorationStationImageView.setFitHeight(200);
+        decorationStationImageView.setPreserveRatio(true);
 
-        menuButton.setStyle(Constants.LS_BUTTON_STYLE);
-        menuButton.setFont(Font.font("Courier", FontWeight.BOLD, FontPosture.REGULAR , Constants.MAP_BUTTON_TEXT_SIZE));;
+        playerImageView.setLayoutX(Constants.PANE_WIDTH/2 - 50);
+        playerImageView.setLayoutY(Constants.PANE_HEIGHT/2 + 50);
+        
+        mixerImageView.setLayoutX(Constants.MIXER_LEVEL1_X);
+        mixerImageView.setLayoutY(Constants.MIXER_LEVEL1_Y);
+        decorationStationImageView.setLayoutX(Constants.DECORATIONSTATION_LEVEL1_X);
+        decorationStationImageView.setLayoutY(Constants.DECORATIONSTATION_LEVEL1_Y);
+        ovenImageView.setLayoutX(Constants.OVEN_LEVEL1_X);
+        ovenImageView.setLayoutY(Constants.OVEN_LEVEL1_Y);
+
+        File menuFile = new File("hproject\\src\\main\\resources\\menu.png");
+        Image menuImage = new Image(menuFile.toURI().toString());
+        ImageView menuImageView = new ImageView(menuImage);
+>>>>>>> Stashed changes
+
+        menuImageView.setFitWidth(100);
+        menuImageView.setFitHeight(100);
+        menuImageView.setPreserveRatio(true);
+
+        menuImageView.setTranslateX(Constants.MAP_BUTTON_XOFFSET);
+        menuImageView.setTranslateY(Constants.MAP_BUTTON_YOFFSET);
+
+        menuImageView.setOnMouseClicked(event -> {
+            System.out.println("LS Button clicked");
+
+            Level1.level1.hide();
+            Stage lsStage = new Stage();
+            LS ls = new LS();
+            ls.start(lsStage);
+        });
 
         level1Pane.setStyle(Constants.MAP_PANE_STYLE);
 
@@ -68,8 +103,13 @@ public class Level1 extends Application{
         
         playablePane.setStyle(Constants.PLAYABLE_PANE_STYLE);
 
+<<<<<<< Updated upstream
         playablePane.getChildren().addAll(playerImageView);
         level1Pane.getChildren().addAll(playablePane, menuButton);//playablePane, menuButton);
+=======
+        playablePane.getChildren().addAll(mixerImageView, ovenImageView, decorationStationImageView, playerImageView);
+        level1Pane.getChildren().addAll(playablePane, menuImageView);//playablePane, menuButton);
+>>>>>>> Stashed changes
 
         Scene level1Scene = new Scene(level1Pane, Constants.PANE_WIDTH, Constants.PANE_HEIGHT); 
         level1.setScene(level1Scene);
@@ -77,9 +117,9 @@ public class Level1 extends Application{
         MovementController movementController = new MovementController();
         movementController.makeMoveable(playerImageView, level1Scene);
 
-        HandleL1ToLSButton handleLSButton = new HandleL1ToLSButton();
+        // HandleL1ToLSButton handleLSButton = new HandleL1ToLSButton();
         
-        menuButton.setOnAction(handleLSButton);
+        // menuButton.setOnAction(handleLSBautton);
 
         level1.show();
         level1.centerOnScreen();
