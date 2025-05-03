@@ -72,6 +72,9 @@ public class Level1 extends Application{
         File menuFile = new File("hproject\\src\\main\\resources\\menu.png");
         Image menuImage = new Image(menuFile.toURI().toString());
         ImageView menuImageView = new ImageView(menuImage);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
         menuImageView.setFitWidth(100);
@@ -104,8 +107,13 @@ public class Level1 extends Application{
         playablePane.setStyle(Constants.PLAYABLE_PANE_STYLE);
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         playablePane.getChildren().addAll(playerImageView);
         level1Pane.getChildren().addAll(playablePane, menuButton);//playablePane, menuButton);
+=======
+        playablePane.getChildren().addAll(mixerImageView, ovenImageView, decorationStationImageView, playerImageView);
+        level1Pane.getChildren().addAll(playablePane, menuImageView);//playablePane, menuButton);
+>>>>>>> Stashed changes
 =======
         playablePane.getChildren().addAll(mixerImageView, ovenImageView, decorationStationImageView, playerImageView);
         level1Pane.getChildren().addAll(playablePane, menuImageView);//playablePane, menuButton);

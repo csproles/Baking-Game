@@ -94,8 +94,14 @@ public class MovementController {
                 }
             }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             if(aPressed.get()){
 =======
+=======
+
+            else if(aPressed.get()){
+                if(player.getLayoutX() > -20){
+>>>>>>> Stashed changes
 
             else if(aPressed.get()){
 >>>>>>> Stashed changes
@@ -109,12 +115,15 @@ public class MovementController {
                 }
             }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             if(dPressed.get()){
                 if(player.getLayoutX() < 1010){
                     rightAnimation.startAnimation();
                     player.setLayoutX(player.getLayoutX() + Constants.PLAYER_SPEED);
                     System.out.println("Going Right\nX: " + player.getLayoutX());
 =======
+=======
+>>>>>>> Stashed changes
             
             else if(dPressed.get()){
                 if(player.getLayoutX() < 1200){
