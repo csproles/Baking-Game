@@ -38,18 +38,21 @@ public class LS extends Application {
         File level3File = new File("hproject\\src\\main\\resources\\level3.png");
         File level2FileCS = new File("hproject\\src\\main\\resources\\othercomingsoon.png");
         File level3FileCS = new File("hproject\\src\\main\\resources\\othercomingsoon.png");
+        File titleFile = new File("hproject\\src\\main\\resources\\cookinggame.png");
 
         Image level1Image = new Image(level1File.toURI().toString());
         Image level2Image = new Image(level2File.toURI().toString());
         Image level3Image = new Image(level3File.toURI().toString());
         Image level2ImageCS = new Image(level2FileCS.toURI().toString());
         Image level3ImageCS = new Image(level3FileCS.toURI().toString());
+        Image titleImage = new Image(titleFile.toURI().toString());
 
         ImageView level1ImageView = new ImageView(level1Image);
         ImageView level2ImageView = new ImageView(level2Image);
         ImageView level3ImageView = new ImageView(level3Image);
         ImageView level2ImageViewCS = new ImageView(level2ImageCS);
         ImageView level3ImageViewCS = new ImageView(level3ImageCS);
+        ImageView titleImageView = new ImageView(titleImage);
 
         level1ImageView.setFitWidth(Constants.LS_BUTTON_SIZE);
         level1ImageView.setFitHeight(Constants.LS_BUTTON_SIZE);
@@ -71,10 +74,19 @@ public class LS extends Application {
         level3ImageViewCS.setFitHeight(250);
         level3ImageViewCS.setPreserveRatio(true);
 
+        titleImageView.setFitWidth(1250);
+        titleImageView.setFitHeight(475);
+
         level1ImageView.setTranslateX(-Constants.LS_BUTTON_SIZE - Constants.LS_BUTTON_SIZE/3);
         level3ImageView.setTranslateX(Constants.LS_BUTTON_SIZE + Constants.LS_BUTTON_SIZE/3);
-
         level3ImageViewCS.setTranslateX(Constants.LS_BUTTON_SIZE + Constants.LS_BUTTON_SIZE/3);
+
+        level1ImageView.setTranslateY(175);
+        level2ImageView.setTranslateY(175);
+        level3ImageView.setTranslateY(175);
+        level2ImageViewCS.setTranslateY(175);
+        level3ImageViewCS.setTranslateY(175);
+        titleImageView.setTranslateY(-115);
 
         level1ImageView.setOnMouseClicked(event -> {
             System.out.println("Button 1 clicked");
@@ -89,7 +101,7 @@ public class LS extends Application {
         StackPane levelSelectionPane = new StackPane();
 
         //Assigns the buttons to the pane and sets style of the pane
-        levelSelectionPane.getChildren().addAll(level1ImageView, level2ImageView, level2ImageViewCS, level3ImageView, level3ImageViewCS);
+        levelSelectionPane.getChildren().addAll(titleImageView, level1ImageView, level2ImageView, level2ImageViewCS, level3ImageView, level3ImageViewCS);
         levelSelectionPane.setStyle(Constants.LS_PANE_STYLE);
         
         //Creates a scene for level selection
