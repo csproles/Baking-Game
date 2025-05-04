@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cmps2800.hproject.MainSceneController"
+            prefHeight="600.0" prefWidth="800.0">
+            
+    <!-- Top section with game title and score -->
+    <top>
+        <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #f0f0f0;">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="Cake Baking Simulator" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+            <Label fx:id="scoreLabel" text="Score: 0" style="-fx-font-size: 18px;"/>
+        </VBox>
+    </top>
+    
+    <!-- Center section with game area -->
+    <center>
+        <Pane fx:id="gameArea" style="-fx-background-color: #e8e8e8;">
+            <!-- Kitchen stations will be placed here -->
+            <!-- Each station has a specific area within the kitchen -->
+            
+            <!-- Mixer station -->
+            <ImageView fx:id="mixerImageView" layoutX="50" layoutY="50" 
+                       fitWidth="150" fitHeight="150" preserveRatio="true"
+                       image="@images/mixer.png"/>
+            <Label layoutX="95" layoutY="210" text="Mixer" style="-fx-font-weight: bold;"/>
+            
+            <!-- Cake tin station -->
+            <ImageView fx:id="cakeTinImageView" layoutX="250" layoutY="50" 
+                       fitWidth="150" fitHeight="150" preserveRatio="true"
+                       image="@images/cake_tin.png"/>
+            <Label layoutX="295" layoutY="210" text="Cake Tin" style="-fx-font-weight: bold;"/>
+            
+            <!-- Oven station -->
+            <ImageView fx:id="ovenImageView" layoutX="450" layoutY="50" 
+                       fitWidth="150" fitHeight="150" preserveRatio="true"
+                       image="@images/oven.png"/>
+            <Label layoutX="505" layoutY="210" text="Oven" style="-fx-font-weight: bold;"/>
+            
+            <!-- Decorating station -->
+            <ImageView fx:id="decoratingStationImageView" layoutX="150" layoutY="250" 
+                       fitWidth="150" fitHeight="150" preserveRatio="true"
+                       image="@images/decorating_station.png"/>
+            <Label layoutX="165" layoutY="410" text="Decorating Station" style="-fx-font-weight: bold;"/>
+            
+            <!-- Boxing station -->
+            <ImageView fx:id="boxingStationImageView" layoutX="350" layoutY="250" 
+                       fitWidth="150" fitHeight="150" preserveRatio="true"
+                       image="@images/boxing_station.png"/>
+            <Label layoutX="385" layoutY="410" text="Boxing" style="-fx-font-weight: bold;"/>
+            
+            <!-- Customer -->
+            <ImageView fx:id="customerImageView" layoutX="550" layoutY="250" 
+                       fitWidth="150" fitHeight="150" preserveRatio="true"
+                       image="@images/customer.png"/>
+            <Label layoutX="585" layoutY="410" text="Customer" style="-fx-font-weight: bold;"/>
+            
+            <!-- Ingredient selection area will appear here when needed -->
+            <GridPane fx:id="ingredientsGrid" layoutX="50" layoutY="450" hgap="20" vgap="10" 
+                     style="-fx-background-color: #f8f8f8; -fx-padding: 10;">
+                <!-- Ingredients will be added here programmatically -->
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="100" prefWidth="100" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="100" prefWidth="100" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="100" prefWidth="100" />
+                </columnConstraints>
+            </GridPane>
+        </Pane>
+    </center>
+    
+    <!-- Right section with instructions and controls -->
+    <right>
+        <VBox fx:id="instructionsBox" alignment="TOP_CENTER" spacing="20" prefWidth="200"
+              style="-fx-background-color: #f0f0f0; -fx-padding: 15;">
+            <Label text="Instructions" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <Label fx:id="currentTaskLabel" text="Select ingredients and add them to the mixer" 
+                   wrapText="true" textAlignment="CENTER"/>
+            <Button fx:id="nextStepButton" text="Next Step" disable="true" 
+                    prefWidth="150" style="-fx-font-size: 14px;"/>
+            
+            <!-- Decorations panel will appear here when needed -->
+            <VBox fx:id="decorationsPanel" spacing="10" visible="false">
+                <Label text="Decorations" style="-fx-font-weight: bold;"/>
+                <!-- Decoration options will be added here programmatically -->
+            </VBox>
+        </VBox>
+    </right>
+    
+    <!-- Bottom section with status messages -->
+    <bottom>
+        <HBox alignment="CENTER" spacing="10" style="-fx-background-color: #f0f0f0; -fx-padding: 10;">
+            <Label text="CMPS 2800 - HProject Cake Baking Game" style="-fx-font-style: italic;"/>
+        </HBox>
+    </bottom>
+    
+</BorderPane>

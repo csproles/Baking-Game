@@ -3,6 +3,13 @@
     "configurations": [
       {
         "type": "java",
+        "name": "BakeryGame",
+        "request": "launch",
+        "mainClass": "com.example/com.cakegame.BakeryGame",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
         "name": "Launch JavaFX App",
         "request": "launch",
         "mainClass": "com.example.Main",
