@@ -117,6 +117,7 @@ public class MixingMechanism extends Application {
 
             bowl.setImage(loadImage("pan_full_vanilla.png"));
             BakingMechanism.setFlavor("vanilla");
+            Constants.CAKE_TYPE_VANILLA = true;
 
         } else if (hasCocoa &&
                    droppedIngredients.contains("milk.png") &&
@@ -125,6 +126,7 @@ public class MixingMechanism extends Application {
 
             bowl.setImage(loadImage("cake_pan_full.png"));
             BakingMechanism.setFlavor("cocoa");
+            Constants.CAKE_TYPE_CHOCOLATE = true;
 
         } else {
             System.out.println("Missing ingredients.");
@@ -135,9 +137,10 @@ public class MixingMechanism extends Application {
 
         Timeline pause = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             try {
-                BakingMechanism baking = new BakingMechanism();
-                Stage bakingStage = new Stage();
-                baking.start(bakingStage);
+                Constants.CAKE_MIXED = true;
+                // BakingMechanism baking = new BakingMechanism();
+                // Stage bakingStage = new Stage();
+                // baking.start(bakingStage);
 
                 if (primaryStageReference != null) {
                     primaryStageReference.close();

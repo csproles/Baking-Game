@@ -121,6 +121,7 @@ public class BakingMechanism extends Application {
 
         PauseTransition delay = new PauseTransition(Duration.seconds(1));
         delay.setOnFinished(e -> {
+            Constants.CAKE_BAKED = true;
             DecoratingMechanism.setFlavor(flavor);
             DecoratingMechanism.startFromBaking();
             ((Stage) progressBar.getScene().getWindow()).close();

@@ -21,12 +21,13 @@ import javafx.stage.Stage;
 public class Level1 extends Application{
 
     public static Stage level1;
+    public static StackPane level1Pane;
     
     @Override
     public void start(Stage level1){
         this.level1 = level1;
 
-        StackPane level1Pane = new StackPane();
+        level1Pane = new StackPane();
         Pane playablePane = new Pane();
 
         level1.setTitle("Level 1");
@@ -107,6 +108,7 @@ public class Level1 extends Application{
         });
 
         playablePane.getChildren().addAll(mixerImageView, ovenImageView, decorationStationImageView, playerImageView);
+
         level1Pane.getChildren().addAll(playablePane, menuImageView);//playablePane, menuButton);
 
         Scene level1Scene = new Scene(level1Pane, Constants.PANE_WIDTH, Constants.PANE_HEIGHT); 

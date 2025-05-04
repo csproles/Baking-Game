@@ -87,13 +87,8 @@ public class Constants {
 
     //PANNED BACK
     public static String PLAYER_BACK_WITH_PAN_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Back_With_Pan.png";
-    public static String PLAYER_BACK_WITH_PAN_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Back_Step1_With_Pan.png";
-    public static String PLAYER_BACK_WITH_PAN_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Back_Step2_With_Pan.png";
-
-    //BOXED BACK
-    public static String PLAYER_BACK_WITH_BOX_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Back_With_Box.png";
-    public static String PLAYER_BACK_WITH_BOX_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Back_Step1_With_Box.png";
-    public static String PLAYER_BACK_WITH_BOX_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Back_Step2_With_Box.png";
+    public static String PLAYER_BACK_STEP1_WITH_PAN_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Back_Step1_With_Pan.png";
+    public static String PLAYER_BACK_STEP2_WITH_PAN_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Back_Step2_With_Pan.png";
 
     //Vanilla Player
     //FRONT
@@ -112,8 +107,8 @@ public class Constants {
     public static String PLAYER_LEFT_UNBAKED_VANILLA_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Unbaked\\Left\\Chef_Left_Step2_UnbakedVanilla.png";
     //BAKED
     public static String PLAYER_LEFT_BAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Left\\Chef_Left_Still_BakedVanilla.png";
-    public static String PLAYER_LEFT_BAKED_VANILLA_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Left\\Chef_Left_Step1_BakedChocolate.png";
-    public static String PLAYER_LEFT_BAKED_VANILLA_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Left\\Chef_Left_Step2_BakedChocolate.png";
+    public static String PLAYER_LEFT_BAKED_VANILLA_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Left\\Chef_Left_Step1_BakedVanilla.png";
+    public static String PLAYER_LEFT_BAKED_VANILLA_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Left\\Chef_Left_Step2_BakedVanilla.png";
     //RIGHT
     //UNBAKED
     public static String PLAYER_RIGHT_UNBAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Unbaked\\Right\\Chef_Right_Still_UnbakedVanilla.png";
@@ -153,6 +148,24 @@ public class Constants {
     public static String PLAYER_RIGHT_BAKED_CHOCOLATE_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Baked\\Right\\Chef_Right_Step1_BakedChocolate.png";
     public static String PLAYER_RIGHT_BAKED_CHOCOLATE_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Baked\\Right\\Chef_Right_Step2_BakedChocolate.png";
 
+    //Boxed
+    //FRONT
+    public static String PLAYER_FRONT_WITH_BOX_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Front_Still_With_Box.png";
+    public static String PLAYER_FRONT_WITH_BOX_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Front_Step1_With_Box.png";
+    public static String PLAYER_FRONT_WITH_BOX_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Front_Step2_With_Box.png";
+    //LEFT
+    public static String PLAYER_LEFT_WITH_BOX_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Left_Still_With_Box.png";
+    public static String PLAYER_LEFT_WITH_BOX_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Left_Step1_With_Box.png";
+    public static String PLAYER_LEFT_WITH_BOX_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Left_Step2_With_Box.png";
+    //RIGHT
+    public static String PLAYER_RIGHT_WITH_BOX_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Right_Still_With_Box.png";
+    public static String PLAYER_RIGHT_WITH_BOX_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Right_Step1_With_Box.png";
+    public static String PLAYER_RIGHT_WITH_BOX_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Right_Step2_With_Box.png";
+    //BOXED BACK
+    public static String PLAYER_BACK_WITH_BOX_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Back_With_Box.png";
+    public static String PLAYER_BACK_STEP1_WITH_BOX_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Back_Step1_With_Box.png";
+    public static String PLAYER_BACK_STEP2_WITH_BOX_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Back_Step2_With_Box.png";
+    
     public static double PLAYER_SPEED = 5;
 
     //Mixer Constants
