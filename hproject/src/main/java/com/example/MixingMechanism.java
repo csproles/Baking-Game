@@ -1,16 +1,14 @@
 package com.example;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,23 +19,46 @@ public class MixingMechanism extends Application {
     private List<String> droppedIngredients = new ArrayList<>();
     private ImageView bowl;
     private int ingredientsInBowl = 0;
-    private Stage primaryStageReference;
 
     @Override
     public void start(Stage primaryStage) {
-        this.primaryStageReference = primaryStage;
-
         Pane root = new Pane();
 
+        // Background color
         Rectangle background = new Rectangle(1000, 600);
-        background.setFill(Color.web("#7C8A91")); // Your image's color
+        background.setFill(Color.web("#7C8A91")); 
         root.getChildren().add(background);
 
+        // Top header bar
+        Rectangle topPane = new Rectangle(1000, 100);
+        topPane.setFill(Color.web("#556565")); 
+        root.getChildren().add(topPane);
+
+        // "Map Selection" button
+        Button mapButton = new Button("Map Selection");
+        mapButton.setLayoutX(25);
+        mapButton.setLayoutY(20);
+        mapButton.setPrefWidth(200);
+        mapButton.setPrefHeight(60);
+        mapButton.setStyle(
+            "-fx-background-color: #CBB4A0;" +
+            "-fx-border-color: #3E575C;" +
+            "-fx-border-width: 2px;" +
+            "-fx-font-size: 16px;" +
+            "-fx-font-weight: bold;" +
+            "-fx-text-fill: #1E1E1E;"
+        );
+        mapButton.setOnAction(e -> primaryStage.close()); // You can link to LS.java if needed
+        root.getChildren().add(mapButton);
+
+        // Main image background
         ImageView bgImage = new ImageView(loadImage("mix.png"));
         bgImage.setFitWidth(1000);
-        bgImage.setFitHeight(600);
+        bgImage.setFitHeight(500);      // Only cover lower pane
+        bgImage.setLayoutY(100);
         root.getChildren().add(bgImage);
 
+        // Bowl
         bowl = new ImageView(loadImage("cake_pan.png"));
         bowl.setFitWidth(100);
         bowl.setFitHeight(100);
@@ -45,6 +66,7 @@ public class MixingMechanism extends Application {
         bowl.setLayoutY(300);
         root.getChildren().add(bowl);
 
+        // Ingredients
         String[] allIngredients = {"milk.png", "eggs.png", "flour.png", "cocoa.png", "vanilla.png"};
         for (int i = 0; i < allIngredients.length; i++) {
             ImageView ingredient = new ImageView(loadImage(allIngredients[i]));
@@ -80,7 +102,6 @@ public class MixingMechanism extends Application {
 
         ingredient.setOnMouseReleased(event -> {
             if (isOverBowl(ingredient)) {
-                // Prevent dropping both vanilla and cocoa
                 if ((ingredientName.equals("vanilla.png") && droppedIngredients.contains("cocoa.png")) ||
                     (ingredientName.equals("cocoa.png") && droppedIngredients.contains("vanilla.png"))) {
                     System.out.println("⚠ Cannot mix both vanilla and cocoa.");
@@ -128,26 +149,9 @@ public class MixingMechanism extends Application {
 
         } else {
             System.out.println("Missing ingredients.");
-            return;
         }
 
-        System.out.println("✅ Finished mixing, opening BakingMechanism...");
-
-        Timeline pause = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-            try {
-                BakingMechanism baking = new BakingMechanism();
-                Stage bakingStage = new Stage();
-                baking.start(bakingStage);
-
-                if (primaryStageReference != null) {
-                    primaryStageReference.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }));
-        pause.setCycleCount(1);
-        pause.play();
+        System.out.println("✅ Finished mixing. You can now go to the baking station manually.");
     }
 
     private Image loadImage(String filename) {

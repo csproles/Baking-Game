@@ -5,6 +5,7 @@ import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,13 +31,38 @@ public class BakingMechanism extends Application {
     public void start(Stage primaryStage) {
         Pane root = new Pane();
 
+        // full background
         Rectangle background = new Rectangle(1000, 600);
-        background.setFill(Color.web("#7C8A91")); // Your image's color
+        background.setFill(Color.web("#7C8A91"));
         root.getChildren().add(background);
 
+        // top pane
+        Rectangle topPane = new Rectangle(1000, 100);
+        topPane.setFill(Color.web("#556565"));
+        root.getChildren().add(topPane);
+
+        // map selection button
+        Button mapButton = new Button("Map Selection");
+        mapButton.setLayoutX(25);
+        mapButton.setLayoutY(20);
+        mapButton.setPrefWidth(200);
+        mapButton.setPrefHeight(60);
+        mapButton.setStyle(
+            "-fx-background-color: #CBB4A0;" +
+            "-fx-border-color: #3E575C;" +
+            "-fx-border-width: 2px;" +
+            "-fx-font-size: 16px;" +
+            "-fx-font-weight: bold;" +
+            "-fx-text-fill: #1E1E1E;"
+        );
+        mapButton.setOnAction(e -> primaryStage.close()); // hook to LS.java if needed
+        root.getChildren().add(mapButton);
+
+        // background image
         ImageView bgImage = new ImageView(loadImage("bake.png"));
         bgImage.setFitWidth(1000);
-        bgImage.setFitHeight(600);
+        bgImage.setFitHeight(500);      // Only cover lower pane
+        bgImage.setLayoutY(100);
         root.getChildren().add(bgImage);
 
         oven = new ImageView(loadImage("oven.png"));
@@ -119,11 +145,11 @@ public class BakingMechanism extends Application {
         bakedCake.setLayoutY(300);
         root.getChildren().add(bakedCake);
 
+        // only set flavor – do NOT auto-start decorating
         PauseTransition delay = new PauseTransition(Duration.seconds(1));
         delay.setOnFinished(e -> {
             DecoratingMechanism.setFlavor(flavor);
-            DecoratingMechanism.startFromBaking();
-            ((Stage) progressBar.getScene().getWindow()).close();
+            System.out.println("✅ Baking done. Ready for decorating.");
         });
         delay.play();
     }
