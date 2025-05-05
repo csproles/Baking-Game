@@ -72,6 +72,9 @@ public class Level1 extends Application{
         Image floorImage = new Image(floorFile.toURI().toString());
         ImageView floorImageView = new ImageView(floorImage);
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         playerImageView.setFitWidth(100);
         playerImageView.setFitHeight(100);
@@ -106,6 +109,9 @@ public class Level1 extends Application{
         floorImageView.setFitWidth(1250);
         floorImageView.setFitHeight(750);
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         playerImageView.setLayoutX(Constants.PANE_WIDTH/2 - 50);
         playerImageView.setLayoutY(Constants.PANE_HEIGHT/2 + 50);
@@ -145,7 +151,11 @@ public class Level1 extends Application{
         });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         playablePane.getChildren().addAll(mixerImageView, ovenImageView, decorationStationImageView, playerImageView);
+=======
+        playablePane.getChildren().addAll(wall, floorImageView, mixerImageView, ovenImageView, decorationStationImageView, playerImageView, orderImageView, pickupImageView);
+>>>>>>> Stashed changes
 =======
         playablePane.getChildren().addAll(wall, floorImageView, mixerImageView, ovenImageView, decorationStationImageView, playerImageView, orderImageView, pickupImageView);
 >>>>>>> Stashed changes

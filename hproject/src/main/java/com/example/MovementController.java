@@ -144,19 +144,39 @@ public class MovementController {
 
             if(sPressed.get()){
                 if(player.getLayoutY() < 350){
+<<<<<<< Updated upstream
+=======
+
+                    Level1.level1Pane.getChildren().remove(pressMixerImageView);
+                    if(player.getLayoutY() > 300 && (player.getLayoutX() > -60 && player.getLayoutX() < 130)){
+                        player.setLayoutY(290);
+                    }
+                    else{
+                        frontAnimation.startAnimation();
+                        player.setLayoutY(player.getLayoutY() + Constants.PLAYER_SPEED);
+                    }
+                }
+                else{System.out.println("CANNOT DO");}
+            }
+
+            if(aPressed.get()){
+
+                if(player.getLayoutX() > -20){
+>>>>>>> Stashed changes
 
                     Level1.level1Pane.getChildren().remove(pressMixerImageView);
 <<<<<<< Updated upstream
                     //Stopping the player from intersecting with the mixer
-                    if(player.getLayoutY() < 75 && ((player.getLayoutX() > 62 && player.getLayoutX() < 207.5))){
+                    if(player.getLayoutY() < 60 && ((player.getLayoutX() > 62 && player.getLayoutX() < 208))){
                         System.out.println("CANNOT DO");
-                        player.setLayoutY(76);
+                        player.setLayoutX(208);
                     }
                     //Stopping the player from intersecting with the oven
-                    else if(player.getLayoutY() < 75 && (player.getLayoutX() > 460 && player.getLayoutX() < 670)){
-                        player.setLayoutY(76);
+                    else if(player.getLayoutY() < 60 && (player.getLayoutX() > 460 && player.getLayoutX() < 670)){
+                        player.setLayoutX(670);
                     }
                     //Stopping the player from intersecting with the decorator
+<<<<<<< Updated upstream
                     else if(player.getLayoutY() < 75 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
                         player.setLayoutY(76);
 =======
@@ -188,6 +208,8 @@ public class MovementController {
                         player.setLayoutX(670);
                     }
                     //Stopping the player from intersecting with the decorator
+=======
+>>>>>>> Stashed changes
                     else if(player.getLayoutY() < 60 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
                         player.setLayoutX(1080);
                     }
