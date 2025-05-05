@@ -2,6 +2,7 @@ package com.example;
 
 public class Constants {
 
+    public static boolean HAS_ORDERED = false;
     public static boolean CAKE_MIXED = false;
     public static boolean CAKE_BAKED = false;
     public static boolean CAKE_DECORATED = false;

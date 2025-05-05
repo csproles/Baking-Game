@@ -144,12 +144,6 @@ public class MovementController {
 
             if(sPressed.get()){
                 if(player.getLayoutY() < 350){
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-
                     Level1.level1Pane.getChildren().remove(pressMixerImageView);
                     if(player.getLayoutY() > 300 && (player.getLayoutX() > -60 && player.getLayoutX() < 130)){
                         player.setLayoutY(290);
@@ -165,10 +159,9 @@ public class MovementController {
             if(aPressed.get()){
 
                 if(player.getLayoutX() > -20){
->>>>>>> Stashed changes
 
                     Level1.level1Pane.getChildren().remove(pressMixerImageView);
-<<<<<<< Updated upstream
+
                     //Stopping the player from intersecting with the mixer
                     if(player.getLayoutY() < 60 && ((player.getLayoutX() > 62 && player.getLayoutX() < 208))){
                         System.out.println("CANNOT DO");
@@ -179,13 +172,8 @@ public class MovementController {
                         player.setLayoutX(670);
                     }
                     //Stopping the player from intersecting with the decorator
-<<<<<<< Updated upstream
-                    else if(player.getLayoutY() < 75 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
-                        player.setLayoutY(76);
-=======
                     if(player.getLayoutY() > 300 && (player.getLayoutX() > -60 && player.getLayoutX() < 130)){
                         player.setLayoutY(290);
->>>>>>> Stashed changes
                     }
                     else{
                         frontAnimation.startAnimation();
@@ -211,11 +199,6 @@ public class MovementController {
                         player.setLayoutX(670);
                     }
                     //Stopping the player from intersecting with the decorator
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
                     else if(player.getLayoutY() < 60 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
                         player.setLayoutX(1080);
                     }

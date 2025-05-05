@@ -58,8 +58,6 @@ public class Level1 extends Application{
         Image menuImage = new Image(menuFile.toURI().toString());
         ImageView menuImageView = new ImageView(menuImage);
 
-<<<<<<< Updated upstream
-=======
         File orderFile = new File("hproject\\src\\main\\resources\\order.png");
         Image orderImage = new Image(orderFile.toURI().toString());
         ImageView orderImageView = new ImageView(orderImage);
@@ -72,13 +70,6 @@ public class Level1 extends Application{
         Image floorImage = new Image(floorFile.toURI().toString());
         ImageView floorImageView = new ImageView(floorImage);
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
         playerImageView.setFitWidth(100);
         playerImageView.setFitHeight(100);
         playerImageView.setPreserveRatio(true);
@@ -99,8 +90,6 @@ public class Level1 extends Application{
         menuImageView.setFitHeight(100);
         menuImageView.setPreserveRatio(true);
 
-<<<<<<< Updated upstream
-=======
         orderImageView.setFitWidth(200);
         orderImageView.setFitHeight(200);
         orderImageView.setPreserveRatio(true);
@@ -112,13 +101,6 @@ public class Level1 extends Application{
         floorImageView.setFitWidth(1250);
         floorImageView.setFitHeight(750);
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
         playerImageView.setLayoutX(Constants.PANE_WIDTH/2 - 50);
         playerImageView.setLayoutY(Constants.PANE_HEIGHT/2 + 50);
         
@@ -156,19 +138,7 @@ public class Level1 extends Application{
             ls.start(lsStage);
         });
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        playablePane.getChildren().addAll(mixerImageView, ovenImageView, decorationStationImageView, playerImageView);
-=======
         playablePane.getChildren().addAll(wall, floorImageView, mixerImageView, ovenImageView, decorationStationImageView, playerImageView, orderImageView, pickupImageView);
->>>>>>> Stashed changes
-=======
-        playablePane.getChildren().addAll(wall, floorImageView, mixerImageView, ovenImageView, decorationStationImageView, playerImageView, orderImageView, pickupImageView);
->>>>>>> Stashed changes
-=======
-        playablePane.getChildren().addAll(wall, floorImageView, mixerImageView, ovenImageView, decorationStationImageView, playerImageView, orderImageView, pickupImageView);
->>>>>>> Stashed changes
 
         level1Pane.getChildren().addAll(playablePane, menuImageView);//playablePane, menuButton);
 
