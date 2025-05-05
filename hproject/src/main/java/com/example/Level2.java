@@ -1,7 +1,5 @@
 package com.example;
 
-import java.io.File;
-
 import com.example.Constants;
 
 import javafx.application.Application;
@@ -9,8 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
@@ -18,29 +14,18 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class Level1 extends Application{
+public class Level2 extends Application{
 
-    public static Stage level1;
+    public static Stage level2;
     
     @Override
-    public void start(Stage level1){
-        this.level1 = level1;
+    public void start(Stage level2){
+        this.level2 = level2;
 
-
-        StackPane level1Pane = new StackPane();
+        StackPane level2Pane = new StackPane();
         Pane playablePane = new Pane();
 
-        level1.setTitle("Level 1");
-
-        File playerFile = new File(Constants.PLAYER_FRONT_IMAGEPATH);
-
-        Image playerImage = new Image(playerFile.toURI().toString());
-
-        ImageView playerImageView = new ImageView(playerImage);
-
-        playerImageView.setFitWidth(100);
-        playerImageView.setFitHeight(100);
-        playerImageView.setPreserveRatio(true);
+        level2.setTitle("Level 2");
 
         Button menuButton = new Button(Constants.LS_BUTTON_TEXT);
         menuButton.setMinHeight(Constants.MAP_BUTTON_HEIGHT);
@@ -48,14 +33,15 @@ public class Level1 extends Application{
 
         menuButton.setMinWidth(Constants.MAP_BUTTON_WIDTH);
         menuButton.setMaxWidth(Constants.MAP_BUTTON_WIDTH);
-
+        
         menuButton.setTranslateX(Constants.MAP_BUTTON_XOFFSET);
         menuButton.setTranslateY(Constants.MAP_BUTTON_YOFFSET);
 
         menuButton.setStyle(Constants.LS_BUTTON_STYLE);
         menuButton.setFont(Font.font("Courier", FontWeight.BOLD, FontPosture.REGULAR , Constants.MAP_BUTTON_TEXT_SIZE));;
 
-        level1Pane.setStyle(Constants.MAP_PANE_STYLE);
+        level2Pane.getChildren().addAll(playablePane, menuButton);
+        level2Pane.setStyle(Constants.MAP_PANE_STYLE);
 
         playablePane.setMinHeight(Constants.PLAYABLE_PANE_HEIGHT);
         playablePane.setMaxHeight(Constants.PLAYABLE_PANE_HEIGHT);
@@ -68,21 +54,15 @@ public class Level1 extends Application{
         
         playablePane.setStyle(Constants.PLAYABLE_PANE_STYLE);
 
-        playablePane.getChildren().addAll(playerImageView);
-        level1Pane.getChildren().addAll(playablePane, menuButton);//playablePane, menuButton);
+        Scene level2Scene = new Scene(level2Pane, Constants.PANE_WIDTH, Constants.PANE_HEIGHT); 
+        level2.setScene(level2Scene);
 
-        Scene level1Scene = new Scene(level1Pane, Constants.PANE_WIDTH, Constants.PANE_HEIGHT); 
-        level1.setScene(level1Scene);
-
-        MovementController movementController = new MovementController();
-        movementController.makeMoveable(playerImageView, level1Scene);
-
-        HandleL1ToLSButton handleLSButton = new HandleL1ToLSButton();
+        HandleL2ToLSButton handleLSButton = new HandleL2ToLSButton();
         
         menuButton.setOnAction(handleLSButton);
 
-        level1.show();
-        level1.centerOnScreen();
+        level2.show();
+        level2.centerOnScreen();
     }  
 }
 
