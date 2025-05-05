@@ -172,33 +172,6 @@ public class MovementController {
                         player.setLayoutX(670);
                     }
                     //Stopping the player from intersecting with the decorator
-                    if(player.getLayoutY() > 300 && (player.getLayoutX() > -60 && player.getLayoutX() < 130)){
-                        player.setLayoutY(290);
-                    }
-                    else{
-                        frontAnimation.startAnimation();
-                        player.setLayoutY(player.getLayoutY() + Constants.PLAYER_SPEED);
-                        System.out.println("Going Up\nY: " + player.getLayoutY());
-                    }
-                }
-                else{System.out.println("CANNOT DO");}
-            }
-
-            if(aPressed.get()){
-
-                if(player.getLayoutX() > -20){
-
-                    Level1.level1Pane.getChildren().remove(pressMixerImageView);
-                    //Stopping the player from intersecting with the mixer
-                    if(player.getLayoutY() < 60 && ((player.getLayoutX() > 62 && player.getLayoutX() < 208))){
-                        System.out.println("CANNOT DO");
-                        player.setLayoutX(208);
-                    }
-                    //Stopping the player from intersecting with the oven
-                    else if(player.getLayoutY() < 60 && (player.getLayoutX() > 460 && player.getLayoutX() < 670)){
-                        player.setLayoutX(670);
-                    }
-                    //Stopping the player from intersecting with the decorator
                     else if(player.getLayoutY() < 60 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
                         player.setLayoutX(1080);
                     }
