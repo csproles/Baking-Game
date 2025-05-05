@@ -96,7 +96,6 @@ public class MovementController {
                     Level1.level1Pane.getChildren().remove(pressMixerImageView);
                     //Stopping the player from intersecting with the mixer
                     if(player.getLayoutY() < 75 && ((player.getLayoutX() > 62 && player.getLayoutX() < 207.5))){
-                        System.out.println("CANNOT DO");
                         
                         if(!(Constants.CAKE_MIXED)){
 
@@ -135,7 +134,6 @@ public class MovementController {
                     else{
                         backAnimation.startAnimation();
                         player.setLayoutY(player.getLayoutY() - Constants.PLAYER_SPEED);
-                        System.out.println("Going Up\nY: " + player.getLayoutY());
                     }
                     
                 }
@@ -148,7 +146,6 @@ public class MovementController {
                     Level1.level1Pane.getChildren().remove(pressMixerImageView);
                     //Stopping the player from intersecting with the mixer
                     if(player.getLayoutY() < 75 && ((player.getLayoutX() > 62 && player.getLayoutX() < 207.5))){
-                        System.out.println("CANNOT DO");
                         player.setLayoutY(76);
                     }
                     //Stopping the player from intersecting with the oven
@@ -162,7 +159,6 @@ public class MovementController {
                     else{
                         frontAnimation.startAnimation();
                         player.setLayoutY(player.getLayoutY() + Constants.PLAYER_SPEED);
-                        System.out.println("Going Up\nY: " + player.getLayoutY());
                     }
                 }
                 else{System.out.println("CANNOT DO");}

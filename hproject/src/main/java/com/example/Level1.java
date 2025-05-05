@@ -52,6 +52,14 @@ public class Level1 extends Application{
         Image menuImage = new Image(menuFile.toURI().toString());
         ImageView menuImageView = new ImageView(menuImage);
 
+        File orderFile = new File("hproject\\src\\main\\resources\\order.png");
+        Image orderImage = new Image(orderFile.toURI().toString());
+        ImageView orderImageView = new ImageView(orderImage);
+
+        File pickupFile = new File("hproject\\src\\main\\resources\\pickup.png");
+        Image pickupImage = new Image(pickupFile.toURI().toString());
+        ImageView pickupImageView = new ImageView(pickupImage);
+
         playerImageView.setFitWidth(100);
         playerImageView.setFitHeight(100);
         playerImageView.setPreserveRatio(true);
@@ -72,6 +80,14 @@ public class Level1 extends Application{
         menuImageView.setFitHeight(100);
         menuImageView.setPreserveRatio(true);
 
+        orderImageView.setFitWidth(200);
+        orderImageView.setFitHeight(200);
+        orderImageView.setPreserveRatio(true);
+
+        pickupImageView.setFitWidth(200);
+        pickupImageView.setFitHeight(200);
+        pickupImageView.setPreserveRatio(true);
+
         playerImageView.setLayoutX(Constants.PANE_WIDTH/2 - 50);
         playerImageView.setLayoutY(Constants.PANE_HEIGHT/2 + 50);
         
@@ -81,6 +97,10 @@ public class Level1 extends Application{
         decorationStationImageView.setLayoutY(Constants.DECORATIONSTATION_LEVEL1_Y);
         ovenImageView.setLayoutX(Constants.OVEN_LEVEL1_X);
         ovenImageView.setLayoutY(Constants.OVEN_LEVEL1_Y);
+        orderImageView.setLayoutX(0);
+        orderImageView.setLayoutY(275);
+        pickupImageView.setLayoutX(Constants.PLAYABLE_PANE_WIDTH - 200);
+        pickupImageView.setLayoutY(275);
 
         menuImageView.setTranslateX(Constants.MAP_BUTTON_XOFFSET);
         menuImageView.setTranslateY(Constants.MAP_BUTTON_YOFFSET);
@@ -107,7 +127,7 @@ public class Level1 extends Application{
             ls.start(lsStage);
         });
 
-        playablePane.getChildren().addAll(mixerImageView, ovenImageView, decorationStationImageView, playerImageView);
+        playablePane.getChildren().addAll(mixerImageView, ovenImageView, decorationStationImageView, playerImageView, orderImageView, pickupImageView);
 
         level1Pane.getChildren().addAll(playablePane, menuImageView);//playablePane, menuButton);
 
