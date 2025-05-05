@@ -3,6 +3,13 @@
     "configurations": [
       {
         "type": "java",
+        "name": "CharacterImage",
+        "request": "launch",
+        "mainClass": "com.example/com.example.CharacterImage",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
         "name": "BakeryGame",
         "request": "launch",
         "mainClass": "com.example/com.cakegame.BakeryGame",
