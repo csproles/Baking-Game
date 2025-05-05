@@ -145,7 +145,10 @@ public class MovementController {
             if(sPressed.get()){
                 if(player.getLayoutY() < 350){
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
                     Level1.level1Pane.getChildren().remove(pressMixerImageView);
                     if(player.getLayoutY() > 300 && (player.getLayoutX() > -60 && player.getLayoutX() < 130)){
@@ -208,6 +211,9 @@ public class MovementController {
                         player.setLayoutX(670);
                     }
                     //Stopping the player from intersecting with the decorator
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                     else if(player.getLayoutY() < 60 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
