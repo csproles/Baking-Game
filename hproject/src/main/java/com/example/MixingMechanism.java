@@ -63,17 +63,17 @@ public class MixingMechanism extends Application {
         bowl.setFitWidth(100);
         bowl.setFitHeight(100);
         bowl.setLayoutX(750);
-        bowl.setLayoutY(300);
+        bowl.setLayoutY(350);
         root.getChildren().add(bowl);
 
         // Ingredients
         String[] allIngredients = {"milk.png", "eggs.png", "flour.png", "cocoa.png", "vanilla.png"};
         for (int i = 0; i < allIngredients.length; i++) {
             ImageView ingredient = new ImageView(loadImage(allIngredients[i]));
-            ingredient.setFitWidth(ingredient.getImage().getWidth() / 8);
-            ingredient.setFitHeight(ingredient.getImage().getHeight() / 8);
-            ingredient.setLayoutX(60 + i * 120);
-            ingredient.setLayoutY(280);
+            ingredient.setFitWidth(ingredient.getImage().getWidth() / 10);
+            ingredient.setFitHeight(ingredient.getImage().getHeight() / 10);
+            ingredient.setLayoutX(120 + i * 100);
+            ingredient.setLayoutY(340);
 
             setupDrag(ingredient, allIngredients[i]);
             ingredients.add(ingredient);

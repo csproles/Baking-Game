@@ -60,19 +60,19 @@ public class PickUpStation extends Application {
         root.getChildren().add(pickupBackground);
 
         // Customer image (initial state)
-        customerView = new ImageView(load("cake_pan.png"));
-        customerView.setFitWidth(150);
-        customerView.setFitHeight(150);
-        customerView.setLayoutX(100);
-        customerView.setLayoutY(350);
+        customerView = new ImageView(load("customer_1.png"));
+        customerView.setFitWidth(250);
+        customerView.setFitHeight(250);
+        customerView.setLayoutX(600);
+        customerView.setLayoutY(178);
         root.getChildren().add(customerView);
 
         // Box image (draggable)
-        boxView = new ImageView(load("box.png"));
-        boxView.setFitWidth(100);
-        boxView.setFitHeight(100);
-        boxView.setLayoutX(700);
-        boxView.setLayoutY(350);
+        boxView = new ImageView(load("box_closed.png"));
+        boxView.setFitWidth(120);
+        boxView.setFitHeight(120);
+        boxView.setLayoutX(200);
+        boxView.setLayoutY(360);
         setupDrag(boxView);
         root.getChildren().add(boxView);
 
@@ -114,7 +114,7 @@ public class PickUpStation extends Application {
 
         item.setOnMouseReleased((MouseEvent e) -> {
             if (item.getBoundsInParent().intersects(customerView.getBoundsInParent())) {
-                customerView.setImage(load("cake_pan_full.png"));
+                customerView.setImage(load("customer_2.png"));
                 item.setVisible(false);
                 if (!root.getChildren().contains(nextOrderButton)) {
                     root.getChildren().add(nextOrderButton);  // Show only after successful drop

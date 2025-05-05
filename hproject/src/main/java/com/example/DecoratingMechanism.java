@@ -35,59 +35,79 @@ public class DecoratingMechanism extends Application {
     }
 
     @Override
-    public void start(Stage stage) {
-        Pane root = new Pane();
+public void start(Stage stage) {
+    Pane centerPane = new Pane();
 
-        Rectangle background = new Rectangle(1000, 600);
-        background.setFill(Color.web("#7C8A91")); // Your image's color
-        root.getChildren().add(background);
+    Rectangle background = new Rectangle(1000, 600);
+    background.setFill(Color.web("#7C8A91")); // match background color
+    centerPane.getChildren().add(background);
 
-        // background
-        ImageView bgImage = new ImageView(load("decorate.png"));
-        bgImage.setFitWidth(1000);
-        bgImage.setFitHeight(600);
-        root.getChildren().add(bgImage);
+    // Background image
+    ImageView bgImage = new ImageView(load("decorate.png"));
+    bgImage.setFitWidth(900);
+    bgImage.setFitHeight(540);
+    bgImage.setLayoutX(50);
+    centerPane.getChildren().add(bgImage);
 
-                // add box placeholder
-        boxView = new ImageView(load("box.png"));
-        boxView.setLayoutX(700);
-        boxView.setLayoutY(260);
-        boxView.setFitWidth(240);
-        boxView.setFitHeight(240);
-        root.getChildren().add(boxView);
+    // Cake box
+    boxView = new ImageView(load("box.png"));
+    boxView.setLayoutX(650);
+    boxView.setLayoutY(240);
+    boxView.setFitWidth(220);
+    boxView.setFitHeight(220);
+    centerPane.getChildren().add(boxView);
 
-        // initial cake
-        currentCake = "vanilla".equals(flavor) ? "naked_vanilla.png" : "naked_chocolate.png";
-        cakeView = new ImageView(load(currentCake));
-        cakeView.setLayoutX(500);
-        cakeView.setLayoutY(275);
-        cakeView.setFitWidth(200);
-        cakeView.setFitHeight(200);
-        root.getChildren().add(cakeView);
+    // Initial cake
+    currentCake = "vanilla".equals(flavor) ? "naked_vanilla.png" : "naked_chocolate.png";
+    cakeView = new ImageView(load(currentCake));
+    cakeView.setLayoutX(450);
+    cakeView.setLayoutY(240);
+    cakeView.setFitWidth(200);
+    cakeView.setFitHeight(200);
+    centerPane.getChildren().add(cakeView);
 
-        // decorations
-        for (int i = 0; i < decorations.length; i++) {
-            String name = decorations[i];
-            ImageView item = new ImageView(load(name));
-            item.setFitWidth(150);
-            item.setFitHeight(150);
-            double startX = 50 + (i * 100);
-            double startY = 300;
-            item.setLayoutX(startX);
-            item.setLayoutY(startY);
+    // Decorations
+    for (int i = 0; i < decorations.length; i++) {
+        String name = decorations[i];
+        ImageView item = new ImageView(load(name));
+        item.setFitWidth(125);
+        item.setFitHeight(125);
+        double startX = 100 + (i * 80);
+        double startY = 280;
+        item.setLayoutX(startX);
+        item.setLayoutY(startY);
 
-            setupDrag(item, name, startX, startY, root);
-            root.getChildren().add(item);
-        }
-
-        // make cake draggable (for final drop into box)
-        setupDrag(cakeView, currentCake, cakeView.getLayoutX(), cakeView.getLayoutY(), root);
-
-        Scene scene = new Scene(root, 1000, 600);
-        stage.setTitle("Decorating Mechanism");
-        stage.setScene(scene);
-        stage.show();
+        setupDrag(item, name, startX, startY, centerPane);
+        centerPane.getChildren().add(item);
     }
+
+    // Draggable cake
+    setupDrag(cakeView, currentCake, cakeView.getLayoutX(), cakeView.getLayoutY(), centerPane);
+
+    // Map Selection button in a top pane
+    javafx.scene.control.Button mapButton = new javafx.scene.control.Button("Map Selection");
+    mapButton.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-background-color: #D4BFA0;");
+    mapButton.setOnAction(e -> {
+        // Replace with your actual map selection logic
+        stage.close();
+    });
+
+    Pane topPane = new Pane(mapButton);
+    topPane.setPrefHeight(100);
+    mapButton.setLayoutX(50);
+    mapButton.setLayoutY(30);
+    topPane.setStyle("-fx-background-color: #5D6C72;");
+
+    // Use a BorderPane to stack top and center panes
+    javafx.scene.layout.BorderPane root = new javafx.scene.layout.BorderPane();
+    root.setTop(topPane);
+    root.setCenter(centerPane);
+
+    Scene scene = new Scene(root, 1000, 600);
+    stage.setTitle("Decorating Mechanism");
+    stage.setScene(scene);
+    stage.show();
+}
 
     private void setupDrag(ImageView item, String name, double originalX, double originalY, Pane root) {
         final double[] offsetX = new double[1];
