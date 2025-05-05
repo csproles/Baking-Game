@@ -15,6 +15,8 @@ import java.util.List;
 
 public class MixingMechanism extends Application {
 
+    Stage primaryStage;
+
     private List<ImageView> ingredients = new ArrayList<>();
     private List<String> droppedIngredients = new ArrayList<>();
     private ImageView bowl;
@@ -151,6 +153,7 @@ public class MixingMechanism extends Application {
             System.out.println("Missing ingredients.");
         }
 
+        primaryStage.close();
         System.out.println("✅ Finished mixing. You can now go to the baking station manually.");
     }
 
