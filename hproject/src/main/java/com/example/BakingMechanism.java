@@ -148,6 +148,7 @@ public class BakingMechanism extends Application {
         // only set flavor – do NOT auto-start decorating
         PauseTransition delay = new PauseTransition(Duration.seconds(1));
         delay.setOnFinished(e -> {
+            Constants.CAKE_BAKED = true;
             DecoratingMechanism.setFlavor(flavor);
             System.out.println("✅ Baking done. Ready for decorating.");
         });

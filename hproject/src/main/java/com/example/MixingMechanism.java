@@ -138,6 +138,7 @@ public class MixingMechanism extends Application {
 
             bowl.setImage(loadImage("pan_full_vanilla.png"));
             BakingMechanism.setFlavor("vanilla");
+            Constants.CAKE_TYPE_VANILLA = true;
 
         } else if (hasCocoa &&
                    droppedIngredients.contains("milk.png") &&
@@ -146,12 +147,30 @@ public class MixingMechanism extends Application {
 
             bowl.setImage(loadImage("cake_pan_full.png"));
             BakingMechanism.setFlavor("cocoa");
+            Constants.CAKE_TYPE_CHOCOLATE = true;
 
         } else {
             System.out.println("Missing ingredients.");
         }
 
-        System.out.println("✅ Finished mixing. You can now go to the baking station manually.");
+        System.out.println("✅ Finished mixing, opening BakingMechanism...");
+
+        Timeline pause = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            try {
+                Constants.CAKE_MIXED = true;
+                // BakingMechanism baking = new BakingMechanism();
+                // Stage bakingStage = new Stage();
+                // baking.start(bakingStage);
+
+                if (primaryStageReference != null) {
+                    primaryStageReference.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }));
+        pause.setCycleCount(1);
+        pause.play();
     }
 
     private Image loadImage(String filename) {
