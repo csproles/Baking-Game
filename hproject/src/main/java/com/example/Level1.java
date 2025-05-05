@@ -13,6 +13,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -31,6 +33,10 @@ public class Level1 extends Application{
         Pane playablePane = new Pane();
 
         level1.setTitle("Level 1");
+
+        Rectangle wall = new Rectangle(Constants.PLAYABLE_PANE_WIDTH, 100);
+        wall.setFill(Color.web("#B1B371"));
+        wall.setStroke(Color.web("#677830"));
 
         File playerFile = new File(Constants.PLAYER_FRONT_IMAGEPATH);
         Image playerImage = new Image(playerFile.toURI().toString());
@@ -52,6 +58,21 @@ public class Level1 extends Application{
         Image menuImage = new Image(menuFile.toURI().toString());
         ImageView menuImageView = new ImageView(menuImage);
 
+<<<<<<< Updated upstream
+=======
+        File orderFile = new File("hproject\\src\\main\\resources\\order.png");
+        Image orderImage = new Image(orderFile.toURI().toString());
+        ImageView orderImageView = new ImageView(orderImage);
+
+        File pickupFile = new File("hproject\\src\\main\\resources\\pickup.png");
+        Image pickupImage = new Image(pickupFile.toURI().toString());
+        ImageView pickupImageView = new ImageView(pickupImage);
+
+        File floorFile = new File("");
+        Image floorImage = new Image(floorFile.toURI().toString());
+        ImageView floorImageView = new ImageView(floorImage);
+
+>>>>>>> Stashed changes
         playerImageView.setFitWidth(100);
         playerImageView.setFitHeight(100);
         playerImageView.setPreserveRatio(true);
@@ -72,6 +93,20 @@ public class Level1 extends Application{
         menuImageView.setFitHeight(100);
         menuImageView.setPreserveRatio(true);
 
+<<<<<<< Updated upstream
+=======
+        orderImageView.setFitWidth(200);
+        orderImageView.setFitHeight(200);
+        orderImageView.setPreserveRatio(true);
+
+        pickupImageView.setFitWidth(200);
+        pickupImageView.setFitHeight(200);
+        pickupImageView.setPreserveRatio(true);
+
+        floorImageView.setFitWidth(1250);
+        floorImageView.setFitHeight(750);
+
+>>>>>>> Stashed changes
         playerImageView.setLayoutX(Constants.PANE_WIDTH/2 - 50);
         playerImageView.setLayoutY(Constants.PANE_HEIGHT/2 + 50);
         
@@ -84,6 +119,8 @@ public class Level1 extends Application{
 
         menuImageView.setTranslateX(Constants.MAP_BUTTON_XOFFSET);
         menuImageView.setTranslateY(Constants.MAP_BUTTON_YOFFSET);
+
+        // wall.setLayoutY(0);
 
         level1Pane.setStyle(Constants.MAP_PANE_STYLE);
 
@@ -107,7 +144,11 @@ public class Level1 extends Application{
             ls.start(lsStage);
         });
 
+<<<<<<< Updated upstream
         playablePane.getChildren().addAll(mixerImageView, ovenImageView, decorationStationImageView, playerImageView);
+=======
+        playablePane.getChildren().addAll(wall, floorImageView, mixerImageView, ovenImageView, decorationStationImageView, playerImageView, orderImageView, pickupImageView);
+>>>>>>> Stashed changes
 
         level1Pane.getChildren().addAll(playablePane, menuImageView);//playablePane, menuButton);
 

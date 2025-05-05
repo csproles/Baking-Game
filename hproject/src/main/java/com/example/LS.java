@@ -38,7 +38,7 @@ public class LS extends Application {
         File level3File = new File("hproject\\src\\main\\resources\\level3.png");
         File level2FileCS = new File("hproject\\src\\main\\resources\\othercomingsoon.png");
         File level3FileCS = new File("hproject\\src\\main\\resources\\othercomingsoon.png");
-        File titleFile = new File("hproject\\src\\main\\resources\\cookinggame.png");
+        File titleFile = new File("hproject\\src\\main\\resources\\bakinggame.png");
 
         Image level1Image = new Image(level1File.toURI().toString());
         Image level2Image = new Image(level2File.toURI().toString());
@@ -74,8 +74,8 @@ public class LS extends Application {
         level3ImageViewCS.setFitHeight(250);
         level3ImageViewCS.setPreserveRatio(true);
 
-        titleImageView.setFitWidth(1250);
-        titleImageView.setFitHeight(475);
+        titleImageView.setFitWidth(950);
+        titleImageView.setFitHeight(550);
 
         level1ImageView.setTranslateX(-Constants.LS_BUTTON_SIZE - Constants.LS_BUTTON_SIZE/3);
         level3ImageView.setTranslateX(Constants.LS_BUTTON_SIZE + Constants.LS_BUTTON_SIZE/3);

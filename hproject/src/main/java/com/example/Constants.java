@@ -14,13 +14,13 @@ public class Constants {
     public static double PANE_HEIGHT = 625; //625, 500
 
     //Level-Selection Pane Color/Style Constants
-    private static String LS_PANE_BORDER_HEXCODE = "#586A6A;";
-    private static String LS_PANE_BACKGROUND_HEXCODE = "#586A6A;";
+    private static String LS_PANE_BORDER_HEXCODE = "#677830;";
+    private static String LS_PANE_BACKGROUND_HEXCODE = "#B1B371;";
     public static String LS_PANE_STYLE = "-fx-border-color:" + LS_PANE_BORDER_HEXCODE + "-fx-background-color:" + LS_PANE_BACKGROUND_HEXCODE;
     
     //Map Color/Style Constants
-    private static String MAP_PANE_BORDER_HEXCODE = "#586A6A;";
-    private static String MAP_PANE_BACKGROUND_HEXCODE = "#586A6A;";
+    private static String MAP_PANE_BORDER_HEXCODE = "#677830;";
+    private static String MAP_PANE_BACKGROUND_HEXCODE = "#89A040;";
     public static String MAP_PANE_STYLE = "-fx-border-color:" + MAP_PANE_BORDER_HEXCODE + "-fx-background-color:" + MAP_PANE_BACKGROUND_HEXCODE;
 
     //Level-Selection Button Size
@@ -30,31 +30,16 @@ public class Constants {
     public static double MAP_BUTTON_WIDTH = 150;
     public static double MAP_BUTTON_HEIGHT = 50;
 
-    //Level-Selection Button Color/Style (on the Level Pages)
-    private static String LS_BUTTON_BORDER_HEXCODE = "#818D92;";
-    private static String LS_BUTTON_BACKGROUND_HEXCODE = "#B9A394;";
-    public static String LS_BUTTON_STYLE = "-fx-border-color: " + LS_BUTTON_BORDER_HEXCODE + "-fx-background-color:" + LS_BUTTON_BACKGROUND_HEXCODE;
-
     //Playable Pane Color/Style
-    private static String PLAYABLE_PANE_BORDER_HEXCODE = "#586A6A;";
-    private static String PLAYABLE_PANE_BACKGROUND_HEXCODE = "#818D92;";
+    private static String PLAYABLE_PANE_BORDER_HEXCODE = "#677830;";
+    private static String PLAYABLE_PANE_BACKGROUND_HEXCODE = "#D8C5A1;";
     public static String PLAYABLE_PANE_STYLE = "-fx-border-color:" + PLAYABLE_PANE_BORDER_HEXCODE + "-fx-background-color:" + PLAYABLE_PANE_BACKGROUND_HEXCODE;
-
-    //Map Button Color/Style
-    //TODO
-    private static String MAP_BUTTON_BORDER_HEXCODE = "#818D92;";
-    private static String MAP_BUTTON_BACKGROUND_HEXCODE = "#B9A394;";
-    public static String MAP_BUTTON_STYLE = "-fx-border-color: " + MAP_BUTTON_BORDER_HEXCODE + "-fx-background-color:" + MAP_BUTTON_BACKGROUND_HEXCODE;
 
     //Map Button Offsets
     //X Translation
     public static double MAP_BUTTON_XOFFSET = (-(Constants.PANE_WIDTH/2)) + (Constants.MAP_BUTTON_WIDTH/2) - 25;
     //Y Translation
     public static double MAP_BUTTON_YOFFSET = (-(Constants.PANE_HEIGHT/2)) + (Constants.MAP_BUTTON_HEIGHT/2) + 5;
-
-    //Buttons Text Size
-    public static double LS_BUTTON_TEXT_SIZE = LS_BUTTON_SIZE/4;
-    public static double MAP_BUTTON_TEXT_SIZE = MAP_BUTTON_HEIGHT/3;
 
     //Playable Pane Constants
     public static double PLAYABLE_PANE_HEIGHT = (PANE_HEIGHT - ((MAP_BUTTON_HEIGHT*3))); 

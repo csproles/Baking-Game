@@ -91,7 +91,7 @@ public class MovementController {
         @Override
         public void handle(long timestamp){
             if(wPressed.get()){
-                if(player.getLayoutY() > 0){
+                if(player.getLayoutY() > 15){
 
                     Level1.level1Pane.getChildren().remove(pressMixerImageView);
                     //Stopping the player from intersecting with the mixer
@@ -143,9 +143,10 @@ public class MovementController {
             }
 
             if(sPressed.get()){
-                if(player.getLayoutY() < 375){
+                if(player.getLayoutY() < 350){
 
                     Level1.level1Pane.getChildren().remove(pressMixerImageView);
+<<<<<<< Updated upstream
                     //Stopping the player from intersecting with the mixer
                     if(player.getLayoutY() < 75 && ((player.getLayoutX() > 62 && player.getLayoutX() < 207.5))){
                         System.out.println("CANNOT DO");
@@ -158,6 +159,10 @@ public class MovementController {
                     //Stopping the player from intersecting with the decorator
                     else if(player.getLayoutY() < 75 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
                         player.setLayoutY(76);
+=======
+                    if(player.getLayoutY() > 300 && (player.getLayoutX() > -60 && player.getLayoutX() < 130)){
+                        player.setLayoutY(290);
+>>>>>>> Stashed changes
                     }
                     else{
                         frontAnimation.startAnimation();
@@ -174,17 +179,20 @@ public class MovementController {
 
                     Level1.level1Pane.getChildren().remove(pressMixerImageView);
                     //Stopping the player from intersecting with the mixer
-                    if(player.getLayoutY() < 75 && ((player.getLayoutX() > 62 && player.getLayoutX() < 207.5))){
+                    if(player.getLayoutY() < 60 && ((player.getLayoutX() > 62 && player.getLayoutX() < 208))){
                         System.out.println("CANNOT DO");
-                        player.setLayoutY(76);
+                        player.setLayoutX(208);
                     }
                     //Stopping the player from intersecting with the oven
-                    else if(player.getLayoutY() < 75 && (player.getLayoutX() > 460 && player.getLayoutX() < 670)){
-                        player.setLayoutY(76);
+                    else if(player.getLayoutY() < 60 && (player.getLayoutX() > 460 && player.getLayoutX() < 670)){
+                        player.setLayoutX(670);
                     }
                     //Stopping the player from intersecting with the decorator
-                    else if(player.getLayoutY() < 75 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
-                        player.setLayoutY(76);
+                    else if(player.getLayoutY() < 60 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
+                        player.setLayoutX(1080);
+                    }
+                    else if(player.getLayoutY() > 310 && (player.getLayoutX() > -20 && player.getLayoutX() < 130)){
+                        player.setLayoutX(130);
                     }
                     else{
                         leftAnimation.startAnimation();
@@ -200,17 +208,20 @@ public class MovementController {
 
                     Level1.level1Pane.getChildren().remove(pressMixerImageView);
                     //Stopping the player from intersecting with the mixer
-                    if(player.getLayoutY() < 75 && ((player.getLayoutX() > 62 && player.getLayoutX() < 207.5))){
+                    if(player.getLayoutY() < 60 && ((player.getLayoutX() > 62 && player.getLayoutX() < 207.5))){
                         System.out.println("CANNOT DO");
-                        player.setLayoutY(76);
+                        player.setLayoutX(62);
                     }
                     //Stopping the player from intersecting with the oven
-                    else if(player.getLayoutY() < 75 && (player.getLayoutX() > 460 && player.getLayoutX() < 670)){
-                        player.setLayoutY(76);
+                    else if(player.getLayoutY() < 60 && (player.getLayoutX() > 460 && player.getLayoutX() < 670)){
+                        player.setLayoutX(460);
                     }
                     //Stopping the player from intersecting with the decorator
-                    else if(player.getLayoutY() < 75 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
-                        player.setLayoutY(76);
+                    else if(player.getLayoutY() < 60 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
+                        player.setLayoutX(860);
+                    }
+                    else if(player.getLayoutY() > 300 && (player.getLayoutX() > 0 && player.getLayoutX() < 130)){
+                        player.setLayoutY(290);
                     }
                     else{
                         rightAnimation.startAnimation();
@@ -271,6 +282,7 @@ public class MovementController {
                     playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
                 }
                 
+                System.out.println("Y is: " + player.getLayoutY());
                 playerImage = new Image(playerFile.toURI().toString());
                 player.setImage(playerImage);
             }
@@ -304,6 +316,7 @@ public class MovementController {
                     playerFile = new File(Constants.PLAYER_LEFT_IMAGEPATH);
                 }
                 
+                System.out.println("X is: " + player.getLayoutX());
                 playerImage = new Image(playerFile.toURI().toString());
                 player.setImage(playerImage);
             }
@@ -337,6 +350,7 @@ public class MovementController {
                     playerFile = new File(Constants.PLAYER_FRONT_IMAGEPATH);
                 }
                 
+                System.out.println("Y is: " + player.getLayoutY());
                 playerImage = new Image(playerFile.toURI().toString());
                 player.setImage(playerImage);
             }
@@ -370,6 +384,7 @@ public class MovementController {
                     playerFile = new File(Constants.PLAYER_RIGHT_IMAGEPATH);
                 }
                 
+                System.out.println("X is: " + player.getLayoutX());
                 playerImage = new Image(playerFile.toURI().toString());
                 player.setImage(playerImage);
             }
