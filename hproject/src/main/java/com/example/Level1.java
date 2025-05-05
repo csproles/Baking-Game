@@ -114,6 +114,9 @@ public class Level1 extends Application{
         menuImageView.setTranslateX(Constants.MAP_BUTTON_XOFFSET);
         menuImageView.setTranslateY(Constants.MAP_BUTTON_YOFFSET);
 
+        orderImageView.setTranslateX(-10);
+        orderImageView.setTranslateY(Constants.PLAYABLE_PANE_HEIGHT/2 + 25);
+
         // wall.setLayoutY(0);
 
         level1Pane.setStyle(Constants.MAP_PANE_STYLE);
