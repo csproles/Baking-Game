@@ -180,5 +180,5 @@ public class Constants {
         "cut_vanilla_strawberry_strawberry.png"
     };
 
-    public static int CURRENT_ORDER_INDEX = -1;
+    public static int CURRENT_ORDER_INDEX = 0;
 }
