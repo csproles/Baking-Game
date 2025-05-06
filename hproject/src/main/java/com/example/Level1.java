@@ -74,6 +74,14 @@ public class Level1 extends Application{
         Image selectedCakeImage = new Image(selectedCakeFile.toURI().toString());
         ImageView selectedCakeImageView = new ImageView(selectedCakeImage);
 
+        File assetBoxScoreFile = new File("hproject\\src\\main\\resources\\assetbox.png");
+        Image assetBoxScoreImage = new Image(assetBoxScoreFile.toURI().toString());
+        ImageView assetBoxScoreImageView = new ImageView(assetBoxScoreImage);
+
+        File assetBoxTimeFile = new File("hproject\\src\\main\\resources\\assetbox.png");
+        Image assetBoxTimeImage = new Image(assetBoxTimeFile.toURI().toString());
+        ImageView assetBoxTimeImageView = new ImageView(assetBoxTimeImage);
+
         playerImageView.setFitWidth(100);
         playerImageView.setFitHeight(100);
         playerImageView.setPreserveRatio(true);
@@ -108,6 +116,12 @@ public class Level1 extends Application{
         selectedCakeImageView.setFitWidth(125);
         selectedCakeImageView.setFitHeight(125);
 
+        assetBoxScoreImageView.setFitWidth(200);
+        assetBoxScoreImageView.setFitHeight(175);
+
+        assetBoxTimeImageView.setFitWidth(250);
+        assetBoxTimeImageView.setFitHeight(125);
+
         playerImageView.setLayoutX(Constants.PANE_WIDTH/2 - 50);
         playerImageView.setLayoutY(Constants.PANE_HEIGHT/2 + 50);
         
@@ -129,6 +143,12 @@ public class Level1 extends Application{
 
         selectedCakeImageView.setTranslateX(350);
         selectedCakeImageView.setTranslateY(-240);
+
+        assetBoxScoreImageView.setTranslateX(520);
+        assetBoxScoreImageView.setTranslateY(-240);
+
+        assetBoxTimeImageView.setTranslateX(-510);
+        assetBoxTimeImageView.setTranslateY(-218);
 
         level1Pane.setStyle(Constants.MAP_PANE_STYLE);
 
@@ -154,7 +174,7 @@ public class Level1 extends Application{
 
         playablePane.getChildren().addAll(wall, mixerImageView, ovenImageView, decorationStationImageView, playerImageView, orderImageView, pickupImageView);
 
-        level1Pane.getChildren().addAll(playablePane, menuImageView, noteImageView, selectedCakeImageView);//playablePane, menuButton);
+        level1Pane.getChildren().addAll(playablePane, menuImageView, assetBoxTimeImageView, assetBoxScoreImageView, noteImageView, selectedCakeImageView);//playablePane, menuButton);
 
         Scene level1Scene = new Scene(level1Pane, Constants.PANE_WIDTH, Constants.PANE_HEIGHT); 
         level1.setScene(level1Scene);
