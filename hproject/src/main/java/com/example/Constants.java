@@ -169,7 +169,7 @@ public class Constants {
     public static double DECORATIONSTATION_LEVEL1_X = PLAYABLE_PANE_WIDTH/2 + 300;
     public static double DECORATIONSTATION_LEVEL1_Y = -25;
 
-    public static final String[] CAKEOPTIONS = {
+    public static final String[] CAKE_OPTIONS = {
         "cut_chocolate_chocolate_sprinkles.png",
         "cut_chocolate_chocolate_strawberry.png",
         "cut_chocolate_strawberry_sprinkles.png",
@@ -179,4 +179,6 @@ public class Constants {
         "cut_vanilla_strawberry_sprinkles.png",
         "cut_vanilla_strawberry_strawberry.png"
     };
+
+    public static int CURRENT_ORDER_INDEX = -1;
 }

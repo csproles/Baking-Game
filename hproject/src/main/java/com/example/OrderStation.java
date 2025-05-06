@@ -63,8 +63,8 @@ public class OrderStation extends Application {
         mainPane.getChildren().add(bgImage);
 
         // Cake image
-        String selectedCake = Constants.CAKEOPTIONS[new Random().nextInt(Constants.CAKEOPTIONS.length)];
-        ImageView cake = new ImageView(load(selectedCake));
+        Constants.CURRENT_ORDER_INDEX = new Random().nextInt(Constants.CAKE_OPTIONS.length);
+        ImageView cake = new ImageView(load(Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX]));
         cake.setFitWidth(200);
         cake.setFitHeight(200);
         cake.setLayoutX(400);
