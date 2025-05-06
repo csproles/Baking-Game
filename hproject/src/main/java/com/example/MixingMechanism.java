@@ -2,21 +2,22 @@ package com.example;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MixingMechanism extends Application {
 
-    Stage primaryStage;
-
+    private Stage primaryStage;
+    private Pane root;
     private List<ImageView> ingredients = new ArrayList<>();
     private List<String> droppedIngredients = new ArrayList<>();
     private ImageView bowl;
@@ -24,57 +25,52 @@ public class MixingMechanism extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Pane root = new Pane();
+        this.primaryStage = primaryStage;
+        root = new Pane();
 
-        // Background color
-        Rectangle background = new Rectangle(1000, 600);
-        background.setFill(Color.web("#7C8A91")); 
-        root.getChildren().add(background);
+        // ── Background color split ──
+        Rectangle topPane = new Rectangle(Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
+        topPane.setFill(Color.web("#677830"));
+        Rectangle bottomPane = new Rectangle(Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
+        bottomPane.setFill(Color.web("#B1B371"));
+        bottomPane.setLayoutY(100);
+        root.getChildren().addAll(topPane, bottomPane);
 
-        // Top header bar
-        Rectangle topPane = new Rectangle(1000, 100);
-        topPane.setFill(Color.web("#556565")); 
-        root.getChildren().add(topPane);
+        // ── Menu button (clickable) ──
+        File menuFile = new File("hproject\\src\\main\\resources\\menu.png");
+        Image menuImg = new Image(menuFile.toURI().toString());
+        ImageView menuButton = new ImageView(menuImg);
+        menuButton.setFitWidth(100);
+        menuButton.setFitHeight(100);
+        menuButton.setLayoutX(20);
+        menuButton.setLayoutY(0);
+        menuButton.setOnMouseClicked(e -> primaryStage.close());
+        menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
+        root.getChildren().add(menuButton);
 
-        // "Map Selection" button
-        Button mapButton = new Button("Map Selection");
-        mapButton.setLayoutX(25);
-        mapButton.setLayoutY(20);
-        mapButton.setPrefWidth(200);
-        mapButton.setPrefHeight(60);
-        mapButton.setStyle(
-            "-fx-background-color: #CBB4A0;" +
-            "-fx-border-color: #3E575C;" +
-            "-fx-border-width: 2px;" +
-            "-fx-font-size: 16px;" +
-            "-fx-font-weight: bold;" +
-            "-fx-text-fill: #1E1E1E;"
-        );
-        mapButton.setOnAction(e -> primaryStage.close()); // You can link to LS.java if needed
-        root.getChildren().add(mapButton);
-
-        // Main image background
+        // ── Station background image ──
         ImageView bgImage = new ImageView(loadImage("mix.png"));
-        bgImage.setFitWidth(1000);
-        bgImage.setFitHeight(500);      // Only cover lower pane
+        bgImage.setFitWidth(800);
+        bgImage.setFitHeight(500);
         bgImage.setLayoutY(100);
+        bgImage.setLayoutX(400);
         root.getChildren().add(bgImage);
 
-        // Bowl
+        // ── Bowl ──
         bowl = new ImageView(loadImage("cake_pan.png"));
         bowl.setFitWidth(100);
         bowl.setFitHeight(100);
-        bowl.setLayoutX(750);
+        bowl.setLayoutX(1000);
         bowl.setLayoutY(350);
         root.getChildren().add(bowl);
 
-        // Ingredients
+        // ── Ingredients ──
         String[] allIngredients = {"milk.png", "eggs.png", "flour.png", "cocoa.png", "vanilla.png"};
         for (int i = 0; i < allIngredients.length; i++) {
             ImageView ingredient = new ImageView(loadImage(allIngredients[i]));
             ingredient.setFitWidth(ingredient.getImage().getWidth() / 10);
             ingredient.setFitHeight(ingredient.getImage().getHeight() / 10);
-            ingredient.setLayoutX(120 + i * 100);
+            ingredient.setLayoutX(450 + i * 100);
             ingredient.setLayoutY(340);
 
             setupDrag(ingredient, allIngredients[i]);
@@ -82,7 +78,7 @@ public class MixingMechanism extends Application {
             root.getChildren().add(ingredient);
         }
 
-        Scene scene = new Scene(root, 1000, 600);
+        Scene scene = new Scene(root, Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Mixing Mechanism");
         primaryStage.show();
