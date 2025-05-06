@@ -11,6 +11,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.io.File;
+
 public class PickUpStation extends Application {
 
     private ImageView customerView;
@@ -22,64 +24,58 @@ public class PickUpStation extends Application {
     public void start(Stage stage) {
         root = new Pane();
 
-        // Full scene background
-        Rectangle background = new Rectangle(1000, 600);
-        background.setFill(Color.web("#7C8A91"));  // same grey-blue background
-        root.getChildren().add(background);
+        // ── Background color split ──
+        Rectangle topPane = new Rectangle(Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
+        topPane.setFill(Color.web("#677830"));
+        Rectangle bottomPane = new Rectangle(Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
+        bottomPane.setFill(Color.web("#B1B371"));
+        bottomPane.setLayoutY(100);
+        root.getChildren().addAll(topPane, bottomPane);
 
-        // Top pane (header bar)
-        Rectangle topPane = new Rectangle(1000, 150);
-        topPane.setFill(Color.web("#556565"));  // same top panel color
-        root.getChildren().add(topPane);
-
-        // "Map Selection" button in top-left
-        Button mapButton = new Button("Map Selection");
-        mapButton.setLayoutX(25);
-        mapButton.setLayoutY(30);
-        mapButton.setPrefWidth(210);
-        mapButton.setPrefHeight(50);
-        mapButton.setStyle(
-            "-fx-background-color: #CBB4A0;" +
-            "-fx-border-color: #3E575C;" +
-            "-fx-border-width: 2px;" +
-            "-fx-font-size: 16px;" +
-            "-fx-font-weight: bold;" +
-            "-fx-text-fill: #1E1E1E;"
-        );
-        mapButton.setOnAction(e -> {
-            System.out.println("Map selection clicked!");
-            // insert logic to open map selector scene
+        // ── Menu icon (clickable) ──
+        File menuFile = new File("hproject\\src\\main\\resources\\menu.png");
+        Image menuImg = new Image(menuFile.toURI().toString());
+        ImageView menuButton = new ImageView(menuImg);
+        menuButton.setFitWidth(100);
+        menuButton.setFitHeight(100);
+        menuButton.setLayoutX(20);
+        menuButton.setLayoutY(0);
+        menuButton.setOnMouseClicked(e -> {
+            System.out.println("MENU clicked.");
+            stage.close(); // or open LS.java if desired
         });
-        root.getChildren().add(mapButton);
+        menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
+        root.getChildren().add(menuButton);
 
-        // Add pickup background under the top panel
+        // ── Pickup station background ──
         ImageView pickupBackground = new ImageView(load("PickUpStation.png"));
         pickupBackground.setFitWidth(1000);
-        pickupBackground.setFitHeight(450);
-        pickupBackground.setLayoutY(150);
+        pickupBackground.setFitHeight(500);
+        pickupBackground.setLayoutY(100);
+        pickupBackground.setLayoutX(100);
         root.getChildren().add(pickupBackground);
 
-        // Customer image (initial state)
+        // ── Customer image ──
         customerView = new ImageView(load("customer_1.png"));
-        customerView.setFitWidth(250);
+        customerView.setFitWidth(300);
         customerView.setFitHeight(250);
         customerView.setLayoutX(600);
-        customerView.setLayoutY(178);
+        customerView.setLayoutY(158);
         root.getChildren().add(customerView);
 
-        // Box image (draggable)
+        // ── Draggable cake box ──
         boxView = new ImageView(load("box_closed.png"));
         boxView.setFitWidth(120);
         boxView.setFitHeight(120);
-        boxView.setLayoutX(200);
-        boxView.setLayoutY(360);
+        boxView.setLayoutX(400);
+        boxView.setLayoutY(340);
         setupDrag(boxView);
         root.getChildren().add(boxView);
 
-        // NEXT ORDER button (hidden at first)
+        // ── NEXT ORDER button (appears after delivery) ──
         nextOrderButton = new Button("NEXT ORDER");
-        nextOrderButton.setLayoutX(850);
-        nextOrderButton.setLayoutY(540);
+        nextOrderButton.setLayoutX(1100);
+        nextOrderButton.setLayoutY(550);
         nextOrderButton.setPrefWidth(120);
         nextOrderButton.setPrefHeight(40);
         nextOrderButton.setStyle(
@@ -90,9 +86,17 @@ public class PickUpStation extends Application {
             "-fx-font-weight: bold;" +
             "-fx-text-fill: #1E1E1E;"
         );
-        nextOrderButton.setOnAction(e -> stage.close());
+        nextOrderButton.setOnAction(e -> {
+            try {
+                new Level1().start(new Stage());
+                stage.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
 
-        Scene scene = new Scene(root, 1000, 600);
+        // ── Final scene setup ──
+        Scene scene = new Scene(root, Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
         stage.setTitle("Pick Up Station");
         stage.setScene(scene);
         stage.show();
@@ -117,7 +121,7 @@ public class PickUpStation extends Application {
                 customerView.setImage(load("customer_2.png"));
                 item.setVisible(false);
                 if (!root.getChildren().contains(nextOrderButton)) {
-                    root.getChildren().add(nextOrderButton);  // Show only after successful drop
+                    root.getChildren().add(nextOrderButton);
                 }
             }
         });

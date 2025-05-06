@@ -5,15 +5,16 @@ import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.File;
 
 public class BakingMechanism extends Application {
 
@@ -22,6 +23,7 @@ public class BakingMechanism extends Application {
     private ImageView oven;
     private ProgressBar progressBar;
     private Timeline bakingTimeline;
+    private Pane root;
 
     public static void setFlavor(String selectedFlavor) {
         flavor = selectedFlavor;
@@ -29,69 +31,65 @@ public class BakingMechanism extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Pane root = new Pane();
+        root = new Pane();
 
-        // full background
-        Rectangle background = new Rectangle(1000, 600);
-        background.setFill(Color.web("#7C8A91"));
-        root.getChildren().add(background);
+        // ── Background color split ──
+        Rectangle topPane = new Rectangle(Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
+        topPane.setFill(Color.web("#677830"));
+        Rectangle bottomPane = new Rectangle(Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
+        bottomPane.setFill(Color.web("#B1B371"));
+        bottomPane.setLayoutY(100);
+        root.getChildren().addAll(topPane, bottomPane);
 
-        // top pane
-        Rectangle topPane = new Rectangle(1000, 100);
-        topPane.setFill(Color.web("#556565"));
-        root.getChildren().add(topPane);
+        // ── Menu button ──
+        File menuFile = new File("hproject/src/main/resources/menu.png");
+        Image menuImg = new Image(menuFile.toURI().toString());
+        ImageView menuButton = new ImageView(menuImg);
+        menuButton.setFitWidth(100);
+        menuButton.setFitHeight(100);
+        menuButton.setLayoutX(20);
+        menuButton.setLayoutY(0);
+        menuButton.setOnMouseClicked(e -> primaryStage.close());
+        menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
+        root.getChildren().add(menuButton);
 
-        // map selection button
-        Button mapButton = new Button("Map Selection");
-        mapButton.setLayoutX(25);
-        mapButton.setLayoutY(20);
-        mapButton.setPrefWidth(200);
-        mapButton.setPrefHeight(60);
-        mapButton.setStyle(
-            "-fx-background-color: #CBB4A0;" +
-            "-fx-border-color: #3E575C;" +
-            "-fx-border-width: 2px;" +
-            "-fx-font-size: 16px;" +
-            "-fx-font-weight: bold;" +
-            "-fx-text-fill: #1E1E1E;"
-        );
-        mapButton.setOnAction(e -> primaryStage.close()); // hook to LS.java if needed
-        root.getChildren().add(mapButton);
-
-        // background image
+        // ── Station background ──
         ImageView bgImage = new ImageView(loadImage("bake.png"));
-        bgImage.setFitWidth(1000);
-        bgImage.setFitHeight(500);      // Only cover lower pane
+        bgImage.setFitWidth(800);
+        bgImage.setFitHeight(500);
+        bgImage.setLayoutX(400);
         bgImage.setLayoutY(100);
         root.getChildren().add(bgImage);
 
+        // ── Oven image ──
         oven = new ImageView(loadImage("oven.png"));
-        oven.setFitWidth(700);
-        oven.setFitHeight(500);
-        oven.setLayoutX(152);
-        oven.setLayoutY(130);
+        oven.setFitWidth(600);
+        oven.setFitHeight(450);
+        oven.setLayoutX(500);
+        oven.setLayoutY(200);
         root.getChildren().add(oven);
 
+        // ── Cake pan (draggable) ──
         cakePan = new ImageView(loadImage(
             "vanilla".equals(flavor) ? "pan_full_vanilla.png" : "cake_pan_full.png"
         ));
         cakePan.setFitWidth(100);
         cakePan.setFitHeight(100);
-        cakePan.setLayoutX(100);
-        cakePan.setLayoutY(300);
+        cakePan.setLayoutX(500);
+        cakePan.setLayoutY(340);
+        setupDrag(cakePan);
         root.getChildren().add(cakePan);
 
-        setupDrag(cakePan);
-
+        // ── Progress bar ──
         progressBar = new ProgressBar(0);
-        progressBar.setPrefWidth(350);
-        progressBar.setLayoutX(325);
-        progressBar.setLayoutY(525);
+        progressBar.setPrefWidth(300);
+        progressBar.setLayoutX(650);
+        progressBar.setLayoutY(555);
         progressBar.setVisible(false);
         progressBar.setStyle("-fx-accent: saddlebrown; -fx-control-inner-background: black;");
         root.getChildren().add(progressBar);
 
-        Scene scene = new Scene(root, 1000, 600);
+        Scene scene = new Scene(root, Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Baking Mechanism");
         primaryStage.show();
@@ -122,7 +120,7 @@ public class BakingMechanism extends Application {
         cakePan.setVisible(false);
         progressBar.setVisible(true);
 
-        bakingTimeline = new Timeline(new KeyFrame(Duration.seconds(0.1), e -> {
+        bakingTimeline = new Timeline(new KeyFrame(Duration.seconds(0.01), e -> {
             progressBar.setProgress(progressBar.getProgress() + 0.01);
             if (progressBar.getProgress() >= 1.0) {
                 bakingTimeline.stop();
@@ -134,22 +132,19 @@ public class BakingMechanism extends Application {
     }
 
     private void finishBaking() {
-        Pane root = (Pane) progressBar.getParent();
-
         ImageView bakedCake = new ImageView(loadImage(
             "vanilla".equals(flavor) ? "pan_vanilla_baked.png" : "pan_chocolate_baked.png"
         ));
-        bakedCake.setFitWidth(120);
-        bakedCake.setFitHeight(120);
-        bakedCake.setLayoutX(750);
-        bakedCake.setLayoutY(300);
+        bakedCake.setFitWidth(100);
+        bakedCake.setFitHeight(100);
+        bakedCake.setLayoutX(1000);
+        bakedCake.setLayoutY(350);
         root.getChildren().add(bakedCake);
 
-        // only set flavor – do NOT auto-start decorating
         PauseTransition delay = new PauseTransition(Duration.seconds(1));
         delay.setOnFinished(e -> {
             DecoratingMechanism.setFlavor(flavor);
-            System.out.println("✅ Baking done. Ready for decorating.");
+            System.out.println("\u2705 Baking done. Ready for decorating.");
         });
         delay.play();
     }
