@@ -91,7 +91,14 @@ public class PickUpStation extends Application {
         // Make it clickable
         nextOrderButton.setOnMouseClicked(e -> {
             try {
-                new Level1().start(new Stage());
+                // new Level1().start(new Stage());
+                Constants.HAS_ORDERED = false;
+                Constants.CAKE_MIXED = false;
+                Constants.CAKE_BAKED = false;
+                Constants.CAKE_DECORATED = false;
+                // Constants.HAS_DELIVERED = false;
+                Constants.CURRENT_ORDER_INDEX = 0;
+
                 stage.close();
             } catch (Exception ex) {
                 ex.printStackTrace();

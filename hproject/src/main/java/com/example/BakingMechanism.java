@@ -173,6 +173,7 @@ public class BakingMechanism extends Application {
         PauseTransition delay = new PauseTransition(Duration.seconds(1));
         delay.setOnFinished(e -> {
             System.out.println("✅ Baking complete.");
+            Constants.CAKE_BAKED = true;
             primaryStage.close();
         });
         delay.play();

@@ -24,6 +24,8 @@ public class Level1 extends Application{
 
     public static Stage level1;
     public static StackPane level1Pane;
+    // public static ImageView selectedCakeImageView;
+    public static File selectedCakeFile;
     
     @Override
     public void start(Stage level1){
@@ -138,6 +140,9 @@ public class Level1 extends Application{
         orderImageView.setTranslateX(-10);
         orderImageView.setTranslateY(Constants.PLAYABLE_PANE_HEIGHT/2 + 25);
 
+        pickupImageView.setTranslateX(Constants.PLAYABLE_PANE_WIDTH - 190);//1100);
+        pickupImageView.setTranslateY(Constants.PLAYABLE_PANE_HEIGHT/2 + 25);
+
         noteImageView.setTranslateX(350);
         noteImageView.setTranslateY(-245);
 
@@ -174,22 +179,13 @@ public class Level1 extends Application{
 
         playablePane.getChildren().addAll(wall, mixerImageView, ovenImageView, decorationStationImageView, playerImageView, orderImageView, pickupImageView);
 
-        level1Pane.getChildren().addAll(playablePane, menuImageView, assetBoxTimeImageView, assetBoxScoreImageView, noteImageView, selectedCakeImageView);//playablePane, menuButton);
+        level1Pane.getChildren().addAll(playablePane, menuImageView, assetBoxTimeImageView, assetBoxScoreImageView, noteImageView, selectedCakeImageView);//playablePane, me
 
         Scene level1Scene = new Scene(level1Pane, Constants.PANE_WIDTH, Constants.PANE_HEIGHT); 
         level1.setScene(level1Scene);
 
         MovementController movementController = new MovementController();
         movementController.makeMoveable(playerImageView, level1Scene);
-
-        // level1ImageView.setOnMouseClicked(event -> {
-        //     System.out.println("Button 1 clicked");
-
-        //     LS.primaryStage.hide();
-        //     Stage level1Stage = new Stage();
-        //     Level1 level1 = new Level1();
-        //     level1.start(level1Stage);
-        // });
 
         level1.show();
         level1.centerOnScreen();

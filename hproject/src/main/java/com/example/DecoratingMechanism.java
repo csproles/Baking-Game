@@ -174,6 +174,7 @@ public class DecoratingMechanism extends Application {
                     boxView.setImage(load(boxImage));
                     cakeView.setVisible(false);
                     System.out.println("✅ Cake packed and decorating complete.");
+                    Constants.CAKE_DECORATED = true;
                     primaryStage.close(); // Auto-close window
                 } else {
                     item.setLayoutX(originalX);

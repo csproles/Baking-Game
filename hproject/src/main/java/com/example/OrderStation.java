@@ -57,7 +57,7 @@ public class OrderStation extends Application {
         root.getChildren().add(bgImage);
 
         // ── Cake image ──
-        Constants.CURRENT_ORDER_INDEX = new Random().nextInt(Constants.CAKE_OPTIONS.length);
+        Constants.CURRENT_ORDER_INDEX = new Random().nextInt(Constants.CAKE_OPTIONS.length - 1) + 1;
         ImageView cake = new ImageView(load(Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX]));
         cake.setFitWidth(200);
         cake.setFitHeight(200);
@@ -77,7 +77,7 @@ public class OrderStation extends Application {
         gotItButton.setLayoutY(520);
         
         // Make it clickable
-        gotItButton.setOnMouseClicked(e -> stage.close());
+        gotItButton.setOnMouseClicked(e -> {Constants.HAS_ORDERED = true; stage.close();});
         gotItButton.setOnMouseEntered(e -> gotItButton.setStyle("-fx-cursor: hand;"));
         
         root.getChildren().add(gotItButton);

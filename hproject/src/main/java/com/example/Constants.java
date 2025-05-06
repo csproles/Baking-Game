@@ -1,8 +1,14 @@
 package com.example;
 
+import java.io.File;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 public class Constants {
 
     public static boolean HAS_ORDERED = false;
+    public static boolean HAS_DELIVERED = false;
     public static boolean CAKE_MIXED = false;
     public static boolean CAKE_BAKED = false;
     public static boolean CAKE_DECORATED = false;
@@ -170,6 +176,7 @@ public class Constants {
     public static double DECORATIONSTATION_LEVEL1_Y = -25;
 
     public static final String[] CAKE_OPTIONS = {
+        "nocake.png",
         "cut_chocolate_chocolate_sprinkles.png",
         "cut_chocolate_chocolate_strawberry.png",
         "cut_chocolate_strawberry_sprinkles.png",
@@ -181,4 +188,11 @@ public class Constants {
     };
 
     public static int CURRENT_ORDER_INDEX = 0;
+
+    // public static File selectedCakeFile = new File("hproject\\src\\main\\resources\\" + Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX]);
+    // public static Image selectedCakeImage = new Image(selectedCakeFile.toURI().toString());
+    // public static ImageView selectedCakeImageView = new ImageView(selectedCakeImage);
+
+    // public static Constants.selectedCakeImageView.setFitWidth(125);
+    // public static Constants.selectedCakeImageView.setFitHeight(125);
 }
