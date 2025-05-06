@@ -5,12 +5,12 @@ import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -24,6 +24,7 @@ public class BakingMechanism extends Application {
     private ProgressBar progressBar;
     private Timeline bakingTimeline;
     private Pane root;
+    private Stage primaryStage;
 
     public static void setFlavor(String selectedFlavor) {
         flavor = selectedFlavor;
@@ -31,6 +32,7 @@ public class BakingMechanism extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        this.primaryStage = primaryStage;
         root = new Pane();
 
         // ── Background color split ──
@@ -49,7 +51,14 @@ public class BakingMechanism extends Application {
         menuButton.setFitHeight(100);
         menuButton.setLayoutX(20);
         menuButton.setLayoutY(0);
-        menuButton.setOnMouseClicked(e -> primaryStage.close());
+        menuButton.setOnMouseClicked(e -> {
+            try {
+                new LS().start(new Stage());
+                primaryStage.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
         menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
         root.getChildren().add(menuButton);
 
@@ -61,7 +70,7 @@ public class BakingMechanism extends Application {
         bgImage.setLayoutY(100);
         root.getChildren().add(bgImage);
 
-        // ── Oven image ──
+        // ── Oven ──
         oven = new ImageView(loadImage("oven.png"));
         oven.setFitWidth(600);
         oven.setFitHeight(450);
@@ -69,9 +78,9 @@ public class BakingMechanism extends Application {
         oven.setLayoutY(200);
         root.getChildren().add(oven);
 
-        // ── Cake pan (draggable) ──
+        // ── Cake Pan ──
         cakePan = new ImageView(loadImage(
-            "vanilla".equals(flavor) ? "pan_full_vanilla.png" : "cake_pan_full.png"
+                "vanilla".equals(flavor) ? "pan_full_vanilla.png" : "cake_pan_full.png"
         ));
         cakePan.setFitWidth(100);
         cakePan.setFitHeight(100);
@@ -80,7 +89,7 @@ public class BakingMechanism extends Application {
         setupDrag(cakePan);
         root.getChildren().add(cakePan);
 
-        // ── Progress bar ──
+        // ── Progress Bar ──
         progressBar = new ProgressBar(0);
         progressBar.setPrefWidth(300);
         progressBar.setLayoutX(650);
@@ -88,6 +97,26 @@ public class BakingMechanism extends Application {
         progressBar.setVisible(false);
         progressBar.setStyle("-fx-accent: saddlebrown; -fx-control-inner-background: black;");
         root.getChildren().add(progressBar);
+
+        // ── Order Note Background ──
+        File noteFile = new File("hproject/src/main/resources/note.png");
+        Image noteImage = new Image(noteFile.toURI().toString());
+        ImageView noteImageView = new ImageView(noteImage);
+        noteImageView.setFitWidth(600);
+        noteImageView.setFitHeight(525);
+        noteImageView.setLayoutX(-100);
+        noteImageView.setLayoutY(100);
+        root.getChildren().add(noteImageView);
+
+        // ── Ordered Cake Image ──
+        File selectedCakeFile = new File("hproject/src/main/resources/" + Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX]);
+        Image selectedCakeImage = new Image(selectedCakeFile.toURI().toString());
+        ImageView selectedCakeImageView = new ImageView(selectedCakeImage);
+        selectedCakeImageView.setFitWidth(300);
+        selectedCakeImageView.setFitHeight(300);
+        selectedCakeImageView.setLayoutX(50);
+        selectedCakeImageView.setLayoutY(220);
+        root.getChildren().add(selectedCakeImageView);
 
         Scene scene = new Scene(root, Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
         primaryStage.setScene(scene);
@@ -133,7 +162,7 @@ public class BakingMechanism extends Application {
 
     private void finishBaking() {
         ImageView bakedCake = new ImageView(loadImage(
-            "vanilla".equals(flavor) ? "pan_vanilla_baked.png" : "pan_chocolate_baked.png"
+                "vanilla".equals(flavor) ? "pan_vanilla_baked.png" : "pan_chocolate_baked.png"
         ));
         bakedCake.setFitWidth(100);
         bakedCake.setFitHeight(100);
@@ -143,8 +172,8 @@ public class BakingMechanism extends Application {
 
         PauseTransition delay = new PauseTransition(Duration.seconds(1));
         delay.setOnFinished(e -> {
-            DecoratingMechanism.setFlavor(flavor);
-            System.out.println("\u2705 Baking done. Ready for decorating.");
+            System.out.println("✅ Baking complete.");
+            primaryStage.close();
         });
         delay.play();
     }

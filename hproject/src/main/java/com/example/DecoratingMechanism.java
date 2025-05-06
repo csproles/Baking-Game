@@ -20,6 +20,7 @@ public class DecoratingMechanism extends Application {
     private ImageView cakeView;
     private String currentCake;
     private ImageView boxView;
+    private Stage primaryStage;
 
     private final String[] decorations = {
         "icing_strawberry.png",
@@ -39,6 +40,7 @@ public class DecoratingMechanism extends Application {
 
     @Override
     public void start(Stage stage) {
+        this.primaryStage = stage;
         Pane root = new Pane();
 
         // ── Background color split ──
@@ -50,14 +52,21 @@ public class DecoratingMechanism extends Application {
         root.getChildren().addAll(topPane, bottomPane);
 
         // ── Menu button (clickable) ──
-        File menuFile = new File("hproject/src/main/resources/menu.png");
+        File menuFile = new File("hproject\\src\\main\\resources\\menu.png");
         Image menuImg = new Image(menuFile.toURI().toString());
         ImageView menuButton = new ImageView(menuImg);
         menuButton.setFitWidth(100);
         menuButton.setFitHeight(100);
         menuButton.setLayoutX(20);
         menuButton.setLayoutY(0);
-        menuButton.setOnMouseClicked(e -> stage.close());
+        menuButton.setOnMouseClicked(e -> {
+            try {
+                new LS().start(new Stage());
+                stage.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
         menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
         root.getChildren().add(menuButton);
 
@@ -100,6 +109,26 @@ public class DecoratingMechanism extends Application {
             setupDrag(item, name, startX, startY, root);
             root.getChildren().add(item);
         }
+
+        // ── Order Note Background ──
+        File noteFile = new File("hproject/src/main/resources/note.png");
+        Image noteImage = new Image(noteFile.toURI().toString());
+        ImageView noteImageView = new ImageView(noteImage);
+        noteImageView.setFitWidth(600);
+        noteImageView.setFitHeight(525);
+        noteImageView.setLayoutX(-100);
+        noteImageView.setLayoutY(100);
+        root.getChildren().add(noteImageView);
+
+        // ── Ordered Cake Image ──
+        File selectedCakeFile = new File("hproject/src/main/resources/" + Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX]);
+        Image selectedCakeImage = new Image(selectedCakeFile.toURI().toString());
+        ImageView selectedCakeImageView = new ImageView(selectedCakeImage);
+        selectedCakeImageView.setFitWidth(300);
+        selectedCakeImageView.setFitHeight(300);
+        selectedCakeImageView.setLayoutX(50);
+        selectedCakeImageView.setLayoutY(220);
+        root.getChildren().add(selectedCakeImageView);
 
         // ── Draggable cake ──
         setupDrag(cakeView, currentCake, cakeView.getLayoutX(), cakeView.getLayoutY(), root);
@@ -144,6 +173,8 @@ public class DecoratingMechanism extends Application {
                 if (boxImage != null) {
                     boxView.setImage(load(boxImage));
                     cakeView.setVisible(false);
+                    System.out.println("✅ Cake packed and decorating complete.");
+                    primaryStage.close(); // Auto-close window
                 } else {
                     item.setLayoutX(originalX);
                     item.setLayoutY(originalY);

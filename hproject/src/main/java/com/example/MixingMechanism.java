@@ -1,5 +1,6 @@
 package com.example;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -9,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -36,24 +38,31 @@ public class MixingMechanism extends Application {
         bottomPane.setLayoutY(100);
         root.getChildren().addAll(topPane, bottomPane);
 
-        // ── Menu button (clickable) ──
-        File menuFile = new File("hproject\\src\\main\\resources\\menu.png");
+        // ── Menu button ──
+        File menuFile = new File("hproject/src/main/resources/menu.png");
         Image menuImg = new Image(menuFile.toURI().toString());
         ImageView menuButton = new ImageView(menuImg);
         menuButton.setFitWidth(100);
         menuButton.setFitHeight(100);
         menuButton.setLayoutX(20);
         menuButton.setLayoutY(0);
-        menuButton.setOnMouseClicked(e -> primaryStage.close());
+        menuButton.setOnMouseClicked(e -> {
+            try {
+                new LS().start(new Stage());
+                primaryStage.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
         menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
         root.getChildren().add(menuButton);
 
-        // ── Station background image ──
+        // ── Background image ──
         ImageView bgImage = new ImageView(loadImage("mix.png"));
         bgImage.setFitWidth(800);
         bgImage.setFitHeight(500);
-        bgImage.setLayoutY(100);
         bgImage.setLayoutX(400);
+        bgImage.setLayoutY(100);
         root.getChildren().add(bgImage);
 
         // ── Bowl ──
@@ -78,6 +87,26 @@ public class MixingMechanism extends Application {
             root.getChildren().add(ingredient);
         }
 
+        // ── Order Note Background ──
+        File noteFile = new File("hproject/src/main/resources/note.png");
+        Image noteImage = new Image(noteFile.toURI().toString());
+        ImageView noteImageView = new ImageView(noteImage);
+        noteImageView.setFitWidth(600);
+        noteImageView.setFitHeight(525);
+        noteImageView.setLayoutX(-100);
+        noteImageView.setLayoutY(100);
+        root.getChildren().add(noteImageView);
+
+        // ── Ordered Cake Image ──
+        File selectedCakeFile = new File("hproject/src/main/resources/" + Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX]);
+        Image selectedCakeImage = new Image(selectedCakeFile.toURI().toString());
+        ImageView selectedCakeImageView = new ImageView(selectedCakeImage);
+        selectedCakeImageView.setFitWidth(300);
+        selectedCakeImageView.setFitHeight(300);
+        selectedCakeImageView.setLayoutX(50);
+        selectedCakeImageView.setLayoutY(220);
+        root.getChildren().add(selectedCakeImageView);
+
         Scene scene = new Scene(root, Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Mixing Mechanism");
@@ -88,20 +117,20 @@ public class MixingMechanism extends Application {
         final double[] offsetX = new double[1];
         final double[] offsetY = new double[1];
 
-        ingredient.setOnMousePressed(event -> {
-            offsetX[0] = event.getSceneX() - ingredient.getLayoutX();
-            offsetY[0] = event.getSceneY() - ingredient.getLayoutY();
+        ingredient.setOnMousePressed((MouseEvent e) -> {
+            offsetX[0] = e.getSceneX() - ingredient.getLayoutX();
+            offsetY[0] = e.getSceneY() - ingredient.getLayoutY();
         });
 
-        ingredient.setOnMouseDragged(event -> {
-            ingredient.setLayoutX(event.getSceneX() - offsetX[0]);
-            ingredient.setLayoutY(event.getSceneY() - offsetY[0]);
+        ingredient.setOnMouseDragged((MouseEvent e) -> {
+            ingredient.setLayoutX(e.getSceneX() - offsetX[0]);
+            ingredient.setLayoutY(e.getSceneY() - offsetY[0]);
         });
 
-        ingredient.setOnMouseReleased(event -> {
+        ingredient.setOnMouseReleased((MouseEvent e) -> {
             if (isOverBowl(ingredient)) {
                 if ((ingredientName.equals("vanilla.png") && droppedIngredients.contains("cocoa.png")) ||
-                    (ingredientName.equals("cocoa.png") && droppedIngredients.contains("vanilla.png"))) {
+                        (ingredientName.equals("cocoa.png") && droppedIngredients.contains("vanilla.png"))) {
                     System.out.println("⚠ Cannot mix both vanilla and cocoa.");
                     ingredient.setLayoutX(60 + ingredients.indexOf(ingredient) * 120);
                     ingredient.setLayoutY(280);
@@ -130,17 +159,17 @@ public class MixingMechanism extends Application {
         boolean hasCocoa = droppedIngredients.contains("cocoa.png");
 
         if (hasVanilla &&
-            droppedIngredients.contains("milk.png") &&
-            droppedIngredients.contains("eggs.png") &&
-            droppedIngredients.contains("flour.png")) {
+                droppedIngredients.contains("milk.png") &&
+                droppedIngredients.contains("eggs.png") &&
+                droppedIngredients.contains("flour.png")) {
 
             bowl.setImage(loadImage("pan_full_vanilla.png"));
             BakingMechanism.setFlavor("vanilla");
 
         } else if (hasCocoa &&
-                   droppedIngredients.contains("milk.png") &&
-                   droppedIngredients.contains("eggs.png") &&
-                   droppedIngredients.contains("flour.png")) {
+                droppedIngredients.contains("milk.png") &&
+                droppedIngredients.contains("eggs.png") &&
+                droppedIngredients.contains("flour.png")) {
 
             bowl.setImage(loadImage("cake_pan_full.png"));
             BakingMechanism.setFlavor("cocoa");
@@ -149,8 +178,12 @@ public class MixingMechanism extends Application {
             System.out.println("Missing ingredients.");
         }
 
-        primaryStage.close();
-        System.out.println("✅ Finished mixing. You can now go to the baking station manually.");
+        PauseTransition delay = new PauseTransition(Duration.seconds(1.5));
+        delay.setOnFinished(e -> {
+            System.out.println("✅ Finished mixing.");
+            primaryStage.close();
+        });
+        delay.play();
     }
 
     private Image loadImage(String filename) {

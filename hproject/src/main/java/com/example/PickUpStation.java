@@ -41,8 +41,12 @@ public class PickUpStation extends Application {
         menuButton.setLayoutX(20);
         menuButton.setLayoutY(0);
         menuButton.setOnMouseClicked(e -> {
-            System.out.println("MENU clicked.");
-            stage.close(); // or open LS.java if desired
+            try {
+                new LS().start(new Stage());
+                stage.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         });
         menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
         root.getChildren().add(menuButton);
@@ -73,20 +77,19 @@ public class PickUpStation extends Application {
         root.getChildren().add(boxView);
 
         // ── NEXT ORDER button (appears after delivery) ──
-        nextOrderButton = new Button("NEXT ORDER");
+        // ── NEXT ORDER image button ──
+        File nextOrderFile = new File("hproject/src/main/resources/nextorder.png");
+        Image nextOrderImg = new Image(nextOrderFile.toURI().toString());
+        ImageView nextOrderButton = new ImageView(nextOrderImg);
+
+        // Set size and position
+        nextOrderButton.setFitWidth(120);
+        nextOrderButton.setFitHeight(120);
         nextOrderButton.setLayoutX(1100);
-        nextOrderButton.setLayoutY(550);
-        nextOrderButton.setPrefWidth(120);
-        nextOrderButton.setPrefHeight(40);
-        nextOrderButton.setStyle(
-            "-fx-background-color: #CBB4A0;" +
-            "-fx-border-color: #3E575C;" +
-            "-fx-border-width: 2px;" +
-            "-fx-font-size: 16px;" +
-            "-fx-font-weight: bold;" +
-            "-fx-text-fill: #1E1E1E;"
-        );
-        nextOrderButton.setOnAction(e -> {
+        nextOrderButton.setLayoutY(520);
+
+        // Make it clickable
+        nextOrderButton.setOnMouseClicked(e -> {
             try {
                 new Level1().start(new Stage());
                 stage.close();
@@ -94,6 +97,9 @@ public class PickUpStation extends Application {
                 ex.printStackTrace();
             }
         });
+        nextOrderButton.setOnMouseEntered(e -> nextOrderButton.setStyle("-fx-cursor: hand;"));
+
+        root.getChildren().add(nextOrderButton);
 
         // ── Final scene setup ──
         Scene scene = new Scene(root, Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
