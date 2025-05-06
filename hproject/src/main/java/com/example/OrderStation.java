@@ -17,17 +17,6 @@ import java.util.Random;
 
 public class OrderStation extends Application {
 
-    private final String[] cakeOptions = {
-        "cut_chocolate_chocolate_sprinkles.png",
-        "cut_chocolate_chocolate_strawberry.png",
-        "cut_chocolate_strawberry_sprinkles.png",
-        "cut_chocolate_strawberry_strawberry.png",
-        "cut_vanilla_chocolate_sprinkles.png",
-        "cut_vanilla_chocolate_strawberry.png",
-        "cut_vanilla_strawberry_sprinkles.png",
-        "cut_vanilla_strawberry_strawberry.png"
-    };
-
     @Override
     public void start(Stage stage) {
         // ── Top Panel ───────────────────────────────
@@ -74,7 +63,7 @@ public class OrderStation extends Application {
         mainPane.getChildren().add(bgImage);
 
         // Cake image
-        String selectedCake = cakeOptions[new Random().nextInt(cakeOptions.length)];
+        String selectedCake = Constants.CAKEOPTIONS[new Random().nextInt(Constants.CAKEOPTIONS.length)];
         ImageView cake = new ImageView(load(selectedCake));
         cake.setFitWidth(200);
         cake.setFitHeight(200);
