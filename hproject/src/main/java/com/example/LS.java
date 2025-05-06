@@ -111,6 +111,8 @@ public class LS extends Application {
         primaryStage.setTitle("Level Selection");
         primaryStage.setScene(scene);
 
+        System.out.println("Current Order b4: " + Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX]);
+
         //shows the stage
         primaryStage.show();
     }

@@ -66,9 +66,13 @@ public class Level1 extends Application{
         Image pickupImage = new Image(pickupFile.toURI().toString());
         ImageView pickupImageView = new ImageView(pickupImage);
 
-        File floorFile = new File("");
-        Image floorImage = new Image(floorFile.toURI().toString());
-        ImageView floorImageView = new ImageView(floorImage);
+        File noteFile = new File("hproject\\src\\main\\resources\\note.png");
+        Image noteImage = new Image(noteFile.toURI().toString());
+        ImageView noteImageView = new ImageView(noteImage);
+
+        File selectedCakeFile = new File("hproject\\src\\main\\resources\\" + Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX]);
+        Image selectedCakeImage = new Image(selectedCakeFile.toURI().toString());
+        ImageView selectedCakeImageView = new ImageView(selectedCakeImage);
 
         playerImageView.setFitWidth(100);
         playerImageView.setFitHeight(100);
@@ -98,8 +102,11 @@ public class Level1 extends Application{
         pickupImageView.setFitHeight(200);
         pickupImageView.setPreserveRatio(true);
 
-        floorImageView.setFitWidth(1250);
-        floorImageView.setFitHeight(750);
+        noteImageView.setFitWidth(200);
+        noteImageView.setFitHeight(175);
+        
+        selectedCakeImageView.setFitWidth(125);
+        selectedCakeImageView.setFitHeight(125);
 
         playerImageView.setLayoutX(Constants.PANE_WIDTH/2 - 50);
         playerImageView.setLayoutY(Constants.PANE_HEIGHT/2 + 50);
@@ -117,7 +124,11 @@ public class Level1 extends Application{
         orderImageView.setTranslateX(-10);
         orderImageView.setTranslateY(Constants.PLAYABLE_PANE_HEIGHT/2 + 25);
 
-        // wall.setLayoutY(0);
+        noteImageView.setTranslateX(350);
+        noteImageView.setTranslateY(-245);
+
+        selectedCakeImageView.setTranslateX(350);
+        selectedCakeImageView.setTranslateY(-240);
 
         level1Pane.setStyle(Constants.MAP_PANE_STYLE);
 
@@ -141,9 +152,9 @@ public class Level1 extends Application{
             ls.start(lsStage);
         });
 
-        playablePane.getChildren().addAll(wall, floorImageView, mixerImageView, ovenImageView, decorationStationImageView, playerImageView, orderImageView, pickupImageView);
+        playablePane.getChildren().addAll(wall, mixerImageView, ovenImageView, decorationStationImageView, playerImageView, orderImageView, pickupImageView);
 
-        level1Pane.getChildren().addAll(playablePane, menuImageView);//playablePane, menuButton);
+        level1Pane.getChildren().addAll(playablePane, menuImageView, noteImageView, selectedCakeImageView);//playablePane, menuButton);
 
         Scene level1Scene = new Scene(level1Pane, Constants.PANE_WIDTH, Constants.PANE_HEIGHT); 
         level1.setScene(level1Scene);
