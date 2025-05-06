@@ -66,22 +66,21 @@ public class OrderStation extends Application {
         root.getChildren().add(cake);
 
         // ── GOT IT button ──
-        Button closeButton = new Button("GOT IT !");
-        closeButton.setLayoutX(1100);
-        closeButton.setLayoutY(550);
-        closeButton.setPrefWidth(120);
-        closeButton.setPrefHeight(40);
-        closeButton.setStyle(
-            "-fx-background-color: #CBB4A0;" +
-            "-fx-border-color: #3E575C;" +
-            "-fx-border-width: 2px;" +
-            "-fx-font-size: 16px;" +
-            "-fx-font-weight: bold;" +
-            "-fx-text-fill: #1E1E1E;"
-        );
-        closeButton.setOnAction(e -> stage.close());
-        root.getChildren().add(closeButton);
-
+        File gotItFile = new File("hproject/src/main/resources/gotit.png");
+        Image gotItImg = new Image(gotItFile.toURI().toString());
+        ImageView gotItButton = new ImageView(gotItImg);
+        
+        // Set size and position
+        gotItButton.setFitWidth(120);
+        gotItButton.setFitHeight(120);
+        gotItButton.setLayoutX(1100);
+        gotItButton.setLayoutY(520);
+        
+        // Make it clickable
+        gotItButton.setOnMouseClicked(e -> stage.close());
+        gotItButton.setOnMouseEntered(e -> gotItButton.setStyle("-fx-cursor: hand;"));
+        
+        root.getChildren().add(gotItButton);
         // ── Scene setup ──
         Scene scene = new Scene(root, Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
         stage.setTitle("Order Station");
