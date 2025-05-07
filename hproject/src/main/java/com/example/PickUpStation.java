@@ -2,7 +2,6 @@ package com.example;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -17,7 +16,7 @@ public class PickUpStation extends Application {
 
     private ImageView customerView;
     private ImageView boxView;
-    private Button nextOrderButton;
+    private ImageView nextOrderButton; // Must be an ImageView for consistency
     private Pane root;
 
     @Override
@@ -34,8 +33,7 @@ public class PickUpStation extends Application {
 
         // ── Menu icon (clickable) ──
         File menuFile = new File("hproject\\src\\main\\resources\\menu.png");
-        Image menuImg = new Image(menuFile.toURI().toString());
-        ImageView menuButton = new ImageView(menuImg);
+        ImageView menuButton = new ImageView(new Image(menuFile.toURI().toString()));
         menuButton.setFitWidth(100);
         menuButton.setFitHeight(100);
         menuButton.setLayoutX(20);
@@ -76,19 +74,14 @@ public class PickUpStation extends Application {
         setupDrag(boxView);
         root.getChildren().add(boxView);
 
-        // ── NEXT ORDER button (appears after delivery) ──
-        // ── NEXT ORDER image button ──
+        // ── NEXT ORDER image button ── (do NOT add yet)
         File nextOrderFile = new File("hproject/src/main/resources/nextorder.png");
         Image nextOrderImg = new Image(nextOrderFile.toURI().toString());
-        ImageView nextOrderButton = new ImageView(nextOrderImg);
-
-        // Set size and position
+        nextOrderButton = new ImageView(nextOrderImg);
         nextOrderButton.setFitWidth(120);
         nextOrderButton.setFitHeight(120);
         nextOrderButton.setLayoutX(1100);
         nextOrderButton.setLayoutY(520);
-
-        // Make it clickable
         nextOrderButton.setOnMouseClicked(e -> {
             try {
                 new Level1().start(new Stage());
@@ -98,8 +91,6 @@ public class PickUpStation extends Application {
             }
         });
         nextOrderButton.setOnMouseEntered(e -> nextOrderButton.setStyle("-fx-cursor: hand;"));
-
-        root.getChildren().add(nextOrderButton);
 
         // ── Final scene setup ──
         Scene scene = new Scene(root, Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
@@ -126,8 +117,9 @@ public class PickUpStation extends Application {
             if (item.getBoundsInParent().intersects(customerView.getBoundsInParent())) {
                 customerView.setImage(load("customer_2.png"));
                 item.setVisible(false);
+
                 if (!root.getChildren().contains(nextOrderButton)) {
-                    root.getChildren().add(nextOrderButton);
+                    root.getChildren().add(nextOrderButton); // ✅ Add it here
                 }
             }
         });

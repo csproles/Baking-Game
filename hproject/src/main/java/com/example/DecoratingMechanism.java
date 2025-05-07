@@ -86,7 +86,12 @@ public class DecoratingMechanism extends Application {
         boxView.setFitHeight(200);
         root.getChildren().add(boxView);
 
-        // ── Cake ──
+        // Determine flavor based on global state set by MixingMechanism
+        if (Constants.CAKE_TYPE_VANILLA) {
+            flavor = "vanilla";
+        } else if (Constants.CAKE_TYPE_CHOCOLATE) {
+            flavor = "chocolate";
+        }
         currentCake = "vanilla".equals(flavor) ? "naked_vanilla.png" : "naked_chocolate.png";
         cakeView = new ImageView(load(currentCake));
         cakeView.setLayoutX(800);
