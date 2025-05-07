@@ -90,6 +90,9 @@ public class DecoratingMechanism extends Application {
         // Determine flavor based on global state set by MixingMechanism
 =======
         // ── Cake ──
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         if (Constants.CAKE_TYPE_VANILLA) {
             flavor = "vanilla";
@@ -184,9 +187,12 @@ public class DecoratingMechanism extends Application {
                     cakeView.setVisible(false);
                     System.out.println("✅ Cake packed and decorating complete.");
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     primaryStage.close(); // Auto-close window
                 } else {
 =======
+=======
+>>>>>>> Stashed changes
                     Constants.CAKE_DECORATED = true;
                 
                     // Delay before closing the scene
@@ -194,6 +200,9 @@ public class DecoratingMechanism extends Application {
                     delay.setOnFinished(event -> primaryStage.close());
                     delay.play();
                 }else {
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                     item.setLayoutX(originalX);
                     item.setLayoutY(originalY);
