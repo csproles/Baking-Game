@@ -402,27 +402,7 @@ public class MovementController {
                     if(!(Constants.HAS_ORDERED) && !(Constants.CAKE_MIXED) && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
                         orderStation.start(orderStationStage);
 
-                        File selectedCakeFile = new File("hproject\\src\\main\\resources\\" + Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX]);
-                        Image selectedCakeImage = new Image(selectedCakeFile.toURI().toString());
-                        ImageView selectedCakeImageView = new ImageView(selectedCakeImage);
-
-                        File noteFile = new File("hproject\\src\\main\\resources\\note.png");
-                        Image noteImage = new Image(noteFile.toURI().toString());
-                        ImageView noteImageView = new ImageView(noteImage);
-
-                        selectedCakeImageView.setFitWidth(125);
-                        selectedCakeImageView.setFitHeight(125);
-
-                        noteImageView.setFitWidth(200);
-                        noteImageView.setFitHeight(175);
-
-                        selectedCakeImageView.setTranslateX(350);
-                        selectedCakeImageView.setTranslateY(-240);
-
-                        noteImageView.setTranslateX(350);
-                        noteImageView.setTranslateY(-245);
-
-                        Level1.level1Pane.getChildren().addAll(noteImageView, selectedCakeImageView);
+                        CakeImageHandler.changeImage(Constants.CURRENT_ORDER_INDEX);
                     }
                 }
                 else if(player.getLayoutY() < 75 && ((player.getLayoutX() > 62 && player.getLayoutX() < 207.5))){

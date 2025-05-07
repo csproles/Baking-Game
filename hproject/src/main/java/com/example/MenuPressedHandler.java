@@ -8,10 +8,10 @@ import javafx.stage.Stage;
  *  Deletes the current stage and creates a new one for ls selection
  *  Calls the level selection class
  */
-class HandleL1ToLSButton implements EventHandler<ActionEvent> {
+class MenuButtonPressed implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent e) {
-        System.out.println("LS Button clicked");
+        System.out.println("Menu Button clicked");
 
         Level1.level1.hide();
         Stage lsStage = new Stage();
