@@ -24,6 +24,8 @@ public class Level1 extends Application{
 
     public static Stage level1;
     public static StackPane level1Pane;
+    // public static ImageView selectedCakeImageView;
+    public static File selectedCakeFile;
     
     @Override
     public void start(Stage level1){
@@ -66,9 +68,21 @@ public class Level1 extends Application{
         Image pickupImage = new Image(pickupFile.toURI().toString());
         ImageView pickupImageView = new ImageView(pickupImage);
 
-        File floorFile = new File("");
-        Image floorImage = new Image(floorFile.toURI().toString());
-        ImageView floorImageView = new ImageView(floorImage);
+        File noteFile = new File("hproject\\src\\main\\resources\\note.png");
+        Image noteImage = new Image(noteFile.toURI().toString());
+        ImageView noteImageView = new ImageView(noteImage);
+
+        File selectedCakeFile = new File("hproject\\src\\main\\resources\\" + Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX]);
+        Image selectedCakeImage = new Image(selectedCakeFile.toURI().toString());
+        ImageView selectedCakeImageView = new ImageView(selectedCakeImage);
+
+        File assetBoxScoreFile = new File("hproject\\src\\main\\resources\\assetbox.png");
+        Image assetBoxScoreImage = new Image(assetBoxScoreFile.toURI().toString());
+        ImageView assetBoxScoreImageView = new ImageView(assetBoxScoreImage);
+
+        File assetBoxTimeFile = new File("hproject\\src\\main\\resources\\assetbox.png");
+        Image assetBoxTimeImage = new Image(assetBoxTimeFile.toURI().toString());
+        ImageView assetBoxTimeImageView = new ImageView(assetBoxTimeImage);
 
         playerImageView.setFitWidth(100);
         playerImageView.setFitHeight(100);
@@ -98,8 +112,17 @@ public class Level1 extends Application{
         pickupImageView.setFitHeight(200);
         pickupImageView.setPreserveRatio(true);
 
-        floorImageView.setFitWidth(1250);
-        floorImageView.setFitHeight(750);
+        noteImageView.setFitWidth(200);
+        noteImageView.setFitHeight(175);
+        
+        selectedCakeImageView.setFitWidth(125);
+        selectedCakeImageView.setFitHeight(125);
+
+        assetBoxScoreImageView.setFitWidth(200);
+        assetBoxScoreImageView.setFitHeight(175);
+
+        assetBoxTimeImageView.setFitWidth(250);
+        assetBoxTimeImageView.setFitHeight(125);
 
         playerImageView.setLayoutX(Constants.PANE_WIDTH/2 - 50);
         playerImageView.setLayoutY(Constants.PANE_HEIGHT/2 + 50);
@@ -117,7 +140,20 @@ public class Level1 extends Application{
         orderImageView.setTranslateX(-10);
         orderImageView.setTranslateY(Constants.PLAYABLE_PANE_HEIGHT/2 + 25);
 
-        // wall.setLayoutY(0);
+        pickupImageView.setTranslateX(Constants.PLAYABLE_PANE_WIDTH - 190);//1100);
+        pickupImageView.setTranslateY(Constants.PLAYABLE_PANE_HEIGHT/2 + 25);
+
+        noteImageView.setTranslateX(350);
+        noteImageView.setTranslateY(-245);
+
+        selectedCakeImageView.setTranslateX(350);
+        selectedCakeImageView.setTranslateY(-240);
+
+        assetBoxScoreImageView.setTranslateX(520);
+        assetBoxScoreImageView.setTranslateY(-240);
+
+        assetBoxTimeImageView.setTranslateX(-510);
+        assetBoxTimeImageView.setTranslateY(-218);
 
         level1Pane.setStyle(Constants.MAP_PANE_STYLE);
 
@@ -141,24 +177,15 @@ public class Level1 extends Application{
             ls.start(lsStage);
         });
 
-        playablePane.getChildren().addAll(wall, floorImageView, mixerImageView, ovenImageView, decorationStationImageView, playerImageView, orderImageView, pickupImageView);
+        playablePane.getChildren().addAll(wall, mixerImageView, ovenImageView, decorationStationImageView, playerImageView, orderImageView, pickupImageView);
 
-        level1Pane.getChildren().addAll(playablePane, menuImageView);//playablePane, menuButton);
+        level1Pane.getChildren().addAll(playablePane, menuImageView, assetBoxTimeImageView, assetBoxScoreImageView, noteImageView, selectedCakeImageView);//playablePane, me
 
         Scene level1Scene = new Scene(level1Pane, Constants.PANE_WIDTH, Constants.PANE_HEIGHT); 
         level1.setScene(level1Scene);
 
         MovementController movementController = new MovementController();
         movementController.makeMoveable(playerImageView, level1Scene);
-
-        // level1ImageView.setOnMouseClicked(event -> {
-        //     System.out.println("Button 1 clicked");
-
-        //     LS.primaryStage.hide();
-        //     Stage level1Stage = new Stage();
-        //     Level1 level1 = new Level1();
-        //     level1.start(level1Stage);
-        // });
 
         level1.show();
         level1.centerOnScreen();

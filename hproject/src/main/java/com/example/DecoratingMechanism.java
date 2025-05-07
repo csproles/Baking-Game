@@ -4,24 +4,28 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.io.File;
+
 public class DecoratingMechanism extends Application {
 
-    private static String flavor = "cocoa"; // default
+    private static String flavor = "cocoa";
     private static boolean launchedFromBaking = false;
 
     private ImageView cakeView;
     private String currentCake;
     private ImageView boxView;
+    private Stage primaryStage;
 
     private final String[] decorations = {
-        "icing_strawberry.png", 
-        "icing_chocolate.png", 
-        "strawberry.png", 
+        "icing_strawberry.png",
+        "icing_chocolate.png",
+        "strawberry.png",
         "sprinkles.png"
     };
 
@@ -35,79 +39,105 @@ public class DecoratingMechanism extends Application {
     }
 
     @Override
-public void start(Stage stage) {
-    Pane centerPane = new Pane();
+    public void start(Stage stage) {
+        this.primaryStage = stage;
+        Pane root = new Pane();
 
-    Rectangle background = new Rectangle(1000, 600);
-    background.setFill(Color.web("#7C8A91")); // match background color
-    centerPane.getChildren().add(background);
+        // ── Background color split ──
+        Rectangle topPane = new Rectangle(Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
+        topPane.setFill(Color.web("#677830"));
+        Rectangle bottomPane = new Rectangle(Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
+        bottomPane.setFill(Color.web("#B1B371"));
+        bottomPane.setLayoutY(100);
+        root.getChildren().addAll(topPane, bottomPane);
 
-    // Background image
-    ImageView bgImage = new ImageView(load("decorate.png"));
-    bgImage.setFitWidth(900);
-    bgImage.setFitHeight(540);
-    bgImage.setLayoutX(50);
-    centerPane.getChildren().add(bgImage);
+        // ── Menu button (clickable) ──
+        File menuFile = new File("hproject\\src\\main\\resources\\menu.png");
+        Image menuImg = new Image(menuFile.toURI().toString());
+        ImageView menuButton = new ImageView(menuImg);
+        menuButton.setFitWidth(100);
+        menuButton.setFitHeight(100);
+        menuButton.setLayoutX(20);
+        menuButton.setLayoutY(0);
+        menuButton.setOnMouseClicked(e -> {
+            try {
+                new LS().start(new Stage());
+                stage.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+        menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
+        root.getChildren().add(menuButton);
 
-    // Cake box
-    boxView = new ImageView(load("box.png"));
-    boxView.setLayoutX(650);
-    boxView.setLayoutY(240);
-    boxView.setFitWidth(220);
-    boxView.setFitHeight(220);
-    centerPane.getChildren().add(boxView);
+        // ── Background image ──
+        ImageView bgImage = new ImageView(load("decorate.png"));
+        bgImage.setFitWidth(800);
+        bgImage.setFitHeight(500);
+        bgImage.setLayoutX(400);
+        bgImage.setLayoutY(100);
+        root.getChildren().add(bgImage);
 
-    // Initial cake
-    currentCake = "vanilla".equals(flavor) ? "naked_vanilla.png" : "naked_chocolate.png";
-    cakeView = new ImageView(load(currentCake));
-    cakeView.setLayoutX(450);
-    cakeView.setLayoutY(240);
-    cakeView.setFitWidth(200);
-    cakeView.setFitHeight(200);
-    centerPane.getChildren().add(cakeView);
+        // ── Cake box ──
+        boxView = new ImageView(load("box.png"));
+        boxView.setLayoutX(950);
+        boxView.setLayoutY(320);
+        boxView.setFitWidth(200);
+        boxView.setFitHeight(200);
+        root.getChildren().add(boxView);
 
-    // Decorations
-    for (int i = 0; i < decorations.length; i++) {
-        String name = decorations[i];
-        ImageView item = new ImageView(load(name));
-        item.setFitWidth(125);
-        item.setFitHeight(125);
-        double startX = 100 + (i * 80);
-        double startY = 280;
-        item.setLayoutX(startX);
-        item.setLayoutY(startY);
+        // ── Cake ──
+        currentCake = "vanilla".equals(flavor) ? "naked_vanilla.png" : "naked_chocolate.png";
+        cakeView = new ImageView(load(currentCake));
+        cakeView.setLayoutX(800);
+        cakeView.setLayoutY(350);
+        cakeView.setFitWidth(150);
+        cakeView.setFitHeight(150);
+        root.getChildren().add(cakeView);
 
-        setupDrag(item, name, startX, startY, centerPane);
-        centerPane.getChildren().add(item);
+        // ── Decorations ──
+        for (int i = 0; i < decorations.length; i++) {
+            String name = decorations[i];
+            ImageView item = new ImageView(load(name));
+            item.setFitWidth(100);
+            item.setFitHeight(100);
+            double startX = 450 + (i * 80);
+            double startY = 380;
+            item.setLayoutX(startX);
+            item.setLayoutY(startY);
+
+            setupDrag(item, name, startX, startY, root);
+            root.getChildren().add(item);
+        }
+
+        // ── Order Note Background ──
+        File noteFile = new File("hproject/src/main/resources/note.png");
+        Image noteImage = new Image(noteFile.toURI().toString());
+        ImageView noteImageView = new ImageView(noteImage);
+        noteImageView.setFitWidth(600);
+        noteImageView.setFitHeight(525);
+        noteImageView.setLayoutX(-100);
+        noteImageView.setLayoutY(100);
+        root.getChildren().add(noteImageView);
+
+        // ── Ordered Cake Image ──
+        File selectedCakeFile = new File("hproject/src/main/resources/" + Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX]);
+        Image selectedCakeImage = new Image(selectedCakeFile.toURI().toString());
+        ImageView selectedCakeImageView = new ImageView(selectedCakeImage);
+        selectedCakeImageView.setFitWidth(300);
+        selectedCakeImageView.setFitHeight(300);
+        selectedCakeImageView.setLayoutX(50);
+        selectedCakeImageView.setLayoutY(220);
+        root.getChildren().add(selectedCakeImageView);
+
+        // ── Draggable cake ──
+        setupDrag(cakeView, currentCake, cakeView.getLayoutX(), cakeView.getLayoutY(), root);
+
+        Scene scene = new Scene(root, Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
+        stage.setTitle("Decorating Mechanism");
+        stage.setScene(scene);
+        stage.show();
     }
-
-    // Draggable cake
-    setupDrag(cakeView, currentCake, cakeView.getLayoutX(), cakeView.getLayoutY(), centerPane);
-
-    // Map Selection button in a top pane
-    javafx.scene.control.Button mapButton = new javafx.scene.control.Button("Map Selection");
-    mapButton.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-background-color: #D4BFA0;");
-    mapButton.setOnAction(e -> {
-        // Replace with your actual map selection logic
-        stage.close();
-    });
-
-    Pane topPane = new Pane(mapButton);
-    topPane.setPrefHeight(100);
-    mapButton.setLayoutX(50);
-    mapButton.setLayoutY(30);
-    topPane.setStyle("-fx-background-color: #5D6C72;");
-
-    // Use a BorderPane to stack top and center panes
-    javafx.scene.layout.BorderPane root = new javafx.scene.layout.BorderPane();
-    root.setTop(topPane);
-    root.setCenter(centerPane);
-
-    Scene scene = new Scene(root, 1000, 600);
-    stage.setTitle("Decorating Mechanism");
-    stage.setScene(scene);
-    stage.show();
-}
 
     private void setupDrag(ImageView item, String name, double originalX, double originalY, Pane root) {
         final double[] offsetX = new double[1];
@@ -133,7 +163,6 @@ public void start(Stage stage) {
                     currentCake = nextCake;
                     cakeView.setImage(load(currentCake));
                     item.setVisible(false);
-                    // refresh drag logic
                     setupDrag(cakeView, currentCake, cakeView.getLayoutX(), cakeView.getLayoutY(), root);
                 } else {
                     item.setLayoutX(originalX);
@@ -144,6 +173,9 @@ public void start(Stage stage) {
                 if (boxImage != null) {
                     boxView.setImage(load(boxImage));
                     cakeView.setVisible(false);
+                    System.out.println("✅ Cake packed and decorating complete.");
+                    Constants.CAKE_DECORATED = true;
+                    primaryStage.close(); // Auto-close window
                 } else {
                     item.setLayoutX(originalX);
                     item.setLayoutY(originalY);
@@ -190,7 +222,7 @@ public void start(Stage stage) {
 
     public static void main(String[] args) {
         if (!launchedFromBaking) {
-            flavor = "vanilla"; // test fallback
+            flavor = "vanilla";
             launch(args);
         }
     }

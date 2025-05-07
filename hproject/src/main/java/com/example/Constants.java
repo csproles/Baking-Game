@@ -1,8 +1,14 @@
 package com.example;
 
+import java.io.File;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 public class Constants {
 
     public static boolean HAS_ORDERED = false;
+    public static boolean HAS_DELIVERED = false;
     public static boolean CAKE_MIXED = false;
     public static boolean CAKE_BAKED = false;
     public static boolean CAKE_DECORATED = false;
@@ -80,73 +86,73 @@ public class Constants {
     //FRONT
     //UNBAKED
     public static String PLAYER_FRONT_UNBAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Unbaked\\Front\\Chef_Front_Still_UnbakedVanilla.png";
-    public static String PLAYER_FRONT_UNBAKED_VANILLA_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Unbaked\\Front\\Chef_Front_Step1_UnbakedVanilla.png";
-    public static String PLAYER_FRONT_UNBAKED_VANILLA_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Unbaked\\Front\\Chef_Front_Step2_UnbakedVanilla.png";
+    public static String PLAYER_FRONT_STEP1_UNBAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Unbaked\\Front\\Chef_Front_Step1_UnbakedVanilla.png";
+    public static String PLAYER_FRONT_STEP2_UNBAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Unbaked\\Front\\Chef_Front_Step2_UnbakedVanilla.png";
     //BAKED
     public static String PLAYER_FRONT_BAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Front\\Chef_Front_Still_BakedVanilla.png";
-    public static String PLAYER_FRONT_BAKED_VANILLA_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Front\\Chef_Front_Step1_BakedVanilla.png";
-    public static String PLAYER_FRONT_BAKED_VANILLA_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Front\\Chef_Front_Step2_BakedVanilla.png";
+    public static String PLAYER_FRONT_STEP1_BAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Front\\Chef_Front_Step1_BakedVanilla.png";
+    public static String PLAYER_FRONT_STEP2_BAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Front\\Chef_Front_Step2_BakedVanilla.png";
     //LEFT
     //UNBAKED
     public static String PLAYER_LEFT_UNBAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Unbaked\\Left\\Chef_Left_Still_UnbakedVanilla.png";
-    public static String PLAYER_LEFT_UNBAKED_VANILLA_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Unbaked\\Left\\Chef_Left_Step1_UnbakedVanilla.png";
-    public static String PLAYER_LEFT_UNBAKED_VANILLA_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Unbaked\\Left\\Chef_Left_Step2_UnbakedVanilla.png";
+    public static String PLAYER_LEFT_STEP1_UNBAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Unbaked\\Left\\Chef_Left_Step1_UnbakedVanilla.png";
+    public static String PLAYER_LEFT_STEP2_UNBAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Unbaked\\Left\\Chef_Left_Step2_UnbakedVanilla.png";
     //BAKED
     public static String PLAYER_LEFT_BAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Left\\Chef_Left_Still_BakedVanilla.png";
-    public static String PLAYER_LEFT_BAKED_VANILLA_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Left\\Chef_Left_Step1_BakedVanilla.png";
-    public static String PLAYER_LEFT_BAKED_VANILLA_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Left\\Chef_Left_Step2_BakedVanilla.png";
+    public static String PLAYER_LEFT_STEP1_BAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Left\\Chef_Left_Step1_BakedVanilla.png";
+    public static String PLAYER_LEFT_STEP2_BAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Left\\Chef_Left_Step2_BakedVanilla.png";
     //RIGHT
     //UNBAKED
     public static String PLAYER_RIGHT_UNBAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Unbaked\\Right\\Chef_Right_Still_UnbakedVanilla.png";
-    public static String PLAYER_RIGHT_UNBAKED_VANILLA_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Unbaked\\Right\\Chef_Right_Step1_UnbakedVanilla.png";
-    public static String PLAYER_RIGHT_UNBAKED_VANILLA_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Unbaked\\Right\\Chef_Right_Step2_UnbakedVanilla.png";
+    public static String PLAYER_RIGHT_STEP1_UNBAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Unbaked\\Right\\Chef_Right_Step1_UnbakedVanilla.png";
+    public static String PLAYER_RIGHT_STEP2_UNBAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Unbaked\\Right\\Chef_Right_Step2_UnbakedVanilla.png";
     //BAKED
     public static String PLAYER_RIGHT_BAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Right\\Chef_Right_Still_BakedVanilla.png";
-    public static String PLAYER_RIGHT_BAKED_VANILLA_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Right\\Chef_Right_Step1_BakedVanilla.png";
-    public static String PLAYER_RIGHT_BAKED_VANILLA_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Right\\Chef_Right_Step2_BakedVanilla.png";
+    public static String PLAYER_RIGHT_STEP1_BAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Right\\Chef_Right_Step1_BakedVanilla.png";
+    public static String PLAYER_RIGHT_STEP2_BAKED_VANILLA_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Vanilla\\Baked\\Right\\Chef_Right_Step2_BakedVanilla.png";
 
     //Chocolate Player
     //FRONT
     //UNBAKED
     public static String PLAYER_FRONT_UNBAKED_CHOCOLATE_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Unbaked\\Front\\Chef_Front_Still_UnbakedChocolate.png";
-    public static String PLAYER_FRONT_UNBAKED_CHOCOLATE_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Unbaked\\Front\\Chef_Front_Step1_UnbakedChocolate.png";
-    public static String PLAYER_FRONT_UNBAKED_CHOCOLATE_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Unbaked\\Front\\Chef_Front_Step2_UnbakedChocolate.png";
+    public static String PLAYER_FRONT_STEP1_UNBAKED_CHOCOLATE_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Unbaked\\Front\\Chef_Front_Step1_UnbakedChocolate.png";
+    public static String PLAYER_FRONT_STEP2_UNBAKED_CHOCOLATE_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Unbaked\\Front\\Chef_Front_Step2_UnbakedChocolate.png";
     //BAKED
     public static String PLAYER_FRONT_BAKED_CHOCOLATE_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Baked\\Front\\Chef_Front_Still_BakedChocolate.png";
-    public static String PLAYER_FRONT_BAKED_CHOCOLATE_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Baked\\Front\\Chef_Front_Step1_BakedChocolate.png";
-    public static String PLAYER_FRONT_BAKED_CHOCOLATE_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Baked\\Front\\Chef_Front_Step2_BakedChocolate.png";
+    public static String PLAYER_FRONT_STEP1_BAKED_CHOCOLATE_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Baked\\Front\\Chef_Front_Step1_BakedChocolate.png";
+    public static String PLAYER_FRONT_STEP2_BAKED_CHOCOLATE_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Baked\\Front\\Chef_Front_Step2_BakedChocolate.png";
     //LEFT
     //UNBAKED
     public static String PLAYER_LEFT_UNBAKED_CHOCOLATE_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Unbaked\\Left\\Chef_Left_Still_UnbakedChocolate.png";
-    public static String PLAYER_LEFT_UNBAKED_CHOCOLATE_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Unbaked\\Left\\Chef_Left_Step1_UnbakedChocolate.png";
-    public static String PLAYER_LEFT_UNBAKED_CHOCOLATE_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Unbaked\\Left\\Chef_Left_Step2_UnbakedChocolate.png";
+    public static String PLAYER_LEFT_STEP1_UNBAKED_CHOCOLATE_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Unbaked\\Left\\Chef_Left_Step1_UnbakedChocolate.png";
+    public static String PLAYER_LEFT_STEP2_UNBAKED_CHOCOLATE_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Unbaked\\Left\\Chef_Left_Step2_UnbakedChocolate.png";
     //BAKED
     public static String PLAYER_LEFT_BAKED_CHOCOLATE_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Baked\\Left\\Chef_Left_Still_BakedChocolate.png";
-    public static String PLAYER_LEFT_BAKED_CHOCOLATE_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Baked\\Left\\Chef_Left_Step1_BakedChocolate.png";
-    public static String PLAYER_LEFT_BAKED_CHOCOLATE_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Baked\\Left\\Chef_Left_Step2_BakedChocolate.png";
+    public static String PLAYER_LEFT_STEP1_BAKED_CHOCOLATE_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Baked\\Left\\Chef_Left_Step1_BakedChocolate.png";
+    public static String PLAYER_LEFT_STEP2_BAKED_CHOCOLATE_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Baked\\Left\\Chef_Left_Step2_BakedChocolate.png";
     //RIGHT
     //UNBAKED
     public static String PLAYER_RIGHT_UNBAKED_CHOCOLATE_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Unbaked\\Right\\Chef_Right_Still_UnbakedChocolate.png";
-    public static String PLAYER_RIGHT_UNBAKED_CHOCOLATE_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Unbaked\\Right\\Chef_Right_Step1_UnbakedChocolate.png";
-    public static String PLAYER_RIGHT_UNBAKED_CHOCOLATE_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Unbaked\\Right\\Chef_Right_Step2_UnbakedChocolate.png";
+    public static String PLAYER_RIGHT_STEP1_UNBAKED_CHOCOLATE_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Unbaked\\Right\\Chef_Right_Step1_UnbakedChocolate.png";
+    public static String PLAYER_RIGHT_STEP2_UNBAKED_CHOCOLATE_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Unbaked\\Right\\Chef_Right_Step2_UnbakedChocolate.png";
     //BAKED
     public static String PLAYER_RIGHT_BAKED_CHOCOLATE_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Baked\\Right\\Chef_Right_Still_BakedChocolate.png";
-    public static String PLAYER_RIGHT_BAKED_CHOCOLATE_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Baked\\Right\\Chef_Right_Step1_BakedChocolate.png";
-    public static String PLAYER_RIGHT_BAKED_CHOCOLATE_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Baked\\Right\\Chef_Right_Step2_BakedChocolate.png";
+    public static String PLAYER_RIGHT_STEP1_BAKED_CHOCOLATE_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Baked\\Right\\Chef_Right_Step1_BakedChocolate.png";
+    public static String PLAYER_RIGHT_STEP2_BAKED_CHOCOLATE_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chocolate\\Baked\\Right\\Chef_Right_Step2_BakedChocolate.png";
 
     //Boxed
     //FRONT
     public static String PLAYER_FRONT_WITH_BOX_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Front_Still_With_Box.png";
-    public static String PLAYER_FRONT_WITH_BOX_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Front_Step1_With_Box.png";
-    public static String PLAYER_FRONT_WITH_BOX_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Front_Step2_With_Box.png";
+    public static String PLAYER_FRONT_STEP1_WITH_BOX_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Front_Step1_With_Box.png";
+    public static String PLAYER_FRONT_STEP2_WITH_BOX_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Front_Step2_With_Box.png";
     //LEFT
     public static String PLAYER_LEFT_WITH_BOX_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Left_Still_With_Box.png";
-    public static String PLAYER_LEFT_WITH_BOX_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Left_Step1_With_Box.png";
-    public static String PLAYER_LEFT_WITH_BOX_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Left_Step2_With_Box.png";
+    public static String PLAYER_LEFT_STEP1_WITH_BOX_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Left_Step1_With_Box.png";
+    public static String PLAYER_LEFT_STEP2_WITH_BOX_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Left_Step2_With_Box.png";
     //RIGHT
     public static String PLAYER_RIGHT_WITH_BOX_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Right_Still_With_Box.png";
-    public static String PLAYER_RIGHT_WITH_BOX_STEP1_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Right_Step1_With_Box.png";
-    public static String PLAYER_RIGHT_WITH_BOX_STEP2_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Right_Step2_With_Box.png";
+    public static String PLAYER_RIGHT_STEP1_WITH_BOX_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Right_Step1_With_Box.png";
+    public static String PLAYER_RIGHT_STEP2_WITH_BOX_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Right_Step2_With_Box.png";
     //BOXED BACK
     public static String PLAYER_BACK_WITH_BOX_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Back_With_Box.png";
     public static String PLAYER_BACK_STEP1_WITH_BOX_IMAGEPATH = "hproject\\src\\main\\sprites\\Player\\Chef_Back_Step1_With_Box.png";
@@ -168,4 +174,25 @@ public class Constants {
     public static String DECORATIONSTATION_IMAGEPATH = "hproject\\src\\main\\resources\\decorate.png";
     public static double DECORATIONSTATION_LEVEL1_X = PLAYABLE_PANE_WIDTH/2 + 300;
     public static double DECORATIONSTATION_LEVEL1_Y = -25;
+
+    public static final String[] CAKE_OPTIONS = {
+        "nocake.png",
+        "cut_chocolate_chocolate_sprinkles.png",
+        "cut_chocolate_chocolate_strawberry.png",
+        "cut_chocolate_strawberry_sprinkles.png",
+        "cut_chocolate_strawberry_strawberry.png",
+        "cut_vanilla_chocolate_sprinkles.png",
+        "cut_vanilla_chocolate_strawberry.png",
+        "cut_vanilla_strawberry_sprinkles.png",
+        "cut_vanilla_strawberry_strawberry.png"
+    };
+
+    public static int CURRENT_ORDER_INDEX = 0;
+
+    // public static File selectedCakeFile = new File("hproject\\src\\main\\resources\\" + Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX]);
+    // public static Image selectedCakeImage = new Image(selectedCakeFile.toURI().toString());
+    // public static ImageView selectedCakeImageView = new ImageView(selectedCakeImage);
+
+    // public static Constants.selectedCakeImageView.setFitWidth(125);
+    // public static Constants.selectedCakeImageView.setFitHeight(125);
 }

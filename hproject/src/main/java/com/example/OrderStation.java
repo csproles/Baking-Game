@@ -5,105 +5,84 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.Random;
 
 public class OrderStation extends Application {
 
-    private final String[] cakeOptions = {
-        "cut_chocolate_chocolate_sprinkles.png",
-        "cut_chocolate_chocolate_strawberry.png",
-        "cut_chocolate_strawberry_sprinkles.png",
-        "cut_chocolate_strawberry_strawberry.png",
-        "cut_vanilla_chocolate_sprinkles.png",
-        "cut_vanilla_chocolate_strawberry.png",
-        "cut_vanilla_strawberry_sprinkles.png",
-        "cut_vanilla_strawberry_strawberry.png"
-    };
+    private Pane root;
 
     @Override
     public void start(Stage stage) {
-        // ── Top Panel ───────────────────────────────
-        Pane topPanel = new Pane();
-        topPanel.setPrefHeight(150);
-        topPanel.setPrefWidth(1000);
-        topPanel.setBackground(new Background(new BackgroundFill(Color.web("#556565"), null, null)));
+        root = new Pane();
 
-        Button mapButton = new Button("Map Selection");
-        mapButton.setLayoutX(20);
-        mapButton.setLayoutY(20);
-        mapButton.setPrefWidth(200);
-        mapButton.setPrefHeight(50);
-        mapButton.setStyle(
-            "-fx-background-color: #CBB4A0;" +
-            "-fx-border-color: #3E575C;" +
-            "-fx-border-width: 2px;" +
-            "-fx-font-size: 16px;" +
-            "-fx-font-weight: bold;" +
-            "-fx-text-fill: #1E1E1E;"
-        );
-        mapButton.setOnAction(e -> {
+        // ── Background color split ──
+        Rectangle topPane = new Rectangle(Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
+        topPane.setFill(Color.web("#677830"));
+        Rectangle bottomPane = new Rectangle(Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
+        bottomPane.setFill(Color.web("#B1B371"));
+        bottomPane.setLayoutY(100);
+        root.getChildren().addAll(topPane, bottomPane);
+
+        // ── Menu icon (clickable) ──
+        File menuFile = new File("hproject\\src\\main\\resources\\menu.png");
+        Image menuImg = new Image(menuFile.toURI().toString());
+        ImageView menuButton = new ImageView(menuImg);
+        menuButton.setFitWidth(100);
+        menuButton.setFitHeight(100);
+        menuButton.setLayoutX(20);
+        menuButton.setLayoutY(0);
+        menuButton.setOnMouseClicked(e -> {
             try {
-                new LS().start(new Stage()); // launch LS.java in a new window
-                stage.close();               // optionally close current window
+                new LS().start(new Stage());
+                stage.close();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         });
-        topPanel.getChildren().add(mapButton);
+        menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
+        root.getChildren().add(menuButton);
 
-        // ── Original Content Pane ───────────────────
-        Pane mainPane = new Pane();
+        // ── Background image ──
+        ImageView bgImage = new ImageView(load("order_bg2.png"));
+        bgImage.setFitWidth(800);
+        bgImage.setFitHeight(500);
+        bgImage.setLayoutY(120);
+        bgImage.setLayoutX(200);
+        root.getChildren().add(bgImage);
 
-        // Base background color for fallback
-        Rectangle bgColor = new Rectangle(1000, 600);
-        bgColor.setFill(Color.web("#7C8A91"));
-        mainPane.getChildren().add(bgColor);
-
-        // Background image
-        ImageView bgImage = new ImageView(load("order_bg.png"));
-        bgImage.setFitWidth(1000);
-        bgImage.setFitHeight(600);
-        mainPane.getChildren().add(bgImage);
-
-        // Cake image
-        String selectedCake = cakeOptions[new Random().nextInt(cakeOptions.length)];
-        ImageView cake = new ImageView(load(selectedCake));
+        // ── Cake image ──
+        Constants.CURRENT_ORDER_INDEX = new Random().nextInt(Constants.CAKE_OPTIONS.length - 1) + 1;
+        ImageView cake = new ImageView(load(Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX]));
         cake.setFitWidth(200);
         cake.setFitHeight(200);
-        cake.setLayoutX(400);
-        cake.setLayoutY(350);
-        mainPane.getChildren().add(cake);
+        cake.setLayoutX(500);
+        cake.setLayoutY(390);
+        root.getChildren().add(cake);
 
-        // GOT IT button
-        Button closeButton = new Button("GOT IT !");
-        closeButton.setLayoutX(850);
-        closeButton.setLayoutY(500);
-        closeButton.setPrefWidth(120);
-        closeButton.setPrefHeight(40);
-        closeButton.setStyle(
-            "-fx-background-color: #CBB4A0;" +
-            "-fx-border-color: #3E575C;" +
-            "-fx-border-width: 2px;" +
-            "-fx-font-size: 16px;" +
-            "-fx-font-weight: bold;" +
-            "-fx-text-fill: #1E1E1E;"
-        );
-        closeButton.setOnAction(e -> stage.close());
-        mainPane.getChildren().add(closeButton);
-
-        // ── Combine in VBox ─────────────────────────
-        VBox root = new VBox();
-        root.getChildren().addAll(topPanel, mainPane);
-
-        Scene scene = new Scene(root, 1000, 750); // 150 + 600 = 750
+        // ── GOT IT button ──
+        File gotItFile = new File("hproject/src/main/resources/gotit.png");
+        Image gotItImg = new Image(gotItFile.toURI().toString());
+        ImageView gotItButton = new ImageView(gotItImg);
+        
+        // Set size and position
+        gotItButton.setFitWidth(120);
+        gotItButton.setFitHeight(120);
+        gotItButton.setLayoutX(1100);
+        gotItButton.setLayoutY(520);
+        
+        // Make it clickable
+        gotItButton.setOnMouseClicked(e -> {Constants.HAS_ORDERED = true; stage.close();});
+        gotItButton.setOnMouseEntered(e -> gotItButton.setStyle("-fx-cursor: hand;"));
+        
+        root.getChildren().add(gotItButton);
+        // ── Scene setup ──
+        Scene scene = new Scene(root, Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
         stage.setTitle("Order Station");
         stage.setScene(scene);
         stage.show();
