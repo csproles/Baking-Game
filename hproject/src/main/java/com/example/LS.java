@@ -36,8 +36,8 @@ public class LS extends Application {
         File level1File = new File("hproject\\src\\main\\resources\\level1.png");
         File level2File = new File("hproject\\src\\main\\resources\\level2.png");
         File level3File = new File("hproject\\src\\main\\resources\\level3.png");
-        File level2FileCS = new File("hproject\\src\\main\\resources\\othercomingsoon.png");
-        File level3FileCS = new File("hproject\\src\\main\\resources\\othercomingsoon.png");
+        File level2FileCS = new File("hproject\\src\\main\\resources\\comingsoon.png");
+        File level3FileCS = new File("hproject\\src\\main\\resources\\comingsoon.png");
         File titleFile = new File("hproject\\src\\main\\resources\\bakinggame.png");
 
         Image level1Image = new Image(level1File.toURI().toString());
