@@ -7,7 +7,8 @@ import com.cakegame.enums.*;
 import com.cakegame.model.Cake;
 import com.cakegame.model.Customer;
 import com.cakegame.model.GameStateManager;
-import com.cakegame.util.SoundManager;
+import com.example.util.SoundManager;
+
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;

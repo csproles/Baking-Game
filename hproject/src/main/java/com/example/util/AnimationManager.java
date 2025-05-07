@@ -1,4 +1,4 @@
-package com.cakegame.util;
+package com.example.util;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;

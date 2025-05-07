@@ -1,5 +1,5 @@
 // SoundManager.java
-package com.cakegame.util;
+package com.example.util;
 
 import java.applet.AudioClip;
 import java.util.HashMap;

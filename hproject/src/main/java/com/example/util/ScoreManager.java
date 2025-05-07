@@ -1,5 +1,5 @@
 // ScoreManager.java
-package com.cakegame.util;
+package com.example.util;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -3,12 +3,14 @@ package com.example;
 import java.io.File;
 
 import com.example.Constants;
+import com.example.util.GameTimer;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -26,6 +28,39 @@ public class Level1 extends Application{
     public static StackPane level1Pane;
     // public static ImageView selectedCakeImageView;
     public static File selectedCakeFile;
+    
+    // Add game timer variables
+    private static GameTimer gameTimer;
+    private Label timerLabel;
+    
+    // Method to receive the game timer
+    public void setGameTimer(GameTimer timer) {
+        this.gameTimer = timer;
+        
+        // If the timer label already exists, update it
+        if (timerLabel != null) {
+            updateTimerDisplay();
+            
+            // Set up listener to update the timer display when time changes
+            gameTimer.secondsProperty().addListener((obs, oldVal, newVal) -> {
+                updateTimerDisplay();
+            });
+        }
+    }
+    
+    // Method to update the timer display
+    private void updateTimerDisplay() {
+        if (gameTimer != null && timerLabel != null) {
+            timerLabel.setText("Time: " + gameTimer.getFormattedTime());
+            
+            // Change color to red when time is running low
+            if (gameTimer.getSeconds() < 30) {
+                timerLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: red;");
+            } else {
+                timerLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: black;");
+            }
+        }
+    }
     
     @Override
     public void start(Stage level1){
@@ -155,6 +190,22 @@ public class Level1 extends Application{
         assetBoxTimeImageView.setTranslateX(-510);
         assetBoxTimeImageView.setTranslateY(-218);
 
+        // Create the timer label
+        timerLabel = new Label("Time: 00:00");
+        timerLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
+        timerLabel.setTranslateX(-510);
+        timerLabel.setTranslateY(-218);
+        
+        // Set up the timer if available
+        if (gameTimer != null) {
+            updateTimerDisplay();
+            
+            // Set up listener to update the timer display when time changes
+            gameTimer.secondsProperty().addListener((obs, oldVal, newVal) -> {
+                updateTimerDisplay();
+            });
+        }
+
         level1Pane.setStyle(Constants.MAP_PANE_STYLE);
 
         playablePane.setMinHeight(Constants.PLAYABLE_PANE_HEIGHT);
@@ -171,6 +222,11 @@ public class Level1 extends Application{
         menuImageView.setOnMouseClicked(event -> {
             System.out.println("LS Button clicked");
 
+            // Pause the timer when exiting to menu
+            if (gameTimer != null) {
+                gameTimer.pause();
+            }
+
             Level1.level1.hide();
             Stage lsStage = new Stage();
             LS ls = new LS();
@@ -179,7 +235,8 @@ public class Level1 extends Application{
 
         playablePane.getChildren().addAll(wall, mixerImageView, ovenImageView, decorationStationImageView, playerImageView, orderImageView, pickupImageView);
 
-        level1Pane.getChildren().addAll(playablePane, menuImageView, assetBoxTimeImageView, assetBoxScoreImageView, noteImageView, selectedCakeImageView);//playablePane, me
+        // Add timer label on top of the asset box for time
+        level1Pane.getChildren().addAll(playablePane, menuImageView, assetBoxTimeImageView, assetBoxScoreImageView, noteImageView, selectedCakeImageView, timerLabel);
 
         Scene level1Scene = new Scene(level1Pane, Constants.PANE_WIDTH, Constants.PANE_HEIGHT); 
         level1.setScene(level1Scene);
@@ -189,6 +246,20 @@ public class Level1 extends Application{
 
         level1.show();
         level1.centerOnScreen();
-    }  
+    }
+    
+    // Method to pause the timer when transitioning between stations
+    public void goToNextStation() {
+        // Pause the timer during transition
+        if (gameTimer != null) {
+            gameTimer.pause();
+        }
+        
+        // ... code to go to next station ...
+        
+        // Resume the timer after transition
+        if (gameTimer != null) {
+            gameTimer.start();
+        }
+    }
 }
-

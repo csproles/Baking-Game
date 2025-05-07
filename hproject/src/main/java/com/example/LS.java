@@ -3,22 +3,14 @@ package com.example;
 import java.io.File;
 
 import com.example.Constants;
+import com.example.util.GameTimer;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 /**
  * Creates A Level Selection Screen For The User To Chose What Level They Want To Play
@@ -26,6 +18,12 @@ import javafx.stage.Window;
 public class LS extends Application {
 
     public static Stage primaryStage;
+    private static GameTimer gameTimer; // Add the GameTimer as a static variable
+
+    // Method to set the game timer from Main
+    public static void setGameTimer(GameTimer timer) {
+        gameTimer = timer;
+    }
 
     @Override
     public void start(Stage primaryStage){
@@ -90,10 +88,31 @@ public class LS extends Application {
 
         level1ImageView.setOnMouseClicked(event -> {
             System.out.println("Button 1 clicked");
+            
+            // Set up the timer for level 1
+            if (gameTimer != null) {
+                // Initialize with appropriate time limit for level 1 (e.g., 5 minutes)
+                gameTimer.initialize(300); // 300 seconds = 5 minutes
+                
+                // Set timeout action
+                gameTimer.setOnTimeout(() -> {
+                    System.out.println("Time's up!");
+                    // Handle time's up scenario - could show game over screen
+                });
+            }
 
             LS.primaryStage.hide();
             Stage level1Stage = new Stage();
             Level1 level1 = new Level1();
+            
+            // Pass the timer to Level1 if it has been modified to accept it
+            if (gameTimer != null) {
+                level1.setGameTimer(gameTimer);
+                
+                // Start the timer when the level starts
+                gameTimer.start();
+            }
+            
             level1.start(level1Stage);
         });
 

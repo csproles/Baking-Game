@@ -1,5 +1,5 @@
 // RecipeManager.java
-package com.cakegame.util;
+package com.example.util;
 
 import com.cakegame.enums.*;
 import com.cakegame.model.Customer;

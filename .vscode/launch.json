@@ -3,6 +3,20 @@
     "configurations": [
       {
         "type": "java",
+        "name": "DecoratingMechanism",
+        "request": "launch",
+        "mainClass": "com.example/com.example.DecoratingMechanism",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
+        "name": "Main",
+        "request": "launch",
+        "mainClass": "com.example/com.example.Main",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
         "name": "CharacterImage",
         "request": "launch",
         "mainClass": "com.example/com.example.CharacterImage",

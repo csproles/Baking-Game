@@ -3,8 +3,8 @@ package com.cakegame.controller;
 import com.cakegame.MainSceneController;
 import com.cakegame.enums.*;
 import com.cakegame.model.*;
-import com.cakegame.util.GameConfig;
-import com.cakegame.util.GameTimer;
+import com.example.util.GameConfig;
+import com.example.util.GameTimer;
 
 import java.util.function.Consumer;
 

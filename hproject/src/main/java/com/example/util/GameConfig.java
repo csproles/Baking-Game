@@ -1,4 +1,4 @@
-package com.cakegame.util;
+package com.example.util;
 
 /**
  * Class for storing game configuration constants

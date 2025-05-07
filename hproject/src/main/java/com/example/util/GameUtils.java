@@ -1,4 +1,4 @@
-package com.cakegame.util;
+package com.example.util;
 
 import java.util.ArrayList;
 import java.util.List;

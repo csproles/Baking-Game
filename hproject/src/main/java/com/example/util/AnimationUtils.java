@@ -1,4 +1,4 @@
-package com.cakegame.util;
+package com.example.util;
 
 // Animation utilities for game feedback
 public class AnimationUtils {
