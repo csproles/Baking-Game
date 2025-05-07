@@ -32,7 +32,7 @@ public class MovementController {
     private RightAnimation rightAnimation;
     private LeftAnimation leftAnimation;
 
-    private MixingMechanism mixingMechanism = new MixingMechanism();
+    // private MixingMechanism mixingMechanism = new MixingMechanism();
     private BakingMechanism bakingMechanism = new BakingMechanism();
     private DecoratingMechanism decoratingMechanism = new DecoratingMechanism();
     private OrderStation orderStation = new OrderStation();
@@ -46,11 +46,7 @@ public class MovementController {
     Image fButtonImage = new Image(fButtonFile.toURI().toString());
     ImageView fButtonImageView = new ImageView(fButtonImage);
 
-    private Stage mixingStage = new Stage();
-    private Stage bakingStage = new Stage();
-    private Stage decoratingStage = new Stage();
-    private Stage orderStationStage = new Stage();
-    private Stage pickUpStationStage = new Stage();
+    private Stage stage = new Stage();
 
     // @FXML
     // private ImageView player;
@@ -268,22 +264,14 @@ public class MovementController {
         scene.setOnKeyReleased(e -> {
             if(e.getCode() == KeyCode.W){
                 wPressed.set(false); 
-                
-                if(Constants.CAKE_TYPE_VANILLA){
-                    if((Constants.CAKE_MIXED || Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
-                        playerFile = new File(Constants.PLAYER_BACK_WITH_PAN_IMAGEPATH);
-                    }
-                    else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && Constants.CAKE_DECORATED){
-                        playerFile = new File(Constants.PLAYER_BACK_WITH_BOX_IMAGEPATH);
-                    }
+                if(!(Constants.CAKE_MIXED) && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                    playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
                 }
-                else if(Constants.CAKE_TYPE_CHOCOLATE){
-                    if((Constants.CAKE_MIXED || Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
-                        playerFile = new File(Constants.PLAYER_BACK_WITH_PAN_IMAGEPATH);
-                    }
-                    else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && !(Constants.CAKE_DECORATED)){
-                        playerFile = new File(Constants.PLAYER_BACK_WITH_BOX_IMAGEPATH);
-                    }
+                else if((Constants.CAKE_MIXED || Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                    playerFile = new File(Constants.PLAYER_BACK_WITH_PAN_IMAGEPATH);
+                }
+                else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && Constants.CAKE_DECORATED){
+                    playerFile = new File(Constants.PLAYER_BACK_WITH_BOX_IMAGEPATH);
                 }
                 else{
                     playerFile = new File(Constants.PLAYER_BACK_IMAGEPATH);
@@ -298,7 +286,10 @@ public class MovementController {
                 aPressed.set(false);
 
                 if(Constants.CAKE_TYPE_VANILLA){
-                    if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                    if(!(Constants.CAKE_MIXED) && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                        playerFile = new File(Constants.PLAYER_LEFT_IMAGEPATH);
+                    }
+                    else if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
                         playerFile = new File(Constants.PLAYER_LEFT_UNBAKED_VANILLA_IMAGEPATH);
                     }
                     else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && !(Constants.CAKE_DECORATED)){
@@ -309,7 +300,10 @@ public class MovementController {
                     }
                 }
                 else if(Constants.CAKE_TYPE_CHOCOLATE){
-                    if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                    if(!(Constants.CAKE_MIXED) && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                        playerFile = new File(Constants.PLAYER_LEFT_IMAGEPATH);
+                    }
+                    else if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
                         playerFile = new File(Constants.PLAYER_LEFT_UNBAKED_CHOCOLATE_IMAGEPATH);
                     }
                     else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && !(Constants.CAKE_DECORATED)){
@@ -332,7 +326,10 @@ public class MovementController {
                 sPressed.set(false);
                 
                 if(Constants.CAKE_TYPE_VANILLA){
-                    if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                    if(!(Constants.CAKE_MIXED) && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                        playerFile = new File(Constants.PLAYER_FRONT_IMAGEPATH);
+                    }
+                    else if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
                         playerFile = new File(Constants.PLAYER_FRONT_UNBAKED_VANILLA_IMAGEPATH);
                     }
                     else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && !(Constants.CAKE_DECORATED)){
@@ -343,7 +340,10 @@ public class MovementController {
                     }
                 }
                 else if(Constants.CAKE_TYPE_CHOCOLATE){
-                    if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                    if(!(Constants.CAKE_MIXED) && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                        playerFile = new File(Constants.PLAYER_FRONT_IMAGEPATH);
+                    }
+                    else if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
                         playerFile = new File(Constants.PLAYER_FRONT_UNBAKED_CHOCOLATE_IMAGEPATH);
                     }
                     else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && !(Constants.CAKE_DECORATED)){
@@ -366,7 +366,10 @@ public class MovementController {
                 dPressed.set(false);
                 
                 if(Constants.CAKE_TYPE_VANILLA){
-                    if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                    if(!(Constants.CAKE_MIXED) && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                        playerFile = new File(Constants.PLAYER_RIGHT_IMAGEPATH);
+                    }
+                    else if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
                         playerFile = new File(Constants.PLAYER_RIGHT_UNBAKED_VANILLA_IMAGEPATH);
                     }
                     else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && !(Constants.CAKE_DECORATED)){
@@ -377,7 +380,10 @@ public class MovementController {
                     }
                 }
                 else if(Constants.CAKE_TYPE_CHOCOLATE){
-                    if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                    if(!(Constants.CAKE_MIXED) && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                        playerFile = new File(Constants.PLAYER_RIGHT_IMAGEPATH);
+                    }
+                    else if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
                         playerFile = new File(Constants.PLAYER_RIGHT_UNBAKED_CHOCOLATE_IMAGEPATH);
                     }
                     else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && !(Constants.CAKE_DECORATED)){
@@ -400,29 +406,30 @@ public class MovementController {
                 //Order Station
                 if(player.getLayoutY() > 290 && (player.getLayoutX() > -20 && player.getLayoutX() < 130)){
                     if(!(Constants.HAS_ORDERED) && !(Constants.CAKE_MIXED) && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
-                        orderStation.start(orderStationStage);
+                        orderStation.start(stage);
 
                         CakeImageHandler.changeImage(Constants.CURRENT_ORDER_INDEX);
                     }
                 }
                 else if(player.getLayoutY() < 75 && ((player.getLayoutX() > 62 && player.getLayoutX() < 207.5))){
                     if(Constants.HAS_ORDERED && !(Constants.CAKE_MIXED) && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED && !(Constants.HAS_DELIVERED))){
-                        mixingMechanism.start(mixingStage);
+                        MixingMechanism mixingMechanism = new MixingMechanism();
+                        mixingMechanism.start(stage);
                     }
                 }
                 else if(Constants.HAS_ORDERED && player.getLayoutY() < 75 && (player.getLayoutX() > 460 && player.getLayoutX() < 670)){
                     if(Constants.HAS_ORDERED && Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED && !(Constants.HAS_DELIVERED))){
-                        bakingMechanism.start(bakingStage);
+                        bakingMechanism.start(stage);
                     }
                 }
                 else if(Constants.HAS_ORDERED && player.getLayoutY() < 75 && (player.getLayoutX() > 860 && player.getLayoutX() < 1080)){
                     if(Constants.HAS_ORDERED && Constants.CAKE_MIXED && Constants.CAKE_BAKED && !(Constants.CAKE_DECORATED && !(Constants.HAS_DELIVERED))){
-                        decoratingMechanism.start(decoratingStage);
+                        decoratingMechanism.start(stage);
                     }
                 }
                 else if(player.getLayoutY() > 290 && (player.getLayoutX() > 1000 && player.getLayoutX() < 1200)){
                     if(Constants.HAS_ORDERED && Constants.CAKE_MIXED && Constants.CAKE_BAKED && Constants.CAKE_DECORATED && !(Constants.HAS_DELIVERED)){
-                        pickUpStation.start(pickUpStationStage);
+                        pickUpStation.start(stage);
                     }
                 }
                 fPressed = false;

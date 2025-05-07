@@ -22,7 +22,10 @@ public class FrontAnimation {
         if(number == 1){
 
             if(Constants.CAKE_TYPE_VANILLA){
-                if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                if(!(Constants.CAKE_MIXED) && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                    playerFile = new File(Constants.PLAYER_FRONT_STEP1_IMAGEPATH);
+                }
+                else if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
                     playerFile = new File(Constants.PLAYER_FRONT_STEP1_UNBAKED_VANILLA_IMAGEPATH);
                 }
                 else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && !(Constants.CAKE_DECORATED)){
@@ -33,7 +36,10 @@ public class FrontAnimation {
                 }
             }
             else if(Constants.CAKE_TYPE_CHOCOLATE){
-                if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                if(!(Constants.CAKE_MIXED) && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                    playerFile = new File(Constants.PLAYER_FRONT_STEP1_IMAGEPATH);
+                }
+                else if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
                     playerFile = new File(Constants.PLAYER_FRONT_STEP1_UNBAKED_CHOCOLATE_IMAGEPATH);
                 }
                 else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && !(Constants.CAKE_DECORATED)){
@@ -54,7 +60,10 @@ public class FrontAnimation {
         } else if( number == 2){
 
             if(Constants.CAKE_TYPE_VANILLA){
-                if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                if(!(Constants.CAKE_MIXED) && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                    playerFile = new File(Constants.PLAYER_FRONT_STEP2_IMAGEPATH);
+                }
+                else if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
                     playerFile = new File(Constants.PLAYER_FRONT_STEP2_UNBAKED_VANILLA_IMAGEPATH);
                 }
                 else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && !(Constants.CAKE_DECORATED)){
@@ -65,7 +74,10 @@ public class FrontAnimation {
                 }
             }
             else if(Constants.CAKE_TYPE_CHOCOLATE){
-                if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                if(!(Constants.CAKE_MIXED) && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
+                    playerFile = new File(Constants.PLAYER_FRONT_STEP2_IMAGEPATH);
+                }
+                else if(Constants.CAKE_MIXED && !(Constants.CAKE_BAKED) && !(Constants.CAKE_DECORATED)){
                     playerFile = new File(Constants.PLAYER_FRONT_STEP2_UNBAKED_CHOCOLATE_IMAGEPATH);
                 }
                 else if(Constants.CAKE_MIXED && Constants.CAKE_BAKED && !(Constants.CAKE_DECORATED)){

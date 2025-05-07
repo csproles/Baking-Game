@@ -97,6 +97,8 @@ public class PickUpStation extends Application {
                 Constants.CAKE_BAKED = false;
                 Constants.CAKE_DECORATED = false;
                 Constants.HAS_DELIVERED = false;
+                Constants.CAKE_TYPE_VANILLA = false;
+                Constants.CAKE_TYPE_CHOCOLATE = false;
                 CakeImageHandler.changeImage(0);
 
                 stage.close();
