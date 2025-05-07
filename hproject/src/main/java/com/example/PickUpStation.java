@@ -83,12 +83,24 @@ public class PickUpStation extends Application {
         nextOrderButton.setLayoutX(1100);
         nextOrderButton.setLayoutY(520);
         nextOrderButton.setOnMouseClicked(e -> {
+<<<<<<< Updated upstream
             try {
                 new Level1().start(new Stage());
                 stage.close();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+=======
+            Constants.HAS_ORDERED = false;
+            Constants.CAKE_MIXED = false;
+            Constants.CAKE_BAKED = false;
+            Constants.CAKE_DECORATED = false;
+            Constants.HAS_DELIVERED = false;
+            Constants.CAKE_TYPE_VANILLA = false;
+            Constants.CAKE_TYPE_CHOCOLATE = false;
+            CakeImageHandler.changeImage(0);
+            stage.close();
+>>>>>>> Stashed changes
         });
         nextOrderButton.setOnMouseEntered(e -> nextOrderButton.setStyle("-fx-cursor: hand;"));
 

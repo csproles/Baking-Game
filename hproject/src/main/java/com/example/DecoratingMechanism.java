@@ -86,7 +86,11 @@ public class DecoratingMechanism extends Application {
         boxView.setFitHeight(200);
         root.getChildren().add(boxView);
 
+<<<<<<< Updated upstream
         // Determine flavor based on global state set by MixingMechanism
+=======
+        // ── Cake ──
+>>>>>>> Stashed changes
         if (Constants.CAKE_TYPE_VANILLA) {
             flavor = "vanilla";
         } else if (Constants.CAKE_TYPE_CHOCOLATE) {
@@ -179,8 +183,18 @@ public class DecoratingMechanism extends Application {
                     boxView.setImage(load(boxImage));
                     cakeView.setVisible(false);
                     System.out.println("✅ Cake packed and decorating complete.");
+<<<<<<< Updated upstream
                     primaryStage.close(); // Auto-close window
                 } else {
+=======
+                    Constants.CAKE_DECORATED = true;
+                
+                    // Delay before closing the scene
+                    javafx.animation.PauseTransition delay = new javafx.animation.PauseTransition(javafx.util.Duration.seconds(1));
+                    delay.setOnFinished(event -> primaryStage.close());
+                    delay.play();
+                }else {
+>>>>>>> Stashed changes
                     item.setLayoutX(originalX);
                     item.setLayoutY(originalY);
                 }
