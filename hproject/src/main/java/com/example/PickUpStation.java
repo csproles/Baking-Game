@@ -2,7 +2,6 @@ package com.example;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -17,7 +16,7 @@ public class PickUpStation extends Application {
 
     private ImageView customerView;
     private ImageView boxView;
-    private Button nextOrderButton;
+    private ImageView nextOrderButton;
     private Pane root;
 
     @Override
@@ -76,36 +75,32 @@ public class PickUpStation extends Application {
         setupDrag(boxView);
         root.getChildren().add(boxView);
 
-        // ── NEXT ORDER button (appears after delivery) ──
-        // ── NEXT ORDER image button ──
+        // ── NEXT ORDER image button (hidden until delivery) ──
         File nextOrderFile = new File("hproject/src/main/resources/nextorder.png");
         Image nextOrderImg = new Image(nextOrderFile.toURI().toString());
-        ImageView nextOrderButton = new ImageView(nextOrderImg);
-
-        // Set size and position
+        nextOrderButton = new ImageView(nextOrderImg);
         nextOrderButton.setFitWidth(120);
         nextOrderButton.setFitHeight(120);
         nextOrderButton.setLayoutX(1100);
         nextOrderButton.setLayoutY(520);
+        nextOrderButton.setVisible(false);
 
-        // Make it clickable
         nextOrderButton.setOnMouseClicked(e -> {
-            try {
-                // new Level1().start(new Stage());
-                Constants.HAS_ORDERED = false;
-                Constants.CAKE_MIXED = false;
-                Constants.CAKE_BAKED = false;
-                Constants.CAKE_DECORATED = false;
-                // Constants.HAS_DELIVERED = false;
-                Constants.CURRENT_ORDER_INDEX = 0;
+            Constants.COMPLETED_ORDERS++;
+            Constants.HAS_ORDERED = false;
+            Constants.CAKE_MIXED = false;
+            Constants.CAKE_BAKED = false;
+            Constants.CAKE_DECORATED = false;
+            Constants.CURRENT_ORDER_INDEX = 0;
 
+            try {
+                new Level1().start(new Stage());
                 stage.close();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         });
         nextOrderButton.setOnMouseEntered(e -> nextOrderButton.setStyle("-fx-cursor: hand;"));
-
         root.getChildren().add(nextOrderButton);
 
         // ── Final scene setup ──
@@ -133,9 +128,7 @@ public class PickUpStation extends Application {
             if (item.getBoundsInParent().intersects(customerView.getBoundsInParent())) {
                 customerView.setImage(load("customer_2.png"));
                 item.setVisible(false);
-                if (!root.getChildren().contains(nextOrderButton)) {
-                    root.getChildren().add(nextOrderButton);
-                }
+                nextOrderButton.setVisible(true); // Only show after delivery
             }
         });
     }

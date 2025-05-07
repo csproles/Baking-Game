@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -26,13 +27,21 @@ public class Level1 extends Application{
     public static StackPane level1Pane;
     // public static ImageView selectedCakeImageView;
     public static File selectedCakeFile;
+
     
     @Override
     public void start(Stage level1){
         this.level1 = level1;
-
+        
+        Label orderCounterLabel = new Label("Orders: " + Constants.COMPLETED_ORDERS);
+        orderCounterLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+        orderCounterLabel.setTextFill(Color.WHITE);
+        orderCounterLabel.setLayoutX(Constants.PANE_WIDTH - 180);
+        orderCounterLabel.setLayoutY(20);
+        
         level1Pane = new StackPane();
         Pane playablePane = new Pane();
+        level1Pane.getChildren().add(orderCounterLabel);
 
         level1.setTitle("Level 1");
 
@@ -189,6 +198,7 @@ public class Level1 extends Application{
 
         level1.show();
         level1.centerOnScreen();
+        orderCounterLabel.setText("Orders: " + Constants.COMPLETED_ORDERS);
     }  
 }
 

@@ -186,7 +186,8 @@ public class Constants {
         "cut_vanilla_strawberry_sprinkles.png",
         "cut_vanilla_strawberry_strawberry.png"
     };
-
+    
+    public static int COMPLETED_ORDERS = 0;
     public static int CURRENT_ORDER_INDEX = 0;
 
     // public static File selectedCakeFile = new File("hproject\\src\\main\\resources\\" + Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX]);
