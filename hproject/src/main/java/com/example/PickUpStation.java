@@ -13,8 +13,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-import com.example.util.ScoreTracker;
-
 public class PickUpStation extends Application {
 
     private ImageView customerView;
@@ -129,7 +127,6 @@ public class PickUpStation extends Application {
             if (item.getBoundsInParent().intersects(customerView.getBoundsInParent())) {
                 if (Constants.CORRECT_CAKE) {
                     customerView.setImage(load("customer_2.png"));
-                    ScoreTracker.getInstance().addCorrectCakeScore();
                 } else {
                     customerView.setImage(load("customer_3.png"));
                 }
