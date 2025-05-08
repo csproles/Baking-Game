@@ -1,8 +1,11 @@
 package com.example;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javafx.scene.text.Font;
+
 
 import com.example.Constants;
 import com.example.util.GameTimer;
@@ -56,14 +59,16 @@ public class Level1 extends Application {
 
     private void updateTimerDisplay() {
         if (gameTimer != null && timerLabel != null) {
-            timerLabel.setText("Time: " + gameTimer.getFormattedTime());
+            timerLabel.setText("TIME: " + gameTimer.getFormattedTime());
+            timerLabel.setFont(Constants.getArcadeFont(18));
             timerLabel.setStyle(
                 gameTimer.getSeconds() < 30
-                ? "-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: red;"
-                : "-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: black;"
+                ? "-fx-font-weight: bold; -fx-text-fill: red;"
+                : "-fx-text-fill: black;"
             );
         }
     }
+    
     
     @Override
     public void start(Stage level1) {
@@ -126,7 +131,6 @@ public class Level1 extends Application {
         Image assetBoxTimeImage = new Image(assetBoxTimeFile.toURI().toString());
         ImageView assetBoxTimeImageView = new ImageView(assetBoxTimeImage);
 
-        // [Original image view settings remain the same]
         playerImageView.setFitWidth(100);
         playerImageView.setFitHeight(100);
         playerImageView.setPreserveRatio(true);
@@ -167,7 +171,6 @@ public class Level1 extends Application {
         assetBoxTimeImageView.setFitWidth(250);
         assetBoxTimeImageView.setFitHeight(125);
 
-        // [Original layout positions remain the same]
         playerImageView.setLayoutX(Constants.PANE_WIDTH/2 - 50);
         playerImageView.setLayoutY(Constants.PANE_HEIGHT/2 + 50);
         
@@ -199,21 +202,26 @@ public class Level1 extends Application {
         assetBoxTimeImageView.setTranslateX(-510);
         assetBoxTimeImageView.setTranslateY(-218);
 
+         // Load arcade font
+        Font arcadeFont = Constants.getArcadeFont(18);
+        
         // Create the timer label
-        timerLabel = new Label("Time: 00:00");
+        timerLabel = new Label("TIME: 00:00");
+        timerLabel.setFont(arcadeFont);
         timerLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
         timerLabel.setTranslateX(-510);
         timerLabel.setTranslateY(-218);
-        
-        // Create the score label
-        scoreLabel = new Label("Score: 0");
-        scoreLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
+
+       // Create the score label with custom font
+        scoreLabel = new Label("SCORE: 0");
+        scoreLabel.setFont(arcadeFont); // <- set custom font here
+        scoreLabel.setStyle("-fx-text-fill: black;"); // optional: only color
         scoreLabel.setTranslateX(520);
         scoreLabel.setTranslateY(-240);
         
         // Bind the score label to the score property
         scoreTracker.scoreProperty().addListener((obs, oldVal, newVal) -> {
-            scoreLabel.setText("Score: " + newVal);
+            scoreLabel.setText("SCORE: " + newVal);
         });
         
         // ✅ Timer Setup — Force timer to 2:30 (150s)

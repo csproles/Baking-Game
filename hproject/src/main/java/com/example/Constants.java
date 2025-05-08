@@ -1,9 +1,11 @@
 package com.example;
 
 import java.io.File;
+import java.io.FileInputStream;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 
 public class Constants {
 
@@ -198,4 +200,14 @@ public class Constants {
 
     // public static Constants.selectedCakeImageView.setFitWidth(125);
     // public static Constants.selectedCakeImageView.setFitHeight(125);
+
+    // Constants.java
+    public static Font getArcadeFont(double size) {
+    try {
+        return Font.loadFont(new FileInputStream("hproject/src/main/resources/fonts/arcade.ttf"), size);
+    } catch (Exception e) {
+        e.printStackTrace();
+        return Font.font("Verdana", size); // fallback font
+    }
+    }
 }
