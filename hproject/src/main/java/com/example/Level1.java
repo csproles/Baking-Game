@@ -33,34 +33,29 @@ public class Level1 extends Application{
     private static GameTimer gameTimer;
     private Label timerLabel;
     
-    // Method to receive the game timer
-    public void setGameTimer(GameTimer timer) {
-        this.gameTimer = timer;
-        
-        // If the timer label already exists, update it
-        if (timerLabel != null) {
-            updateTimerDisplay();
-            
-            // Set up listener to update the timer display when time changes
-            gameTimer.secondsProperty().addListener((obs, oldVal, newVal) -> {
-                updateTimerDisplay();
-            });
-        }
+   // Set timer from outside (optional)
+   public void setGameTimer(GameTimer timer) {
+    gameTimer = timer;
+    setupTimerLabelListener();
+}
+
+private void setupTimerLabelListener() {
+    if (timerLabel != null && gameTimer != null) {
+        updateTimerDisplay();
+        gameTimer.secondsProperty().addListener((obs, oldVal, newVal) -> updateTimerDisplay());
     }
-    
-    // Method to update the timer display
-    private void updateTimerDisplay() {
-        if (gameTimer != null && timerLabel != null) {
-            timerLabel.setText("Time: " + gameTimer.getFormattedTime());
-            
-            // Change color to red when time is running low
-            if (gameTimer.getSeconds() < 30) {
-                timerLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: red;");
-            } else {
-                timerLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: black;");
-            }
-        }
+}
+
+private void updateTimerDisplay() {
+    if (gameTimer != null && timerLabel != null) {
+        timerLabel.setText("Time: " + gameTimer.getFormattedTime());
+        timerLabel.setStyle(
+            gameTimer.getSeconds() < 30
+            ? "-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: red;"
+            : "-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: black;"
+        );
     }
+}
     
     @Override
     public void start(Stage level1){
@@ -196,15 +191,11 @@ public class Level1 extends Application{
         timerLabel.setTranslateX(-510);
         timerLabel.setTranslateY(-218);
         
-        // Set up the timer if available
-        if (gameTimer != null) {
-            updateTimerDisplay();
-            
-            // Set up listener to update the timer display when time changes
-            gameTimer.secondsProperty().addListener((obs, oldVal, newVal) -> {
-                updateTimerDisplay();
-            });
-        }
+         // ✅ Timer Setup — Force timer to 2:30 (150s)
+         gameTimer = new GameTimer(true);  // Ensure new instance
+         gameTimer.initialize(150);        // Set to 2 min 30 sec
+         setupTimerLabelListener();        // Set listener
+         gameTimer.start();                // Start it
 
         level1Pane.setStyle(Constants.MAP_PANE_STYLE);
 

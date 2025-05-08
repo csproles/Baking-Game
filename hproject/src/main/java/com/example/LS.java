@@ -20,9 +20,41 @@ public class LS extends Application {
     public static Stage primaryStage;
     private static GameTimer gameTimer; // Add the GameTimer as a static variable
 
-    // Method to set the game timer from Main
-    public static void setGameTimer(GameTimer timer) {
+    /**
+     * Method to set the game timer
+     * @param timer The timer to use for the game
+     */
+    public void setGameTimer(GameTimer timer) {
         gameTimer = timer;
+    }
+
+    /**
+     * Method to start Level 1 with a 2:30 timer
+     */
+    public void startLevel1() {
+        // Hide the level selection screen
+        primaryStage.hide(); // Use primaryStage instead of level
+        
+        // Create a new GameTimer for Level1 (2 minutes and 30 seconds)
+        gameTimer = new GameTimer(true); // true means countdown
+        gameTimer.initialize(150); // 2:30 = 150 seconds
+        
+        // Set timeout action
+        gameTimer.setOnTimeout(() -> {
+            // This will be executed when time runs out
+            System.out.println("Time's up!");
+            // You can add additional logic for game over here
+        });
+        
+        // Create and start Level1
+        Level1 level1 = new Level1();
+        level1.setGameTimer(gameTimer); // Pass the timer to Level1
+        
+        Stage level1Stage = new Stage();
+        level1.start(level1Stage);
+        
+        // Start the timer when the level begins
+        gameTimer.start();
     }
 
     @Override

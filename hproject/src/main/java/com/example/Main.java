@@ -9,7 +9,7 @@ public class Main {
 GameTimer gameTimer = new GameTimer(true);
 
 // Initialize with 3 minutes (180 seconds)
-gameTimer.initialize(180);
+gameTimer.initialize(150);
 
 // Set what happens when timer runs out
 gameTimer.setOnTimeout(() -> {
@@ -23,7 +23,7 @@ level1.setGameTimer(gameTimer);
         
         // Initialize the level selection screen and pass the timer
         LS levelSelectionScreen = new LS();
-        LS.setGameTimer(gameTimer);
+       
         
         // Run the level selection screen
         levelSelectionScreen.run();
