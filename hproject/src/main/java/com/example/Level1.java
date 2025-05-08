@@ -3,12 +3,14 @@ package com.example;
 import java.io.File;
 
 import com.example.Constants;
+import com.example.util.GameTimer;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -24,6 +26,41 @@ public class Level1 extends Application{
 
     public static Stage level1;
     public static StackPane level1Pane;
+    // public static ImageView selectedCakeImageView;
+    public static File selectedCakeFile;
+    
+    // Add game timer variables
+    private static GameTimer gameTimer;
+    private Label timerLabel;
+    
+    // Method to receive the game timer
+    public void setGameTimer(GameTimer timer) {
+        this.gameTimer = timer;
+        
+        // If the timer label already exists, update it
+        if (timerLabel != null) {
+            updateTimerDisplay();
+            
+            // Set up listener to update the timer display when time changes
+            gameTimer.secondsProperty().addListener((obs, oldVal, newVal) -> {
+                updateTimerDisplay();
+            });
+        }
+    }
+    
+    // Method to update the timer display
+    private void updateTimerDisplay() {
+        if (gameTimer != null && timerLabel != null) {
+            timerLabel.setText("Time: " + gameTimer.getFormattedTime());
+            
+            // Change color to red when time is running low
+            if (gameTimer.getSeconds() < 30) {
+                timerLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: red;");
+            } else {
+                timerLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: black;");
+            }
+        }
+    }
     
     @Override
     public void start(Stage level1){
@@ -74,6 +111,14 @@ public class Level1 extends Application{
         Image selectedCakeImage = new Image(selectedCakeFile.toURI().toString());
         ImageView selectedCakeImageView = new ImageView(selectedCakeImage);
 
+        File assetBoxScoreFile = new File("hproject\\src\\main\\resources\\assetbox.png");
+        Image assetBoxScoreImage = new Image(assetBoxScoreFile.toURI().toString());
+        ImageView assetBoxScoreImageView = new ImageView(assetBoxScoreImage);
+
+        File assetBoxTimeFile = new File("hproject\\src\\main\\resources\\assetbox.png");
+        Image assetBoxTimeImage = new Image(assetBoxTimeFile.toURI().toString());
+        ImageView assetBoxTimeImageView = new ImageView(assetBoxTimeImage);
+
         playerImageView.setFitWidth(100);
         playerImageView.setFitHeight(100);
         playerImageView.setPreserveRatio(true);
@@ -108,6 +153,12 @@ public class Level1 extends Application{
         selectedCakeImageView.setFitWidth(125);
         selectedCakeImageView.setFitHeight(125);
 
+        assetBoxScoreImageView.setFitWidth(200);
+        assetBoxScoreImageView.setFitHeight(175);
+
+        assetBoxTimeImageView.setFitWidth(250);
+        assetBoxTimeImageView.setFitHeight(125);
+
         playerImageView.setLayoutX(Constants.PANE_WIDTH/2 - 50);
         playerImageView.setLayoutY(Constants.PANE_HEIGHT/2 + 50);
         
@@ -124,11 +175,36 @@ public class Level1 extends Application{
         orderImageView.setTranslateX(-10);
         orderImageView.setTranslateY(Constants.PLAYABLE_PANE_HEIGHT/2 + 25);
 
+        pickupImageView.setTranslateX(Constants.PLAYABLE_PANE_WIDTH - 190);//1100);
+        pickupImageView.setTranslateY(Constants.PLAYABLE_PANE_HEIGHT/2 + 25);
+
         noteImageView.setTranslateX(350);
         noteImageView.setTranslateY(-245);
 
         selectedCakeImageView.setTranslateX(350);
         selectedCakeImageView.setTranslateY(-240);
+
+        assetBoxScoreImageView.setTranslateX(520);
+        assetBoxScoreImageView.setTranslateY(-240);
+
+        assetBoxTimeImageView.setTranslateX(-510);
+        assetBoxTimeImageView.setTranslateY(-218);
+
+        // Create the timer label
+        timerLabel = new Label("Time: 00:00");
+        timerLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
+        timerLabel.setTranslateX(-510);
+        timerLabel.setTranslateY(-218);
+        
+        // Set up the timer if available
+        if (gameTimer != null) {
+            updateTimerDisplay();
+            
+            // Set up listener to update the timer display when time changes
+            gameTimer.secondsProperty().addListener((obs, oldVal, newVal) -> {
+                updateTimerDisplay();
+            });
+        }
 
         level1Pane.setStyle(Constants.MAP_PANE_STYLE);
 
@@ -146,6 +222,11 @@ public class Level1 extends Application{
         menuImageView.setOnMouseClicked(event -> {
             System.out.println("LS Button clicked");
 
+            // Pause the timer when exiting to menu
+            if (gameTimer != null) {
+                gameTimer.pause();
+            }
+
             Level1.level1.hide();
             Stage lsStage = new Stage();
             LS ls = new LS();
@@ -154,7 +235,8 @@ public class Level1 extends Application{
 
         playablePane.getChildren().addAll(wall, mixerImageView, ovenImageView, decorationStationImageView, playerImageView, orderImageView, pickupImageView);
 
-        level1Pane.getChildren().addAll(playablePane, menuImageView, noteImageView, selectedCakeImageView);//playablePane, menuButton);
+        // Add timer label on top of the asset box for time
+        level1Pane.getChildren().addAll(playablePane, menuImageView, assetBoxTimeImageView, assetBoxScoreImageView, noteImageView, selectedCakeImageView, timerLabel);
 
         Scene level1Scene = new Scene(level1Pane, Constants.PANE_WIDTH, Constants.PANE_HEIGHT); 
         level1.setScene(level1Scene);
@@ -162,17 +244,22 @@ public class Level1 extends Application{
         MovementController movementController = new MovementController();
         movementController.makeMoveable(playerImageView, level1Scene);
 
-        // level1ImageView.setOnMouseClicked(event -> {
-        //     System.out.println("Button 1 clicked");
-
-        //     LS.primaryStage.hide();
-        //     Stage level1Stage = new Stage();
-        //     Level1 level1 = new Level1();
-        //     level1.start(level1Stage);
-        // });
-
         level1.show();
         level1.centerOnScreen();
-    }  
+    }
+    
+    // Method to pause the timer when transitioning between stations
+    public void goToNextStation() {
+        // Pause the timer during transition
+        if (gameTimer != null) {
+            gameTimer.pause();
+        }
+        
+        // ... code to go to next station ...
+        
+        // Resume the timer after transition
+        if (gameTimer != null) {
+            gameTimer.start();
+        }
+    }
 }
-

@@ -3,20 +3,6 @@
     "configurations": [
       {
         "type": "java",
-        "name": "PickUpStation",
-        "request": "launch",
-        "mainClass": "com.example/com.example.PickUpStation",
-        "projectName": "hproject"
-      },
-      {
-        "type": "java",
-        "name": "OrderStation",
-        "request": "launch",
-        "mainClass": "com.example/com.example.OrderStation",
-        "projectName": "hproject"
-      },
-      {
-        "type": "java",
         "name": "DecoratingMechanism",
         "request": "launch",
         "mainClass": "com.example/com.example.DecoratingMechanism",
@@ -24,16 +10,9 @@
       },
       {
         "type": "java",
-        "name": "BakingMechanism",
+        "name": "Main",
         "request": "launch",
-        "mainClass": "com.example/com.example.BakingMechanism",
-        "projectName": "hproject"
-      },
-      {
-        "type": "java",
-        "name": "MixingMechanism",
-        "request": "launch",
-        "mainClass": "com.example/com.example.MixingMechanism",
+        "mainClass": "com.example/com.example.Main",
         "projectName": "hproject"
       },
       {
@@ -45,16 +24,9 @@
       },
       {
         "type": "java",
-        "name": "DropMechanism",
+        "name": "BakeryGame",
         "request": "launch",
-        "mainClass": "com.example/com.example.DropMechanism",
-        "projectName": "hproject"
-      },
-      {
-        "type": "java",
-        "name": "Main",
-        "request": "launch",
-        "mainClass": "com.example/com.example.Main",
+        "mainClass": "com.example/com.cakegame.BakeryGame",
         "projectName": "hproject"
       },
       {
