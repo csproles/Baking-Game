@@ -47,14 +47,7 @@ public class GameOverScreen extends Application {
         menuButton.setFitHeight(100);
         menuButton.setLayoutX(20);
         menuButton.setLayoutY(0);
-        menuButton.setOnMouseClicked(e -> {
-            try {
-                new LS().start(new Stage());
-                stage.close();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        });
+        
         menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
         root.getChildren().add(menuButton);
 

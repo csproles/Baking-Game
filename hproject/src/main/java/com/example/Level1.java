@@ -234,9 +234,9 @@ public class Level1 extends Application {
         gameTimer.start();                    // Start it
         
         // Set gameTimer timeout handler
-        gameTimer.setOnTimeout(() -> {
-            Platform.runLater(() -> endGame("Time's up!"));
-        });
+        // gameTimer.setOnTimeout(() -> {
+        //     Platform.runLater(() -> endGame("Time's up!"));
+        // });
 
         level1Pane.setStyle(Constants.MAP_PANE_STYLE);
 
@@ -252,42 +252,87 @@ public class Level1 extends Application {
         playablePane.setStyle(Constants.PLAYABLE_PANE_STYLE);
 
         menuImageView.setOnMouseClicked(event -> {
-            System.out.println("LS Button clicked");
-
-            // Pause the timer when exiting to menu
+            //Pause the timer when exiting to menu
             if (gameTimer != null) {
                 gameTimer.pause();
             }
 
-            Level1.level1.hide();
-            Stage lsStage = new Stage();
-            LS ls = new LS();
-            ls.start(lsStage);
-        });
+            File exitFile = new File("hproject\\src\\main\\resources\\exitbutton.png");
+            Image exitImage = new Image(exitFile.toURI().toString());
+            ImageView exitImageView = new ImageView(exitImage);
+
+            File backFile = new File("hproject\\src\\main\\resources\\backbutton.png");
+            Image backImage = new Image(backFile.toURI().toString());
+            ImageView backImageView = new ImageView(backImage);
+
+            exitImageView.setFitWidth(250);
+            exitImageView.setFitHeight(250);
+            exitImageView.setPreserveRatio(true);
+
+            backImageView.setFitWidth(250);
+            backImageView.setFitHeight(250);
+            backImageView.setPreserveRatio(true);
+
+            Rectangle menuWall = new Rectangle(330, 480);
+            menuWall.setFill(Color.web("#B1B371"));
+            menuWall.setStroke(Color.web("#677830"));
+
+            Stage menuStage = new Stage();
+            Pane menuPane = new Pane();
+            Scene menuScene = new Scene(menuPane, 350, 500);
+
+            menuWall.setTranslateX(10);
+            menuWall.setTranslateY(10);
+
+            exitImageView.setTranslateX((350/2) - (250/2));
+            exitImageView.setTranslateY(250);
+
+            backImageView.setTranslateX((350/2) - (250/2));
+            backImageView.setTranslateY(0);
+
+            menuPane.setStyle(Constants.MAP_PANE_STYLE);
+
+            menuPane.getChildren().addAll(menuWall, backImageView, exitImageView);
+
+            menuStage.setScene(menuScene);
+
+            exitImageView.setOnMouseClicked(eventA -> {
+                LS.primaryStage.close();
+                Level1.level1.close();
+                menuStage.close();
+            });
+
+            backImageView.setOnMouseClicked(eventA -> {
+                menuStage.close();
+                gameTimer.start();
+            });
+
+            menuStage.show();
+    });
         
-        // Add click handler for pickup station to check cake delivery
-        pickupImageView.setOnMouseClicked(event -> {
-            // Check if player is close enough to the pickup station
-            double playerX = playerImageView.getLayoutX() + playerImageView.getFitWidth()/2;
-            double playerY = playerImageView.getLayoutY() + playerImageView.getFitHeight()/2;
-            double pickupX = pickupImageView.getTranslateX() + pickupImageView.getFitWidth()/2;
-            double pickupY = pickupImageView.getTranslateY() + pickupImageView.getFitHeight()/2;
+        // // Add click handler for pickup station to check cake delivery
+        // pickupImageView.setOnMouseClicked(event -> {
+        //     // Check if player is close enough to the pickup station
+        //     double playerX = playerImageView.getLayoutX() + playerImageView.getFitWidth()/2;
+        //     double playerY = playerImageView.getLayoutY() + playerImageView.getFitHeight()/2;
+        //     double pickupX = pickupImageView.getTranslateX() + pickupImageView.getFitWidth()/2;
+        //     double pickupY = pickupImageView.getTranslateY() + pickupImageView.getFitHeight()/2;
             
-            System.out.println("Player position: " + playerX + ", " + playerY);
-            System.out.println("Pickup position: " + pickupX + ", " + pickupY);
+        //     System.out.println("Player position: " + playerX + ", " + playerY);
+        //     System.out.println("Pickup position: " + pickupX + ", " + pickupY);
             
-            // Calculate distance between player and pickup
-            double distance = Math.sqrt(Math.pow(playerX - pickupX, 2) + Math.pow(playerY - pickupY, 2));
-            System.out.println("Distance to pickup: " + distance);
+        //     // Calculate distance between player and pickup
+        //     double distance = Math.sqrt(Math.pow(playerX - pickupX, 2) + Math.pow(playerY - pickupY, 2));
+        //     System.out.println("Distance to pickup: " + distance);
             
-            // If player is close enough and carrying a cake that hasn't been delivered
-            if (distance < 150 && !cakeDelivered && Constants.PLAYER_HAS_CAKE) {
-                System.out.println("Player is close enough to delivery point and has cake. Evaluating...");
-                evaluateCakeDelivery();
-            } else {
-                System.out.println("Cannot deliver: Distance=" + distance + ", HasCake=" + Constants.PLAYER_HAS_CAKE + ", AlreadyDelivered=" + cakeDelivered);
-            }
-        });
+        //     // If player is close enough and carrying a cake that hasn't been delivered
+        //     if (distance < 150 && !cakeDelivered && Constants.PLAYER_HAS_CAKE) {
+        //         System.out.println("Player is close enough to delivery point and has cake. Evaluating...");
+        //         evaluateCakeDelivery();
+        //     } else {
+        //         System.out.println("Cannot deliver: Distance=" + distance + ", HasCake=" + Constants.PLAYER_HAS_CAKE + ", AlreadyDelivered=" + cakeDelivered);
+        //     }
+        // });
 
         playablePane.getChildren().addAll(wall, mixerImageView, ovenImageView, decorationStationImageView, playerImageView, orderImageView, pickupImageView);
 
