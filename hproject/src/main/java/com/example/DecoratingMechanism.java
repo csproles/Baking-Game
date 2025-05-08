@@ -170,7 +170,7 @@ public class DecoratingMechanism extends Application {
                     cakeView.setVisible(false);
                     Constants.CAKE_DECORATED = true;
                     String expected = Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX];
-                    Constants.CORRECT_CAKE = expected.contains(currentCake.replace(".png", ""));
+                    Constants.CORRECT_CAKE = expected.contains(currentCake.replace("decorate_", "").replace("decorated_", "").replace(".png", ""));
 
                     // Delay closing after box image update
                     PauseTransition delay = new PauseTransition(Duration.seconds(1.2));
