@@ -33,23 +33,23 @@ public class PickUpStation extends Application {
         root.getChildren().addAll(topPane, bottomPane);
 
         // ── Menu icon (clickable) ──
-        File menuFile = new File("hproject\\src\\main\\resources\\menu.png");
-        Image menuImg = new Image(menuFile.toURI().toString());
-        ImageView menuButton = new ImageView(menuImg);
-        menuButton.setFitWidth(100);
-        menuButton.setFitHeight(100);
-        menuButton.setLayoutX(20);
-        menuButton.setLayoutY(0);
-        menuButton.setOnMouseClicked(e -> {
-            try {
-                new LS().start(new Stage());
-                stage.close();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        });
-        menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
-        root.getChildren().add(menuButton);
+        // File menuFile = new File("hproject\\src\\main\\resources\\menu.png");
+        // Image menuImg = new Image(menuFile.toURI().toString());
+        // ImageView menuButton = new ImageView(menuImg);
+        // menuButton.setFitWidth(100);
+        // menuButton.setFitHeight(100);
+        // menuButton.setLayoutX(20);
+        // menuButton.setLayoutY(0);
+        // menuButton.setOnMouseClicked(e -> {
+        //     try {
+        //         new LS().start(new Stage());
+        //         stage.close();
+        //     } catch (Exception ex) {
+        //         ex.printStackTrace();
+        //     }
+        // });
+        // menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
+        // root.getChildren().add(menuButton);
 
         // ── Pickup station background ──
         ImageView pickupBackground = new ImageView(load("PickUpStation.png"));

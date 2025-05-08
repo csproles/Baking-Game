@@ -30,7 +30,7 @@ public class Level1 extends Application{
     public static File selectedCakeFile;
     
     // Add game timer variables
-    private static GameTimer gameTimer;
+    static GameTimer gameTimer;
     private Label timerLabel;
     
    // Set timer from outside (optional)
@@ -218,10 +218,57 @@ private void updateTimerDisplay() {
                 gameTimer.pause();
             }
 
-            Level1.level1.hide();
-            Stage lsStage = new Stage();
-            LS ls = new LS();
-            ls.start(lsStage);
+            File exitFile = new File("hproject\\src\\main\\resources\\exitbutton.png");
+            Image exitImage = new Image(exitFile.toURI().toString());
+            ImageView exitImageView = new ImageView(exitImage);
+
+            File backFile = new File("hproject\\src\\main\\resources\\backbutton.png");
+            Image backImage = new Image(backFile.toURI().toString());
+            ImageView backImageView = new ImageView(backImage);
+
+            exitImageView.setFitWidth(250);
+            exitImageView.setFitHeight(250);
+            exitImageView.setPreserveRatio(true);
+
+            backImageView.setFitWidth(250);
+            backImageView.setFitHeight(250);
+            backImageView.setPreserveRatio(true);
+
+            Rectangle menuWall = new Rectangle(330, 480);
+            menuWall.setFill(Color.web("#B1B371"));
+            menuWall.setStroke(Color.web("#677830"));
+
+            Stage menuStage = new Stage();
+            Pane menuPane = new Pane();
+            Scene menuScene = new Scene(menuPane, 350, 500);
+
+            menuWall.setTranslateX(10);
+            menuWall.setTranslateY(10);
+
+            exitImageView.setTranslateX((350/2) - (250/2));
+            exitImageView.setTranslateY(250);
+
+            backImageView.setTranslateX((350/2) - (250/2));
+            backImageView.setTranslateY(50);
+
+            menuPane.setStyle(Constants.MAP_PANE_STYLE);
+
+            menuPane.getChildren().addAll(menuWall, backImageView, exitImageView);
+
+            menuStage.setScene(menuScene);
+
+            exitImageView.setOnMouseClicked(eventA -> {
+                LS.primaryStage.close();
+                Level1.level1.close();
+                menuStage.close();
+            });
+
+            backImageView.setOnMouseClicked(eventB -> {
+                menuStage.close();
+                gameTimer.start();
+            });
+
+            menuStage.show();
         });
 
         playablePane.getChildren().addAll(wall, mixerImageView, ovenImageView, decorationStationImageView, playerImageView, orderImageView, pickupImageView);

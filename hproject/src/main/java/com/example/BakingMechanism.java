@@ -44,23 +44,23 @@ public class BakingMechanism extends Application {
         root.getChildren().addAll(topPane, bottomPane);
 
         //menu button
-        File menuFile = new File("hproject/src/main/resources/menu.png");
-        Image menuImg = new Image(menuFile.toURI().toString());
-        ImageView menuButton = new ImageView(menuImg);
-        menuButton.setFitWidth(100);
-        menuButton.setFitHeight(100);
-        menuButton.setLayoutX(20);
-        menuButton.setLayoutY(0);
-        menuButton.setOnMouseClicked(e -> {
-            try {
-                new LS().start(new Stage());
-                primaryStage.close();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        });
-        menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
-        root.getChildren().add(menuButton);
+        // File menuFile = new File("hproject/src/main/resources/menu.png");
+        // Image menuImg = new Image(menuFile.toURI().toString());
+        // ImageView menuButton = new ImageView(menuImg);
+        // menuButton.setFitWidth(100);
+        // menuButton.setFitHeight(100);
+        // menuButton.setLayoutX(20);
+        // menuButton.setLayoutY(0);
+        // menuButton.setOnMouseClicked(e -> {
+        //     try {
+        //         new LS().start(new Stage());
+        //         primaryStage.close();
+        //     } catch (Exception ex) {
+        //         ex.printStackTrace();
+        //     }
+        // });
+        // menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
+        // root.getChildren().add(menuButton);
 
         // backround image
         ImageView bgImage = new ImageView(loadImage("bake.png"));

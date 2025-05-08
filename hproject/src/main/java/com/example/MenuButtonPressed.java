@@ -11,11 +11,11 @@ import javafx.stage.Stage;
 class MenuButtonPressed implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent e) {
-        System.out.println("Menu Button clicked");
+        System.out.println("Menu Button Clicked"); 
 
-        Level1.level1.hide();
-        Stage lsStage = new Stage();
-        LS ls = new LS();
-        ls.start(lsStage);
+        LS.primaryStage.hide();
+        Stage level1Stage = new Stage();
+        Level1 level1 = new Level1();
+        level1.start(level1Stage);
     }
 }  

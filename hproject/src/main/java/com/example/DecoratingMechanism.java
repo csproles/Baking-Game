@@ -49,22 +49,22 @@ public class DecoratingMechanism extends Application {
         root.getChildren().addAll(topPane, bottomPane);
 
         //menu button
-        File menuFile = new File("hproject/src/main/resources/menu.png");
-        ImageView menuButton = new ImageView(new Image(menuFile.toURI().toString()));
-        menuButton.setFitWidth(100);
-        menuButton.setFitHeight(100);
-        menuButton.setLayoutX(20);
-        menuButton.setLayoutY(0);
-        menuButton.setOnMouseClicked(e -> {
-            try {
-                new LS().start(new Stage());
-                stage.close();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        });
-        menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
-        root.getChildren().add(menuButton);
+        // File menuFile = new File("hproject/src/main/resources/menu.png");
+        // ImageView menuButton = new ImageView(new Image(menuFile.toURI().toString()));
+        // menuButton.setFitWidth(100);
+        // menuButton.setFitHeight(100);
+        // menuButton.setLayoutX(20);
+        // menuButton.setLayoutY(0);
+        // menuButton.setOnMouseClicked(e -> {
+        //     try {
+        //         new LS().start(new Stage());
+        //         stage.close();
+        //     } catch (Exception ex) {
+        //         ex.printStackTrace();
+        //     }
+        // });
+        // menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
+        // root.getChildren().add(menuButton);
 
         //background image
         ImageView bgImage = new ImageView(load("decorate.png"));
