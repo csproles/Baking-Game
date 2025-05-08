@@ -118,9 +118,6 @@ public class PickUpStation extends Application {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-=======
-=======
->>>>>>> Stashed changes
             Constants.HAS_ORDERED = false;
             Constants.CAKE_MIXED = false;
             Constants.CAKE_BAKED = false;
@@ -130,10 +127,7 @@ public class PickUpStation extends Application {
             Constants.CAKE_TYPE_CHOCOLATE = false;
             CakeImageHandler.changeImage(0);
             stage.close();
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
         });
         nextOrderButton.setOnMouseEntered(e -> nextOrderButton.setStyle("-fx-cursor: hand;"));
 
