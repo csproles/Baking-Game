@@ -35,7 +35,7 @@ public class BakingMechanism extends Application {
         this.primaryStage = primaryStage;
         root = new Pane();
 
-        // ── Background color split ──
+        // backround colors
         Rectangle topPane = new Rectangle(Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
         topPane.setFill(Color.web("#677830"));
         Rectangle bottomPane = new Rectangle(Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
@@ -43,7 +43,7 @@ public class BakingMechanism extends Application {
         bottomPane.setLayoutY(100);
         root.getChildren().addAll(topPane, bottomPane);
 
-        // ── Menu button ──
+        //menu button
         File menuFile = new File("hproject/src/main/resources/menu.png");
         Image menuImg = new Image(menuFile.toURI().toString());
         ImageView menuButton = new ImageView(menuImg);
@@ -62,7 +62,7 @@ public class BakingMechanism extends Application {
         menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
         root.getChildren().add(menuButton);
 
-        // ── Station background ──
+        // backround image
         ImageView bgImage = new ImageView(loadImage("bake.png"));
         bgImage.setFitWidth(800);
         bgImage.setFitHeight(500);
@@ -70,7 +70,7 @@ public class BakingMechanism extends Application {
         bgImage.setLayoutY(100);
         root.getChildren().add(bgImage);
 
-        // ── Oven ──
+        // oven
         oven = new ImageView(loadImage("oven.png"));
         oven.setFitWidth(600);
         oven.setFitHeight(450);
@@ -78,7 +78,7 @@ public class BakingMechanism extends Application {
         oven.setLayoutY(200);
         root.getChildren().add(oven);
 
-        // ── Cake Pan ──
+        // cake pan
         cakePan = new ImageView(loadImage(
                 "vanilla".equals(flavor) ? "pan_full_vanilla.png" : "cake_pan_full.png"
         ));

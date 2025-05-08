@@ -17,12 +17,12 @@ public class GameOverScreen extends Application {
     public void start(Stage stage) {
         Pane root = new Pane();
 
-        // ── Background color (only one pane) ──
+        // Background 
         Rectangle background = new Rectangle(Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
         background.setFill(Color.web("#B1B371"));
         root.getChildren().add(background);
 
-        // ── Menu Button ──
+        // Menu Button
         File menuFile = new File("hproject/src/main/resources/menu.png");
         ImageView menuButton = new ImageView(new Image(menuFile.toURI().toString()));
         menuButton.setFitWidth(100);
@@ -40,7 +40,7 @@ public class GameOverScreen extends Application {
         menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
         root.getChildren().add(menuButton);
 
-        // ── Play Again Button ──
+        // Play Again Button
         File playAgainFile = new File("hproject/src/main/resources/play_again.png");
         ImageView playAgainButton = new ImageView(new Image(playAgainFile.toURI().toString()));
         playAgainButton.setFitWidth(200);
@@ -58,16 +58,16 @@ public class GameOverScreen extends Application {
         playAgainButton.setOnMouseEntered(e -> playAgainButton.setStyle("-fx-cursor: hand;"));
         root.getChildren().add(playAgainButton);
 
-        // ── Game Over Image ──
+        // Game Over Image 
         root.getChildren().add(centeredImage("game_over.png", 800, 300, 220, 50));
 
-        // ── Your Score Image ──
+        // Score Image 
         root.getChildren().add(centeredImage("your_score.png", 300, 125, 300, 350));
 
-        // ── Empty Score Display ──
+        // Empty Score Display
         root.getChildren().add(centeredImage("empty_score.png", 300, 125, 650, 350));
 
-        // ── Scene Setup ──
+        //Scene Setup 
         Scene scene = new Scene(root, Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
         stage.setScene(scene);
         stage.setTitle("Game Over");

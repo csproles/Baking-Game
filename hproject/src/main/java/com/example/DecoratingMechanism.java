@@ -40,7 +40,7 @@ public class DecoratingMechanism extends Application {
         this.primaryStage = stage;
         Pane root = new Pane();
 
-        // ── Background color split ──
+        // bacround colors
         Rectangle topPane = new Rectangle(Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
         topPane.setFill(Color.web("#677830"));
         Rectangle bottomPane = new Rectangle(Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
@@ -48,7 +48,7 @@ public class DecoratingMechanism extends Application {
         bottomPane.setLayoutY(100);
         root.getChildren().addAll(topPane, bottomPane);
 
-        // ── Menu button ──
+        //menu button
         File menuFile = new File("hproject/src/main/resources/menu.png");
         ImageView menuButton = new ImageView(new Image(menuFile.toURI().toString()));
         menuButton.setFitWidth(100);
@@ -66,7 +66,7 @@ public class DecoratingMechanism extends Application {
         menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
         root.getChildren().add(menuButton);
 
-        // ── Background image ──
+        //background image
         ImageView bgImage = new ImageView(load("decorate.png"));
         bgImage.setFitWidth(800);
         bgImage.setFitHeight(500);
@@ -74,7 +74,7 @@ public class DecoratingMechanism extends Application {
         bgImage.setLayoutY(100);
         root.getChildren().add(bgImage);
 
-        // ── Cake box ──
+        //box image
         boxView = new ImageView(load("box.png"));
         boxView.setLayoutX(950);
         boxView.setLayoutY(320);
@@ -82,7 +82,7 @@ public class DecoratingMechanism extends Application {
         boxView.setFitHeight(200);
         root.getChildren().add(boxView);
 
-        // ── Determine cake flavor from Constants ──
+        // flavor
         String flavor = Constants.CAKE_TYPE_VANILLA ? "vanilla" : "cocoa";
         currentCake = "vanilla".equals(flavor) ? "naked_vanilla.png" : "naked_chocolate.png";
         cakeView = new ImageView(load(currentCake));
@@ -92,7 +92,7 @@ public class DecoratingMechanism extends Application {
         cakeView.setFitHeight(150);
         root.getChildren().add(cakeView);
 
-        // ── Decorations ──
+        // decorations
         for (int i = 0; i < decorations.length; i++) {
             String name = decorations[i];
             ImageView item = new ImageView(load(name));
@@ -106,7 +106,7 @@ public class DecoratingMechanism extends Application {
             root.getChildren().add(item);
         }
 
-        // ── Order Note ──
+        // note image
         File noteFile = new File("hproject/src/main/resources/note.png");
         ImageView noteImageView = new ImageView(new Image(noteFile.toURI().toString()));
         noteImageView.setFitWidth(600);
@@ -115,7 +115,7 @@ public class DecoratingMechanism extends Application {
         noteImageView.setLayoutY(100);
         root.getChildren().add(noteImageView);
 
-        // ── Ordered Cake Image ──
+        //cake image
         File selectedCakeFile = new File("hproject/src/main/resources/" + Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX]);
         Image selectedCakeImage = new Image(selectedCakeFile.toURI().toString());
         ImageView selectedCakeImageView = new ImageView(selectedCakeImage);
@@ -125,7 +125,7 @@ public class DecoratingMechanism extends Application {
         selectedCakeImageView.setLayoutY(220);
         root.getChildren().add(selectedCakeImageView);
 
-        // ── Enable drag on initial cake ──
+        //dragging the cake
         setupDrag(cakeView, currentCake, cakeView.getLayoutX(), cakeView.getLayoutY(), root);
 
         Scene scene = new Scene(root, Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
@@ -172,7 +172,7 @@ public class DecoratingMechanism extends Application {
                     String expected = Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX];
                     Constants.CORRECT_CAKE = expected.contains(currentCake.replace("decorate_", "").replace("decorated_", "").replace(".png", ""));
 
-                    // Delay closing after box image update
+                    //close the stage
                     PauseTransition delay = new PauseTransition(Duration.seconds(1.2));
                     delay.setOnFinished(evt -> primaryStage.close());
                     delay.play();

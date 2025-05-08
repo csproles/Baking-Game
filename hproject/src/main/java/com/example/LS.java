@@ -112,7 +112,7 @@ public class LS extends Application {
             System.out.println("Button 1 clicked");
 
             gameTimer = new GameTimer(true);
-            gameTimer.initialize(10); // 2:30
+            gameTimer.initialize(150); // 2:30
 
             gameTimer.setOnTimeout(() -> {
                 System.out.println("Time's up!");
