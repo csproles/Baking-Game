@@ -125,7 +125,11 @@ public class PickUpStation extends Application {
 
         item.setOnMouseReleased((MouseEvent e) -> {
             if (item.getBoundsInParent().intersects(customerView.getBoundsInParent())) {
-                customerView.setImage(load("customer_2.png"));
+                if (Constants.CORRECT_CAKE) {
+                    customerView.setImage(load("customer_2.png"));
+                } else {
+                    customerView.setImage(load("customer_3.png"));
+                }
                 item.setVisible(false);
                 if (!root.getChildren().contains(nextOrderButton)) {
                     root.getChildren().add(nextOrderButton); // ✅ now add button

@@ -189,6 +189,8 @@ public class Constants {
 
     public static int CURRENT_ORDER_INDEX = 0;
 
+    public static boolean CORRECT_CAKE = false;
+
     // public static File selectedCakeFile = new File("hproject\\src\\main\\resources\\" + Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX]);
     // public static Image selectedCakeImage = new Image(selectedCakeFile.toURI().toString());
     // public static ImageView selectedCakeImageView = new ImageView(selectedCakeImage);
