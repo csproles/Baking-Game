@@ -1,9 +1,11 @@
 package com.example;
 
 import java.io.File;
+import java.io.FileInputStream;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 
 public class Constants {
 
@@ -175,6 +177,7 @@ public class Constants {
     public static double DECORATIONSTATION_LEVEL1_X = PLAYABLE_PANE_WIDTH/2 + 300;
     public static double DECORATIONSTATION_LEVEL1_Y = -25;
 
+
     public static final String[] CAKE_OPTIONS = {
         "nocake.png",
         "cut_chocolate_chocolate_sprinkles.png",
@@ -186,15 +189,25 @@ public class Constants {
         "cut_vanilla_strawberry_sprinkles.png",
         "cut_vanilla_strawberry_strawberry.png"
     };
-
-    public static int CURRENT_ORDER_INDEX = 0;
-
-    public static boolean CORRECT_CAKE = false;
-
+    // Variables to track cake state
+    public static boolean PLAYER_HAS_CAKE = false;
+    public static int PLAYER_CAKE_INDEX = -1;  // -1 means no cake
+    public static int CURRENT_ORDER_INDEX = 0; // Index of the current cake order
     // public static File selectedCakeFile = new File("hproject\\src\\main\\resources\\" + Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX]);
     // public static Image selectedCakeImage = new Image(selectedCakeFile.toURI().toString());
     // public static ImageView selectedCakeImageView = new ImageView(selectedCakeImage);
+    public static boolean CORRECT_CAKE;
 
     // public static Constants.selectedCakeImageView.setFitWidth(125);
     // public static Constants.selectedCakeImageView.setFitHeight(125);
+
+    // Constants.java
+    public static Font getArcadeFont(double size) {
+    try {
+        return Font.loadFont(new FileInputStream("hproject/src/main/resources/fonts/arcade.ttf"), size);
+    } catch (Exception e) {
+        e.printStackTrace();
+        return Font.font("Verdana", size); // fallback font
+    }
+    }
 }

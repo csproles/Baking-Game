@@ -3,6 +3,20 @@
     "configurations": [
       {
         "type": "java",
+        "name": "HighScoreScreen",
+        "request": "launch",
+        "mainClass": "com.example/com.example.util.HighScoreScreen",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
+        "name": "MixingMechanism",
+        "request": "launch",
+        "mainClass": "com.example/com.example.MixingMechanism",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
         "name": "GameOverScreen",
         "request": "launch",
         "mainClass": "com.example/com.example.GameOverScreen",
