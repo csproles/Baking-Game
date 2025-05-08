@@ -47,27 +47,63 @@ public class GameOverScreen extends Application {
         menuButton.setFitHeight(100);
         menuButton.setLayoutX(20);
         menuButton.setLayoutY(0);
-        
         menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
-        root.getChildren().add(menuButton);
-
-        // Play Again Button
-        File playAgainFile = new File("hproject/src/main/resources/play_again.png");
-        ImageView playAgainButton = new ImageView(new Image(playAgainFile.toURI().toString()));
-        playAgainButton.setFitWidth(200);
-        playAgainButton.setFitHeight(150);
-        playAgainButton.setLayoutX(525);
-        playAgainButton.setLayoutY(450);
-        playAgainButton.setOnMouseClicked(e -> {
+        menuButton.setOnMouseClicked(e -> {
             try {
-                new Level1().start(new Stage());
+                new LS().start(new Stage());
                 stage.close();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         });
-        playAgainButton.setOnMouseEntered(e -> playAgainButton.setStyle("-fx-cursor: hand;"));
+        root.getChildren().add(menuButton);
+
+        // Play Again Button
+        ImageView playAgainButton = new ImageView(new Image("file:hproject/src/main/resources/play_again.png"));
+        playAgainButton.setFitWidth(200);
+        playAgainButton.setFitHeight(150);
+        playAgainButton.setLayoutX(530);
+        playAgainButton.setLayoutY(450);
+        playAgainButton.setPickOnBounds(true); // makes transparent parts clickable
+
+        playAgainButton.setOnMouseClicked(e -> {
+            System.out.println("Play Again button clicked!");
+
+            try {
+                // ✅ Reset all game state
+                Constants.HAS_ORDERED = false;
+                Constants.CAKE_MIXED = false;
+                Constants.CAKE_BAKED = false;
+                Constants.CAKE_DECORATED = false;
+                Constants.CAKE_TYPE_VANILLA = false;
+                Constants.CAKE_TYPE_CHOCOLATE = false;
+                Constants.PLAYER_HAS_CAKE = false;
+                Constants.PLAYER_CAKE_INDEX = 0;
+                Constants.CURRENT_ORDER_INDEX = (int)(Math.random() * Constants.CAKE_OPTIONS.length);
+
+                // ✅ Reset score
+                com.example.util.ScoreTracker.getInstance().resetScore();
+
+                // ✅ Create and assign a new timer
+                com.example.util.GameTimer freshTimer = new com.example.util.GameTimer(true);
+                freshTimer.initialize(150); // 2 minutes 30 seconds
+
+                // ✅ Launch new Level1 with fresh timer
+                Level1 newLevel = new Level1();
+                newLevel.setGameTimer(freshTimer);
+                newLevel.start(new Stage());
+
+                // ✅ Close game over screen
+                stage.close();
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
         root.getChildren().add(playAgainButton);
+
+
 
         // Game Over Image 
         root.getChildren().add(centeredImage("game_over.png", 800, 300, 220, 50));
