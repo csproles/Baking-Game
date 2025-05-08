@@ -79,7 +79,7 @@ public class GameOverScreen extends Application {
                 Constants.CAKE_TYPE_CHOCOLATE = false;
                 Constants.PLAYER_HAS_CAKE = false;
                 Constants.PLAYER_CAKE_INDEX = 0;
-                Constants.CURRENT_ORDER_INDEX = (int)(Math.random() * Constants.CAKE_OPTIONS.length);
+                Constants.CURRENT_ORDER_INDEX = 0;
 
                 // ✅ Reset score
                 com.example.util.ScoreTracker.getInstance().resetScore();
