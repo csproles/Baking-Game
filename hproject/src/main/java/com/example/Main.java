@@ -2,6 +2,8 @@ package com.example;
 
 import com.example.util.GameTimer;
 
+import javafx.stage.Stage;
+
 public class Main {
     public static void main(String[] args) {
         // Create the game timer (as a countdown timer)
@@ -14,7 +16,14 @@ gameTimer.initialize(150);
 // Set what happens when timer runs out
 gameTimer.setOnTimeout(() -> {
     System.out.println("Time's up!");
-    // Add your game over logic here
+    javafx.application.Platform.runLater(() -> {
+        try {
+            new GameOverScreen().start(new Stage());
+            if (Level1.level1 != null) Level1.level1.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    });
 });
 
 // Pass the timer to Level1

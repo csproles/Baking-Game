@@ -13,54 +13,44 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
- * Creates A Level Selection Screen For The User To Chose What Level They Want To Play
+ * Creates A Level Selection Screen For The User To Choose What Level They Want To Play
  */
 public class LS extends Application {
 
     public static Stage primaryStage;
-    private static GameTimer gameTimer; // Add the GameTimer as a static variable
+    private static GameTimer gameTimer;
 
-    /**
-     * Method to set the game timer
-     * @param timer The timer to use for the game
-     */
     public void setGameTimer(GameTimer timer) {
         gameTimer = timer;
     }
 
-    /**
-     * Method to start Level 1 with a 2:30 timer
-     */
     public void startLevel1() {
-        // Hide the level selection screen
-        primaryStage.hide(); // Use primaryStage instead of level
-        
-        // Create a new GameTimer for Level1 (2 minutes and 30 seconds)
-        gameTimer = new GameTimer(true); // true means countdown
-        gameTimer.initialize(150); // 2:30 = 150 seconds
-        
-        // Set timeout action
+        primaryStage.hide();
+
+        gameTimer = new GameTimer(true);
+        gameTimer.initialize(150); // 2:30 minutes
+
         gameTimer.setOnTimeout(() -> {
-            // This will be executed when time runs out
             System.out.println("Time's up!");
-            // You can add additional logic for game over here
+            javafx.application.Platform.runLater(() -> {
+                try {
+                    new GameOverScreen().start(new Stage());
+                    if (Level1.level1 != null) Level1.level1.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
         });
-        
-        // Create and start Level1
+
         Level1 level1 = new Level1();
-        level1.setGameTimer(gameTimer); // Pass the timer to Level1
-        
+        level1.setGameTimer(gameTimer);
         Stage level1Stage = new Stage();
         level1.start(level1Stage);
-        
-        // Start the timer when the level begins
         gameTimer.start();
     }
 
     @Override
-    public void start(Stage primaryStage){
-        
-        //Assigns the stage variable to the global variable
+    public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
 
         File level1File = new File("hproject\\src\\main\\resources\\level1.png");
@@ -107,9 +97,9 @@ public class LS extends Application {
         titleImageView.setFitWidth(950);
         titleImageView.setFitHeight(550);
 
-        level1ImageView.setTranslateX(-Constants.LS_BUTTON_SIZE - Constants.LS_BUTTON_SIZE/3);
-        level3ImageView.setTranslateX(Constants.LS_BUTTON_SIZE + Constants.LS_BUTTON_SIZE/3);
-        level3ImageViewCS.setTranslateX(Constants.LS_BUTTON_SIZE + Constants.LS_BUTTON_SIZE/3);
+        level1ImageView.setTranslateX(-Constants.LS_BUTTON_SIZE - Constants.LS_BUTTON_SIZE / 3);
+        level3ImageView.setTranslateX(Constants.LS_BUTTON_SIZE + Constants.LS_BUTTON_SIZE / 3);
+        level3ImageViewCS.setTranslateX(Constants.LS_BUTTON_SIZE + Constants.LS_BUTTON_SIZE / 3);
 
         level1ImageView.setTranslateY(175);
         level2ImageView.setTranslateY(175);
@@ -120,51 +110,46 @@ public class LS extends Application {
 
         level1ImageView.setOnMouseClicked(event -> {
             System.out.println("Button 1 clicked");
-            
-            // Set up the timer for level 1
-            if (gameTimer != null) {
-                // Initialize with appropriate time limit for level 1 (e.g., 5 minutes)
-                gameTimer.initialize(300); // 300 seconds = 5 minutes
-                
-                // Set timeout action
-                gameTimer.setOnTimeout(() -> {
-                    System.out.println("Time's up!");
-                    // Handle time's up scenario - could show game over screen
+
+            gameTimer = new GameTimer(true);
+            gameTimer.initialize(10); // 2:30
+
+            gameTimer.setOnTimeout(() -> {
+                System.out.println("Time's up!");
+                javafx.application.Platform.runLater(() -> {
+                    try {
+                        new GameOverScreen().start(new Stage());
+                        if (Level1.level1 != null) Level1.level1.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 });
-            }
+            });
 
             LS.primaryStage.hide();
             Stage level1Stage = new Stage();
             Level1 level1 = new Level1();
-            
-            // Pass the timer to Level1 if it has been modified to accept it
-            if (gameTimer != null) {
-                level1.setGameTimer(gameTimer);
-                
-                // Start the timer when the level starts
-                gameTimer.start();
-            }
-            
+            level1.setGameTimer(gameTimer);
             level1.start(level1Stage);
+            gameTimer.start();
         });
 
-        //Creates a pane
         StackPane levelSelectionPane = new StackPane();
-
-        //Assigns the buttons to the pane and sets style of the pane
-        levelSelectionPane.getChildren().addAll(titleImageView, level1ImageView, level2ImageView, level2ImageViewCS, level3ImageView, level3ImageViewCS);
+        levelSelectionPane.getChildren().addAll(
+            titleImageView,
+            level1ImageView,
+            level2ImageView,
+            level2ImageViewCS,
+            level3ImageView,
+            level3ImageViewCS
+        );
         levelSelectionPane.setStyle(Constants.LS_PANE_STYLE);
-        
-        //Creates a scene for level selection
+
         Scene scene = new Scene(levelSelectionPane, Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
-        
-        //Names the stage, and assigns the scene to the stage
         primaryStage.setTitle("Level Selection");
         primaryStage.setScene(scene);
 
         System.out.println("Current Order b4: " + Constants.CAKE_OPTIONS[Constants.CURRENT_ORDER_INDEX]);
-
-        //shows the stage
         primaryStage.show();
     }
 

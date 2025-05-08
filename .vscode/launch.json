@@ -3,6 +3,13 @@
     "configurations": [
       {
         "type": "java",
+        "name": "GameOverScreen",
+        "request": "launch",
+        "mainClass": "com.example/com.example.GameOverScreen",
+        "projectName": "hproject"
+      },
+      {
+        "type": "java",
         "name": "PickUpStation",
         "request": "launch",
         "mainClass": "com.example/com.example.PickUpStation",
