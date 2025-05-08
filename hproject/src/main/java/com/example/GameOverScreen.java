@@ -1,17 +1,35 @@
 package com.example;
 
+import com.example.util.ScoreTracker;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.File;
 
 public class GameOverScreen extends Application {
+    
+    // Add fields to store the score
+    private int finalScore = 0;
+    
+    // Constructor that accepts a score parameter
+    public GameOverScreen() {
+        // Default constructor
+    }
+    
+    // Constructor with score parameter
+    public GameOverScreen(int score) {
+        this.finalScore = score;
+    }
 
     @Override
     public void start(Stage stage) {
@@ -66,6 +84,23 @@ public class GameOverScreen extends Application {
 
         // Empty Score Display
         root.getChildren().add(centeredImage("empty_score.png", 300, 125, 650, 350));
+        
+        // New: Display the score
+        // If finalScore is 0, try to get from ScoreTracker
+        if (finalScore == 0) {
+            finalScore = ScoreTracker.getInstance().getScore();
+        }
+        
+        // Add score text
+        Label scoreLabel = new Label("" + finalScore);
+        scoreLabel.setFont(Font.font("Arial", FontWeight.BOLD, 48));
+        scoreLabel.setLayoutX(750);
+        scoreLabel.setLayoutY(387);
+        scoreLabel.setTextFill(Color.BLACK);
+        root.getChildren().add(scoreLabel);
+        
+        // Output score to console for debugging
+        System.out.println("GameOverScreen displaying score: " + finalScore);
 
         //Scene Setup 
         Scene scene = new Scene(root, Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
