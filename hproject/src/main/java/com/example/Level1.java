@@ -249,7 +249,7 @@ private void updateTimerDisplay() {
             exitImageView.setTranslateY(250);
 
             backImageView.setTranslateX((350/2) - (250/2));
-            backImageView.setTranslateY(50);
+            backImageView.setTranslateY(0);
 
             menuPane.setStyle(Constants.MAP_PANE_STYLE);
 
