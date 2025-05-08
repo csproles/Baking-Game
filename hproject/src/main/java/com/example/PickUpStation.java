@@ -1,6 +1,5 @@
 package com.example;
 
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,23 +11,18 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-
 import java.io.File;
-
 
 public class PickUpStation extends Application {
 
-
     private ImageView customerView;
     private ImageView boxView;
-    private Button nextOrderButton;
+    private ImageView nextOrderButton; // changed type to ImageView
     private Pane root;
-
 
     @Override
     public void start(Stage stage) {
         root = new Pane();
-
 
         // ── Background color split ──
         Rectangle topPane = new Rectangle(Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
@@ -37,7 +31,6 @@ public class PickUpStation extends Application {
         bottomPane.setFill(Color.web("#B1B371"));
         bottomPane.setLayoutY(100);
         root.getChildren().addAll(topPane, bottomPane);
-
 
         // ── Menu icon (clickable) ──
         File menuFile = new File("hproject\\src\\main\\resources\\menu.png");
@@ -58,7 +51,6 @@ public class PickUpStation extends Application {
         menuButton.setOnMouseEntered(e -> menuButton.setStyle("-fx-cursor: hand;"));
         root.getChildren().add(menuButton);
 
-
         // ── Pickup station background ──
         ImageView pickupBackground = new ImageView(load("PickUpStation.png"));
         pickupBackground.setFitWidth(1000);
@@ -67,7 +59,6 @@ public class PickUpStation extends Application {
         pickupBackground.setLayoutX(100);
         root.getChildren().add(pickupBackground);
 
-
         // ── Customer image ──
         customerView = new ImageView(load("customer_1.png"));
         customerView.setFitWidth(300);
@@ -75,7 +66,6 @@ public class PickUpStation extends Application {
         customerView.setLayoutX(600);
         customerView.setLayoutY(158);
         root.getChildren().add(customerView);
-
 
         // ── Draggable cake box ──
         boxView = new ImageView(load("box_closed.png"));
@@ -86,25 +76,16 @@ public class PickUpStation extends Application {
         setupDrag(boxView);
         root.getChildren().add(boxView);
 
-
-        // ── NEXT ORDER button (appears after delivery) ──
-        // ── NEXT ORDER image button ──
+        // ── NEXT ORDER button (hidden initially) ──
         File nextOrderFile = new File("hproject/src/main/resources/nextorder.png");
         Image nextOrderImg = new Image(nextOrderFile.toURI().toString());
-        ImageView nextOrderButton = new ImageView(nextOrderImg);
-
-
-        // Set size and position
+        nextOrderButton = new ImageView(nextOrderImg); // assign to class field so it can be added later
         nextOrderButton.setFitWidth(120);
         nextOrderButton.setFitHeight(120);
         nextOrderButton.setLayoutX(1100);
         nextOrderButton.setLayoutY(520);
-
-
-        // Make it clickable
         nextOrderButton.setOnMouseClicked(e -> {
             try {
-                // new Level1().start(new Stage());
                 Constants.HAS_ORDERED = false;
                 Constants.CAKE_MIXED = false;
                 Constants.CAKE_BAKED = false;
@@ -113,27 +94,13 @@ public class PickUpStation extends Application {
                 Constants.CAKE_TYPE_VANILLA = false;
                 Constants.CAKE_TYPE_CHOCOLATE = false;
                 CakeImageHandler.changeImage(0);
-
                 stage.close();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-            Constants.HAS_ORDERED = false;
-            Constants.CAKE_MIXED = false;
-            Constants.CAKE_BAKED = false;
-            Constants.CAKE_DECORATED = false;
-            Constants.HAS_DELIVERED = false;
-            Constants.CAKE_TYPE_VANILLA = false;
-            Constants.CAKE_TYPE_CHOCOLATE = false;
-            CakeImageHandler.changeImage(0);
-            stage.close();
-
         });
         nextOrderButton.setOnMouseEntered(e -> nextOrderButton.setStyle("-fx-cursor: hand;"));
-
-
-        root.getChildren().add(nextOrderButton);
-
+        // ❌ Don't add nextOrderButton to root yet
 
         // ── Final scene setup ──
         Scene scene = new Scene(root, Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
@@ -142,40 +109,34 @@ public class PickUpStation extends Application {
         stage.show();
     }
 
-
     private void setupDrag(ImageView item) {
         final double[] offsetX = new double[1];
         final double[] offsetY = new double[1];
-
 
         item.setOnMousePressed((MouseEvent e) -> {
             offsetX[0] = e.getSceneX() - item.getLayoutX();
             offsetY[0] = e.getSceneY() - item.getLayoutY();
         });
 
-
         item.setOnMouseDragged((MouseEvent e) -> {
             item.setLayoutX(e.getSceneX() - offsetX[0]);
             item.setLayoutY(e.getSceneY() - offsetY[0]);
         });
-
 
         item.setOnMouseReleased((MouseEvent e) -> {
             if (item.getBoundsInParent().intersects(customerView.getBoundsInParent())) {
                 customerView.setImage(load("customer_2.png"));
                 item.setVisible(false);
                 if (!root.getChildren().contains(nextOrderButton)) {
-                    root.getChildren().add(nextOrderButton);
+                    root.getChildren().add(nextOrderButton); // ✅ now add button
                 }
             }
         });
     }
 
-
     private Image load(String name) {
         return new Image(getClass().getResource("/" + name).toExternalForm());
     }
-
 
     public static void main(String[] args) {
         launch(args);

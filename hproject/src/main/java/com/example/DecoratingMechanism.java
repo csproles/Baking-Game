@@ -1,5 +1,6 @@
 package com.example;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -9,12 +10,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 
 public class DecoratingMechanism extends Application {
 
-    private static String flavor = "cocoa";
     private static boolean launchedFromBaking = false;
 
     private ImageView cakeView;
@@ -28,10 +29,6 @@ public class DecoratingMechanism extends Application {
         "strawberry.png",
         "sprinkles.png"
     };
-
-    public static void setFlavor(String selectedFlavor) {
-        flavor = selectedFlavor;
-    }
 
     public static void startFromBaking() {
         launchedFromBaking = true;
@@ -51,10 +48,9 @@ public class DecoratingMechanism extends Application {
         bottomPane.setLayoutY(100);
         root.getChildren().addAll(topPane, bottomPane);
 
-        // ── Menu button (clickable) ──
-        File menuFile = new File("hproject\\src\\main\\resources\\menu.png");
-        Image menuImg = new Image(menuFile.toURI().toString());
-        ImageView menuButton = new ImageView(menuImg);
+        // ── Menu button ──
+        File menuFile = new File("hproject/src/main/resources/menu.png");
+        ImageView menuButton = new ImageView(new Image(menuFile.toURI().toString()));
         menuButton.setFitWidth(100);
         menuButton.setFitHeight(100);
         menuButton.setLayoutX(20);
@@ -86,7 +82,8 @@ public class DecoratingMechanism extends Application {
         boxView.setFitHeight(200);
         root.getChildren().add(boxView);
 
-        // ── Cake ──
+        // ── Determine cake flavor from Constants ──
+        String flavor = Constants.CAKE_TYPE_VANILLA ? "vanilla" : "cocoa";
         currentCake = "vanilla".equals(flavor) ? "naked_vanilla.png" : "naked_chocolate.png";
         cakeView = new ImageView(load(currentCake));
         cakeView.setLayoutX(800);
@@ -105,15 +102,13 @@ public class DecoratingMechanism extends Application {
             double startY = 380;
             item.setLayoutX(startX);
             item.setLayoutY(startY);
-
             setupDrag(item, name, startX, startY, root);
             root.getChildren().add(item);
         }
 
-        // ── Order Note Background ──
+        // ── Order Note ──
         File noteFile = new File("hproject/src/main/resources/note.png");
-        Image noteImage = new Image(noteFile.toURI().toString());
-        ImageView noteImageView = new ImageView(noteImage);
+        ImageView noteImageView = new ImageView(new Image(noteFile.toURI().toString()));
         noteImageView.setFitWidth(600);
         noteImageView.setFitHeight(525);
         noteImageView.setLayoutX(-100);
@@ -130,7 +125,7 @@ public class DecoratingMechanism extends Application {
         selectedCakeImageView.setLayoutY(220);
         root.getChildren().add(selectedCakeImageView);
 
-        // ── Draggable cake ──
+        // ── Enable drag on initial cake ──
         setupDrag(cakeView, currentCake, cakeView.getLayoutX(), cakeView.getLayoutY(), root);
 
         Scene scene = new Scene(root, Constants.PANE_WIDTH, Constants.PANE_HEIGHT);
@@ -173,9 +168,12 @@ public class DecoratingMechanism extends Application {
                 if (boxImage != null) {
                     boxView.setImage(load(boxImage));
                     cakeView.setVisible(false);
-                    System.out.println("✅ Cake packed and decorating complete.");
                     Constants.CAKE_DECORATED = true;
-                    primaryStage.close(); // Auto-close window
+
+                    // Delay closing after box image update
+                    PauseTransition delay = new PauseTransition(Duration.seconds(1.2));
+                    delay.setOnFinished(evt -> primaryStage.close());
+                    delay.play();
                 } else {
                     item.setLayoutX(originalX);
                     item.setLayoutY(originalY);
@@ -214,7 +212,7 @@ public class DecoratingMechanism extends Application {
         switch (decoratedCake) {
             case "decorate_chocolate_strawberry.png": return "box_chocolate_strawberry.png";
             case "decorated_chocolate_sprinkles.png": return "box_chocolate_sprinkles.png";
-            case "decorate_strawberry_strawberry.png": return "bow_starwberry_strawberry.png";
+            case "decorate_strawberry_strawberry.png": return "box_strawberry_strawberry.png";
             case "decorate_strawberry_sprinkles.png": return "box_strawberry_sprinkles.png";
         }
         return null;
@@ -222,7 +220,6 @@ public class DecoratingMechanism extends Application {
 
     public static void main(String[] args) {
         if (!launchedFromBaking) {
-            flavor = "vanilla";
             launch(args);
         }
     }
